@@ -110,10 +110,13 @@ export default function ProfilePage() {
         </div>
       </div>
       <div className="social-links">
-        <a className="social-link" href="#">
+        <a className="social-link" href="https://github.com/howardsun-dev">
           GitHub
         </a>
-        <a className="social-link" href="#">
+        <a
+          className="social-link"
+          href="https://www.linkedin.com/in/howardsun-swe"
+        >
           LinkedIn
         </a>
         <a className="social-link" href="#">
