@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
-import anime from 'animejs';
-import './ProfilePage.css'; // See next step for the CSS
+import { animate, stagger, createTimeline } from 'animejs';
+import './ProfilePage.css';
 
 const fullName = 'Howard Sun';
 
@@ -12,57 +12,55 @@ export default function ProfilePage() {
       nameContainerRef.current!.querySelectorAll('.letter')
     );
 
-    // Initial entrance animation
-    anime
-      .timeline()
-      .add({
-        targets: letters,
-        scale: [0, 1],
-        duration: 1000,
-        delay: anime.stagger(100),
-        easing: 'easeOutElastic(1, .8)',
-      })
-      .add(
-        {
-          targets: '.profile-info',
-          opacity: [0, 1],
-          translateY: [30, 0],
-          duration: 800,
-          easing: 'easeOutQuad',
-        },
-        '-=500'
-      )
-      .add(
-        {
-          targets: '.social-links',
-          opacity: [0, 1],
-          translateY: [20, 0],
-          duration: 600,
-          easing: 'easeOutQuad',
-        },
-        '-=400'
-      );
+    const timeline = createTimeline();
 
-    // Letter hover events
+    timeline.add(letters, {
+      scale: [0, 1],
+      duration: 1000,
+      delay: stagger(100),
+      ease: 'outElastic(1, .8)',
+    });
+
+    timeline.add(
+      '.profile-info',
+      {
+        opacity: [0, 1],
+        translateY: [30, 0],
+        duration: 800,
+        ease: 'outQuad',
+      },
+      '-=500'
+    );
+
+    timeline.add(
+      '.social-links',
+      {
+        opacity: [0, 1],
+        translateY: [20, 0],
+        duration: 600,
+        ease: 'outQuad',
+      },
+      '-=400'
+    );
+
+    // Letter hover events (animejs v4 syntax)
     letters.forEach((span) => {
       span.addEventListener('mouseenter', function () {
-        anime({
-          targets: span,
+        animate(span, {
           translateY: -20,
           rotateY: '1turn',
           scale: 1.2,
           duration: 600,
-          easing: 'easeOutElastic(1, .8)',
+          ease: 'outElastic(1, .8)',
         });
       });
       span.addEventListener('mouseleave', function () {
-        anime({
-          targets: span,
+        animate(span, {
           translateY: 0,
           rotateY: 0,
           scale: 1,
           duration: 400,
-          easing: 'easeOutQuad',
+          ease: 'outQuad',
         });
       });
     });
@@ -70,19 +68,18 @@ export default function ProfilePage() {
     // Cleanup listeners on unmount
     return () => {
       letters.forEach((span) => {
-        span.replaceWith(span.cloneNode(true)); // quick way to remove listeners
+        span.replaceWith(span.cloneNode(true));
       });
     };
   }, []);
 
   function handleNameClick() {
-    anime({
-      targets: '.letter',
+    animate('.letter', {
       scale: [1, 1.3, 1],
       rotateY: '+=180',
       duration: 1000,
-      delay: anime.stagger(50),
-      easing: 'easeInOutQuad',
+      delay: stagger(50),
+      ease: 'inOutQuad',
     });
   }
 
@@ -106,7 +103,7 @@ export default function ProfilePage() {
         )}
       </div>
       <div className="profile-info">
-        <div className="title">Full Stack Developer</div>
+        <div className="title">Software Engineer</div>
         <div className="bio">
           Passionate about creating beautiful, interactive web experiences.
           <br />I love bringing ideas to life through code and design.

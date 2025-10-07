@@ -1,0 +1,107 @@
+  * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .profile-container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 1400px;
+            width: min(100%,1400px)_
+        }
+
+        .name-container {
+            margin-bottom: 2rem;
+            cursor: pointer;
+        }
+
+        .letter {
+            display: inline-block;
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 0 0.1rem;
+            transition: all 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            transform-origin: center;
+        }
+
+        .letter:hover {
+            color: #FFD700;
+        }
+
+        .space {
+            width: 1rem;
+            display: inline-block;
+        }
+
+        .profile-info {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .title {
+            font-size: 1.5rem;
+            color: #FFD700;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .bio {
+            font-size: 1rem;
+            opacity: 0.9;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .letter {
+                font-size: 2.5rem;
+            }
+            
+            .profile-container {
+                padding: 1.5rem;
+            }
+        }
