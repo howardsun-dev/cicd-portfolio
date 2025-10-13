@@ -43,7 +43,7 @@ export default function ProfilePage() {
       '-=400'
     );
 
-    // Letter hover events (animejs v4 syntax)
+    // Letter hover events
     letters.forEach((span) => {
       span.addEventListener('mouseenter', function () {
         animate(span, {
