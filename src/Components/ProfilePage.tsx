@@ -105,17 +105,25 @@ export default function ProfilePage() {
       <div className="profile-info">
         <div className="title">Software Engineer</div>
         <div className="bio">
-          Passionate about creating beautiful, interactive web experiences.
-          <br />I love bringing ideas to life through code and design.
+          As a software engineer, I’m passionate about designing and developing
+          applications that make technology more engaging and accessible. My
+          work bridges the gap between creativity and engineering, focusing on
+          crafting seamless, meaningful user experiences.
+          <br />
         </div>
       </div>
       <div className="social-links">
-        <a className="social-link" href="https://github.com/howardsun-dev">
+        <a
+          className="social-link"
+          href="https://github.com/howardsun-dev"
+          target="_blank"
+        >
           GitHub
         </a>
         <a
           className="social-link"
           href="https://www.linkedin.com/in/howardsun-swe"
+          target="_blank"
         >
           LinkedIn
         </a>
