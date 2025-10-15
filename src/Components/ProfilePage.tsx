@@ -127,7 +127,11 @@ export default function ProfilePage() {
         >
           LinkedIn
         </a>
-        <a className="social-link" href="#">
+        <a
+          className="social-link"
+          href="http://howardsun.me/resume/Howard_Sun-Resume-PROJECT-2025.pdf"
+          target="_blank"
+        >
           Resume
         </a>
         <a className="social-link" href="#">
