@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>404 - This is not the page you're looking for</title>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@4.0.0/lib/anime.min.js"></script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #0b0c16;
+            font-family: 'Montserrat', Arial, sans-serif;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            z-index: 10;
+            text-align: center;
+            max-width: 600px;
+            color: #ffe81f;
+            text-shadow: 0 0 10px #ffe81f, 0 0 25px #fff;
+            opacity: 1 !important;
+            transform: scale(0.8);
+        }
+
+        .container h1 {
+            font-size: 5rem;
+            margin: 0 0 0.25em;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            line-height: 1.1;
+        }
+
+        .container h2 {
+            color: #fff;
+            font-weight: 400;
+            font-style: italic;
+            font-size: 1.6rem;
+            margin: 0 0 1em;
+        }
+
+        .container p {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <svg id="starfield" width="100%" height="100%" aria-hidden="true"></svg>
+    <main class="container" role="main" aria-label="404 Not Found">
+        <h1>404</h1>
+        <h2>This is <span style="font-style: normal; font-weight: 700;">not</span> the page you're looking for.</h2>
+        <p>Move along, move along...</p>
+    </main>
+    <script>
+        const starfield = document.getElementById('starfield');
+        const numStars = 80;
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        // Create star elements in SVG
+        for (let i = 0; i < numStars; i++) {
+            const star = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            star.setAttribute("cx", Math.random() * width);
+            star.setAttribute("cy", Math.random() * height);
+            star.setAttribute("r", 1 + Math.random() * 1.5);
+            star.setAttribute("fill", "white");
+            star.setAttribute("opacity", 0.5);
+            star.classList.add("star");
+            starfield.appendChild(star);
+        }
+
+        // Animate text fade-in and scale
+        anime({
+            targets: '.container',
+            opacity: [0, 1],
+            scale: [0.8, 1.1],
+            duration: 1600,
+            easing: 'easeOutExpo',
+            delay: 500
+        });
+
+        // Animate star twinkle
+        const stars = document.querySelectorAll('.star');
+        anime.timeline({ loop: true })
+            .add({
+                targets: stars,
+                opacity: [
+                    { value: 0.3, duration: 600, delay: anime.stagger(20) },
+                    { value: 0.9, duration: 900 },
+                    { value: 0.3, duration: 600 }
+                ],
+                easing: 'linear',
+            });
+    </script>
+</body>
+
+</html>
