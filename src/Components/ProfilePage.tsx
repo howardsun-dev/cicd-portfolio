@@ -120,9 +120,9 @@ export default function ProfilePage() {
         >
           Resume
         </a>
-        <a className="social-link" href="/project" target="_blank">
+        <Link className="social-link" to="/project">
           Projects
-        </a>
+        </Link>
       </div>
     </div>
   );
