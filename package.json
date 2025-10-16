@@ -12,6 +12,7 @@
   "dependencies": {
     "@tanstack/react-query": "5.90.5",
     "@tanstack/react-router": "1.133.3",
+    "@tanstack/react-router-devtools": "1.133.3",
     "animejs": "4.2.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
