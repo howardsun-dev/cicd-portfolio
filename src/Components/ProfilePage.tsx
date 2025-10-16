@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { animate, stagger, createTimeline } from 'animejs';
+import { Link } from '@tanstack/react-router';
 import './ProfilePage.css';
 
 const fullName = 'Howard Sun';
@@ -119,9 +120,9 @@ export default function ProfilePage() {
         >
           Resume
         </a>
-        <a className="social-link" href="#">
-          Portfolio
-        </a>
+        <Link className="social-link" to="/project">
+          Projects
+        </Link>
       </div>
     </div>
   );
