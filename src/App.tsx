@@ -1,10 +1,15 @@
-import ProfilePage from './Components/ProfilePage';
+import { createRouter, RouterProvider } from '@tanstack/react-router';
+import { routeTree } from './routes/routeTree'
+
 import './App.css';
+
+const router = create({ routeTree });
 
 function App() {
   return (
     <>
-      <ProfilePage />
+      {/* <ProfilePage /> */}
+      <RouterProvider router = {router}
     </>
   );
 }
