@@ -8,9 +8,7 @@ export default function ProfilePage() {
   const nameContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const letters = Array.from(
-      nameContainerRef.current!.querySelectorAll('.letter')
-    );
+    const letters = Array.from(nameContainerRef.current!.querySelectorAll('.letter'));
 
     const timeline = createTimeline();
 
@@ -29,7 +27,7 @@ export default function ProfilePage() {
         duration: 800,
         ease: 'outQuad',
       },
-      '-=500'
+      '-=500',
     );
 
     timeline.add(
@@ -40,7 +38,7 @@ export default function ProfilePage() {
         duration: 600,
         ease: 'outQuad',
       },
-      '-=400'
+      '-=400',
     );
 
     // Letter hover events (animejs v4 syntax)
@@ -85,11 +83,7 @@ export default function ProfilePage() {
 
   return (
     <div className="profile-container">
-      <div
-        ref={nameContainerRef}
-        className="name-container"
-        onClick={handleNameClick}
-      >
+      <div ref={nameContainerRef} className="name-container" onClick={handleNameClick}>
         {fullName.split('').map((char, idx) =>
           char === ' ' ? (
             <span className="space" key={idx}>
@@ -99,32 +93,23 @@ export default function ProfilePage() {
             <span className="letter" key={idx}>
               {char}
             </span>
-          )
+          ),
         )}
       </div>
       <div className="profile-info">
         <div className="title">Software Engineer</div>
         <div className="bio">
-          As a software engineer, I’m passionate about designing and developing
-          applications that make technology more engaging and accessible. My
-          work bridges the gap between creativity and engineering, focusing on
-          crafting seamless, meaningful user experiences.
+          As a software engineer, I’m passionate about designing and developing applications that
+          make technology more engaging and accessible. My work bridges the gap between creativity
+          and engineering, focusing on crafting seamless, meaningful user experiences.
           <br />
         </div>
       </div>
       <div className="social-links">
-        <a
-          className="social-link"
-          href="https://github.com/howardsun-dev"
-          target="_blank"
-        >
+        <a className="social-link" href="https://github.com/howardsun-dev" target="_blank">
           GitHub
         </a>
-        <a
-          className="social-link"
-          href="https://www.linkedin.com/in/howardsun-swe"
-          target="_blank"
-        >
+        <a className="social-link" href="https://www.linkedin.com/in/howardsun-swe" target="_blank">
           LinkedIn
         </a>
         <a
