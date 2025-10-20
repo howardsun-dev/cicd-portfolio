@@ -2,13 +2,16 @@ import { Link } from '@tanstack/react-router';
 
 export default function ProjectPage() {
   return (
-    <div>
-      <h1>My Project Page</h1>
-      <p>Work in Progress</p>
-      <br></br>
-      <Link className="social-link" to="/">
-        Home
-      </Link>
+    <div className="profile-container">
+      <div className="name-container"></div>
+      <div className="title">Projects</div>
+      <div className="bio">Work in Progress</div>
+      <div style={{ marginTop: '1.5rem' }}>
+        <br></br>
+        <Link className="social-link" to="/">
+          Home
+        </Link>
+      </div>
     </div>
   );
 }
