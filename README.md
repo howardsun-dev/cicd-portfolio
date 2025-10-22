@@ -1,6 +1,4 @@
-# React + TypeScript + Vite
-
-T# 🌐 Howard Sun — Personal & Professional Website
+# 🌐 Howard Sun — Personal & Professional Website
 
 Welcome to the repository for my personal and professional website!
 This site serves as both a portfolio and a digital reflection of my journey toward becoming a software engineer. It highlights my projects, skills, and long-term aspirations in the tech industry.
