@@ -3,8 +3,8 @@
 Welcome to the repository for my personal and professional website!
 This site serves as both a portfolio and a digital reflection of my journey toward becoming a software engineer. It highlights my projects, skills, and long-term aspirations in the tech industry.
 
-🎯 Career Mission
-
+## 🎯 Career Mission
+## 
 My goal is to elevate my career as a software engineer and grow into a creator who uses technology to make meaningful impact.
 I’m driven by curiosity, craftsmanship, and the desire to build intuitive, human-centered software that improves lives.
 
@@ -22,7 +22,7 @@ Launch my own successful software business that solves real-world problems.
 
 Empower others—especially my family and community—through technology and opportunity.
 
-🧠 Tech Stack
+## 🧠 Tech Stack
 
 This portfolio and my projects commonly use:
 
@@ -45,30 +45,30 @@ It’s continuously evolving as I learn new tools and technologies.
 
 .
 
-🚀 Setup & Run Locally
-```
-# Clone the repo
-git clone https://github.com/howardsun-dev/cicd-portfolio.git
+## 🚀 Setup & Run Locally
 
-# Navigate to the project folder
-cd cicd-portfolio
+### Clone the repo
+```git clone https://github.com/howardsun-dev/cicd-portfolio.git```
 
-# Install dependencies
-npm install
+### Navigate to the project folder
+```cd cicd-portfolio```
 
-# Start the development server
-npm run dev
-```
+### Install dependencies
+```npm install```
+
+### Start the development server
+```npm run dev```
+
 
 Then open http://localhost:5173/
  to view it in your browser.
 
-🌱 Continuous Growth
+## 🌱 Continuous Growth
 
 I believe software engineering is about more than just writing code — it’s about growth, empathy, and problem-solving.
 Every commit I make is a step toward mastering my craft and building a future where I can help others through technology.
 
-📬 Connect With Me
+## 📬 Connect With Me
 
 Website: https://howardsun.me
 
