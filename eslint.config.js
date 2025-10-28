@@ -1,5 +1,5 @@
 // eslint.config.js
-import reactX from 'eslint-plugin-react-x';
+import reactX from 'eslint-plugin-react';
 import reactDom from 'eslint-plugin-react-dom';
 
 export default defineConfig([
