@@ -105,6 +105,17 @@ export default function ProfilePage() {
           and engineering, focusing on crafting seamless, meaningful user experiences.
           <br />
         </div>
+        <div className="tech-container">
+          <div className="column">
+            <li>Javascript</li>
+          </div>
+          <div className="column">
+            <li>Postgres</li>
+          </div>
+          <div className="column">
+            <li>AWS S3</li>
+          </div>
+        </div>
       </div>
       <div className="social-links">
         <a className="social-link" href="https://github.com/howardsun-dev" target="_blank">
