@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router';
+import './ProfilePage.css';
 
 export default function ProjectPage() {
   return (
