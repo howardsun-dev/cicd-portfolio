@@ -4,7 +4,7 @@ import { Link } from '@tanstack/react-router';
 
 // add collapsable list for the 3 columns
 
-function CollapsibleListItem({ title, children }) {
+function CollapsibleListItem({ title, children }: { title: string; children?: React.ReactNode }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpand = () => {
