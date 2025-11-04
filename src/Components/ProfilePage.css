@@ -105,6 +105,16 @@
             transform: translateY(-2px);
         }
 
+        .tech-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .column {
+            flex: 1;
+            padding: 10px
+            border 1px solid #ccc
+            margin: 5px;
+        }
         @media (max-width: 768px) {
             .letter {
                 font-size: 2.5rem;
@@ -113,4 +123,5 @@
             .profile-container {
                 padding: 1.5rem;
             }
+        
         }
