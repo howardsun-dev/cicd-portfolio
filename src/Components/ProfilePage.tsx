@@ -107,10 +107,14 @@ export default function ProfilePage() {
         </div>
         <div className="tech-container">
           <div className="column">
-            <h2>Test column1</h2>
+            <li>Javascript</li>
           </div>
-          <div className="column">Test column2</div>
-          <div className="column">Test column3</div>
+          <div className="column">
+            <li>Postgres</li>
+          </div>
+          <div className="column">
+            <li>AWS S3</li>
+          </div>
         </div>
       </div>
       <div className="social-links">
