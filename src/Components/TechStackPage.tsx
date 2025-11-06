@@ -33,6 +33,7 @@ export default function TechStackPage() {
               <li>React</li>
               <li>Redux</li>
               <li>Typescript</li>
+              <li>Solid.js</li>
             </ul>
           </CollapsibleListItem>
         </div>
@@ -47,6 +48,11 @@ export default function TechStackPage() {
               <li>MongoDB</li>
               <li>Vite</li>
               <li>webpack</li>
+              <li>Jest</li>
+              <li>Vitest</li>
+              <li>Jest</li>
+              <li>Mocha</li>
+              <li>chai</li>
             </ul>
           </CollapsibleListItem>
         </div>
