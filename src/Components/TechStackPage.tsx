@@ -62,7 +62,7 @@ export default function TechStackPage() {
               ].map((tech) => (
                 <li
                   key={tech}
-                  className={`frontend-${tech.toLowerCase().replace('.', '').replace(' ', '-')}`}
+                  className={`backend-${tech.toLowerCase().replace('.', '').replace(' ', '-')}`}
                 >
                   {tech}
                 </li>
@@ -81,7 +81,7 @@ export default function TechStackPage() {
               ].map((tech) => (
                 <li
                   key={tech}
-                  className={`frontend-${tech.toLowerCase().replace('.', '').replace(' ', '-')}`}
+                  className={`cloud-${tech.toLowerCase().replace('.', '').replace(' ', '-')}`}
                 >
                   {tech}
                 </li>
