@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './ProfilePage.css';
-import { Link, useElementScrollRestoration } from '@tanstack/react-router';
+import { Link } from '@tanstack/react-router';
 
 // add collapsable list for the 3 columns
 
