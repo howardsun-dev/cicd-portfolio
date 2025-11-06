@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './ProfilePage.css';
-import { Link } from '@tanstack/react-router';
+import { Link, useElementScrollRestoration } from '@tanstack/react-router';
 
 // add collapsable list for the 3 columns
 
@@ -30,39 +30,62 @@ export default function TechStackPage() {
         <div className="column">
           <CollapsibleListItem title="Fontend">
             <ul>
-              <li>React</li>
-              <li>Redux</li>
-              <li>Typescript</li>
-              <li>Solid.js</li>
+              <ul>
+                {['React', 'Redux', 'Typescript', 'Solid.js'].map((tech) => (
+                  <li
+                    key={tech}
+                    className={`frontend-${tech.toLowerCase().replace('.', '').replace(' ', '-')}`}
+                  >
+                    {tech}
+                  </li>
+                ))}
+              </ul>
             </ul>
           </CollapsibleListItem>
         </div>
         <div className="column">
           <CollapsibleListItem title="Backend">
             <ul>
-              <li>Node.js</li>
-              <li>Express</li>
-              <li>Electron.js</li>
-              <li>Python</li>
-              <li>PostgreSQL</li>
-              <li>MongoDB</li>
-              <li>Vite</li>
-              <li>webpack</li>
-              <li>Jest</li>
-              <li>Vitest</li>
-              <li>Jest</li>
-              <li>Mocha</li>
-              <li>chai</li>
+              {[
+                'Node.js',
+                'Express',
+                'Electron.js',
+                'Python',
+                'PostgreSQL',
+                'MongoDB',
+                'Vite',
+                'webpack',
+                'Jest',
+                'Mocha',
+                'Chai',
+                'Vitest',
+              ].map((tech) => (
+                <li
+                  key={tech}
+                  className={`frontend-${tech.toLowerCase().replace('.', '').replace(' ', '-')}`}
+                >
+                  {tech}
+                </li>
+              ))}
             </ul>
           </CollapsibleListItem>
         </div>
         <div className="column">
           <CollapsibleListItem title="Cloud & Containerization">
             <ul>
-              <li>AWS</li>
-              <li>Terraform</li>
-              <li>Docker</li>
-              <li>Kubernetes</li>
+              {[
+                'AWS (EC2, S3, Aurora, Elastic Beanstalk, VPC)',
+                'Terraform',
+                'Docker',
+                'Kubernetes',
+              ].map((tech) => (
+                <li
+                  key={tech}
+                  className={`frontend-${tech.toLowerCase().replace('.', '').replace(' ', '-')}`}
+                >
+                  {tech}
+                </li>
+              ))}
             </ul>
           </CollapsibleListItem>
         </div>
