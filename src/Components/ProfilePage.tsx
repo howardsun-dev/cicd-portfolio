@@ -20,6 +20,7 @@ export default function ProfilePage() {
       ease: 'outElastic(1, .8)',
     });
 
+    //Disabled due to issues of animation loading with SPA/Router functions
     // timeline.add(
     //   '.profile-info',
     //   {
