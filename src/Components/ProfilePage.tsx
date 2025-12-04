@@ -20,27 +20,27 @@ export default function ProfilePage() {
       ease: 'outElastic(1, .8)',
     });
 
-    timeline.add(
-      '.profile-info',
-      {
-        opacity: [0, 1],
-        translateY: [30, 0],
-        duration: 800,
-        ease: 'outQuad',
-      },
-      '-=500',
-    );
+    // timeline.add(
+    //   '.profile-info',
+    //   {
+    //     opacity: [0, 1],
+    //     translateY: [30, 0],
+    //     duration: 800,
+    //     ease: 'outQuad',
+    //   },
+    //   '-=500',
+    // );
 
-    timeline.add(
-      '.social-links',
-      {
-        opacity: [0, 1],
-        translateY: [20, 0],
-        duration: 600,
-        ease: 'outQuad',
-      },
-      '-=400',
-    );
+    // timeline.add(
+    //   '.social-links',
+    //   {
+    //     opacity: [0, 1],
+    //     translateY: [20, 0],
+    //     duration: 600,
+    //     ease: 'outQuad',
+    //   },
+    //   '-=400',
+    // );
 
     // Letter hover events (animejs v4 syntax)
     letters.forEach((span) => {
