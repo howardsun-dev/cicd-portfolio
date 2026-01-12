@@ -28,7 +28,7 @@ export default function TechStackPage() {
       <div className="title">Tech Stack</div>
       <div className="tech-container">
         <div className="column">
-          <CollapsibleListItem title="Fontend">
+          <CollapsibleListItem title="Frontend">
             <ul>
               <ul>
                 {[
