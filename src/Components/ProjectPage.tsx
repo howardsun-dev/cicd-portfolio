@@ -6,7 +6,16 @@ export default function ProjectPage() {
     <div className="profile-container">
       <div className="name-container"></div>
       <div className="title">Projects</div>
-      <div className="bio">QuickChat</div>
+      <div className="bio">
+        <a
+          href="https://quickchat-v72jh.sevalla.app/"
+          target="blank"
+          rel="noreferrer"
+          className="social-link"
+        >
+          QuickChat
+        </a>
+      </div>
       <div style={{ marginTop: '1.5rem' }}>
         <br></br>
         <Link className="social-link" to="/">
