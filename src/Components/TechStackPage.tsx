@@ -43,7 +43,7 @@ export default function TechStackPage() {
                 ].map((tech) => (
                   <li
                     key={tech}
-                    className={`frontend-${tech.toLowerCase().replace('.', '').replace(' ', '-')}`}
+                    className={`frontend-${tech.toLowerCase().replace(/\./g, '').replace(/\s+/g, '-')}`}
                   >
                     {tech}
                   </li>
@@ -66,7 +66,7 @@ export default function TechStackPage() {
               ].map((tech) => (
                 <li
                   key={tech}
-                  className={`backend-${tech.toLowerCase().replace('.', '').replace(' ', '-')}`}
+                  className={`backend-${tech.toLowerCase().replace(/\./g, '').replace(/\s+/g, '-')}`}
                 >
                   {tech}
                 </li>
@@ -80,7 +80,7 @@ export default function TechStackPage() {
               {['Vitest', 'webpack', 'Jest', 'Mocha', 'Chai', 'Github Actions'].map((tech) => (
                 <li
                   key={tech}
-                  className={`backend-${tech.toLowerCase().replace('.', '').replace(' ', '-')}`}
+                  className={`backend-${tech.toLowerCase().replace(/\./g, '').replace(/\s+/g, '-')}`}
                 >
                   {tech}
                 </li>
