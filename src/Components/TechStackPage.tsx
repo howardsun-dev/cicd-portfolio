@@ -31,7 +31,17 @@ export default function TechStackPage() {
           <CollapsibleListItem title="Fontend">
             <ul>
               <ul>
-                {['React', 'Redux', 'Typescript', 'Solid.js'].map((tech) => (
+                {[
+                  'React',
+                  'Redux',
+                  'Typescript',
+                  'Solid.js',
+                  'Zustand',
+                  'Vite',
+                  'Vitest',
+                  'Tailwind CSS',
+                  'DaisyUI',
+                ].map((tech) => (
                   <li
                     key={tech}
                     className={`frontend-${tech.toLowerCase().replace('.', '').replace(' ', '-')}`}
@@ -53,12 +63,12 @@ export default function TechStackPage() {
                 'Python',
                 'PostgreSQL',
                 'MongoDB',
+                'Socket.IO',
                 'Vite',
                 'webpack',
                 'Jest',
                 'Mocha',
                 'Chai',
-                'Vitest',
               ].map((tech) => (
                 <li
                   key={tech}
