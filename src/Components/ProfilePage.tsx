@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { animate, stagger, createTimeline } from 'animejs';
 import { Link } from '@tanstack/react-router';
 import './ProfilePage.css';
@@ -68,7 +68,7 @@ export default function ProfilePage() {
 
     // Cleanup listeners on unmount
     return () => {
-      letters.forEach((span, i) => {
+      letters.forEach((spani) => {
         span.replaceWith(span.cloneNode(true)); // Removes listeners
       });
     };
