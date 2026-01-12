@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { animate, stagger, createTimeline } from 'animejs';
 import { Link } from '@tanstack/react-router';
 import './ProfilePage.css';
@@ -7,6 +7,7 @@ const fullName = 'Howard Sun';
 
 export default function ProfilePage() {
   const nameContainerRef = useRef<HTMLDivElement>(null);
+  // const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     const letters = Array.from(nameContainerRef.current!.querySelectorAll('.letter'));
@@ -67,8 +68,8 @@ export default function ProfilePage() {
 
     // Cleanup listeners on unmount
     return () => {
-      letters.forEach((span) => {
-        span.replaceWith(span.cloneNode(true));
+      letters.forEach((span, i) => {
+        span.replaceWith(span.cloneNode(true)); // Removes listeners
       });
     };
   }, []);

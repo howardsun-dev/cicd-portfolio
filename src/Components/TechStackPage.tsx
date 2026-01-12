@@ -28,13 +28,22 @@ export default function TechStackPage() {
       <div className="title">Tech Stack</div>
       <div className="tech-container">
         <div className="column">
-          <CollapsibleListItem title="Fontend">
+          <CollapsibleListItem title="Frontend">
             <ul>
               <ul>
-                {['React', 'Redux', 'Typescript', 'Solid.js'].map((tech) => (
+                {[
+                  'React',
+                  'Redux',
+                  'Typescript',
+                  'Solid.js',
+                  'Zustand',
+                  'Vite',
+                  'Tailwind CSS',
+                  'DaisyUI',
+                ].map((tech) => (
                   <li
                     key={tech}
-                    className={`frontend-${tech.toLowerCase().replace('.', '').replace(' ', '-')}`}
+                    className={`frontend-${tech.toLowerCase().replace(/\./g, '').replace(/\s+/g, '-')}`}
                   >
                     {tech}
                   </li>
@@ -53,16 +62,25 @@ export default function TechStackPage() {
                 'Python',
                 'PostgreSQL',
                 'MongoDB',
-                'Vite',
-                'webpack',
-                'Jest',
-                'Mocha',
-                'Chai',
-                'Vitest',
+                'Socket.IO',
               ].map((tech) => (
                 <li
                   key={tech}
-                  className={`backend-${tech.toLowerCase().replace('.', '').replace(' ', '-')}`}
+                  className={`backend-${tech.toLowerCase().replace(/\./g, '').replace(/\s+/g, '-')}`}
+                >
+                  {tech}
+                </li>
+              ))}
+            </ul>
+          </CollapsibleListItem>
+        </div>
+        <div className="column">
+          <CollapsibleListItem title="Build & Testing">
+            <ul>
+              {['Vitest', 'webpack', 'Jest', 'Mocha', 'Chai', 'Github Actions'].map((tech) => (
+                <li
+                  key={tech}
+                  className={`backend-${tech.toLowerCase().replace(/\./g, '').replace(/\s+/g, '-')}`}
                 >
                   {tech}
                 </li>
