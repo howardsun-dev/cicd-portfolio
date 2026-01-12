@@ -77,7 +77,7 @@ export default function TechStackPage() {
         <div className="column">
           <CollapsibleListItem title="Build & Testing">
             <ul>
-              {['Vitest', 'webpack', 'Jest', 'Mocha', 'Chai'].map((tech) => (
+              {['Vitest', 'webpack', 'Jest', 'Mocha', 'Chai', 'Github Actions'].map((tech) => (
                 <li
                   key={tech}
                   className={`backend-${tech.toLowerCase().replace('.', '').replace(' ', '-')}`}
