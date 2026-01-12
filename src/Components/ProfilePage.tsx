@@ -68,7 +68,7 @@ export default function ProfilePage() {
 
     // Cleanup listeners on unmount
     return () => {
-      letters.forEach((spani) => {
+      letters.forEach((span) => {
         span.replaceWith(span.cloneNode(true)); // Removes listeners
       });
     };
