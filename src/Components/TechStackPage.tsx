@@ -38,7 +38,6 @@ export default function TechStackPage() {
                   'Solid.js',
                   'Zustand',
                   'Vite',
-                  'Vitest',
                   'Tailwind CSS',
                   'DaisyUI',
                 ].map((tech) => (
@@ -64,12 +63,21 @@ export default function TechStackPage() {
                 'PostgreSQL',
                 'MongoDB',
                 'Socket.IO',
-                'Vite',
-                'webpack',
-                'Jest',
-                'Mocha',
-                'Chai',
               ].map((tech) => (
+                <li
+                  key={tech}
+                  className={`backend-${tech.toLowerCase().replace('.', '').replace(' ', '-')}`}
+                >
+                  {tech}
+                </li>
+              ))}
+            </ul>
+          </CollapsibleListItem>
+        </div>
+        <div className="column">
+          <CollapsibleListItem title="Build & Testing">
+            <ul>
+              {['Vitest', 'webpack', 'Jest', 'Mocha', 'Chai'].map((tech) => (
                 <li
                   key={tech}
                   className={`backend-${tech.toLowerCase().replace('.', '').replace(' ', '-')}`}
