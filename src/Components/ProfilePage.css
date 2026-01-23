@@ -12,7 +12,10 @@
         margin: 0;
         padding: 0;
 }
-
+        .profile-info, .social-links {
+            opacity: 0;
+            transform: translateY(20px);
+        }
         body {
             font-family: 'Arial', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
