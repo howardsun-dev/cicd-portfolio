@@ -7,6 +7,17 @@ export default function ProjectPage() {
       <div className="name-container"></div>
       <div className="title">Projects</div>
       <div className="bio">
+        <div style={{ marginBottom: '1.5rem' }}>
+          <a
+            href="https://github.com/open-source-labs/Swell"
+            target="blank"
+            rel="noreferrer"
+            className="social-link"
+          >
+            Swell
+          </a>
+        </div>
+        <div></div>
         <a
           href="https://quickchat-v72jh.sevalla.app/"
           target="blank"
