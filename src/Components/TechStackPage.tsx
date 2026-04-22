@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './ProfilePage.css';
 import { Link } from '@tanstack/react-router';
 
