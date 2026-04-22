@@ -1,117 +1,165 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './ProfilePage.css';
 import { Link } from '@tanstack/react-router';
 
-// add collapsable list for the 3 columns
+type SlideData = {
+  id: string;
+  title: string;
+  items: string[];
+};
 
-function CollapsibleListItem({ title, children }: { title: string; children?: React.ReactNode }) {
-  const [isExpanded, setIsExpanded] = useState(false);
+const slides: SlideData[] = [
+  {
+    id: 'frontend',
+    title: 'Frontend',
+    items: [
+      'React',
+      'Redux',
+      'Zustand',
+      'HTML5',
+      'CSS (Sass)',
+      'Tailwind CSS',
+      'Material UI',
+      'DaisyUI',
+      'Solid.js',
+      'Electron.js',
+      'webpack',
+      'Vite',
+    ],
+  },
+  {
+    id: 'backend',
+    title: 'Backend',
+    items: ['Node.js', 'Express', 'WebSocket'],
+  },
+  {
+    id: 'databases',
+    title: 'Databases',
+    items: ['PostgreSQL', 'MongoDB'],
+  },
+  {
+    id: 'infrastructure',
+    title: 'Infrastructure & Cloud',
+    items: [
+      'AWS (EC2, S3, Aurora, Elastic Beanstalk, VPC)',
+      'Docker',
+      'Kubernetes',
+      'GitHub Actions',
+    ],
+  },
+  {
+    id: 'testing',
+    title: 'Testing',
+    items: ['Jest', 'Playwright', 'Mocha', 'Chai', 'Vitest'],
+  },
+  {
+    id: 'tools',
+    title: 'Tools',
+    items: ['Git', 'Cloudinary'],
+  },
+];
 
-  const toggleExpand = () => {
-    setIsExpanded(!isExpanded);
+function TechSlide({ slide }: { slide: SlideData }) {
+  return (
+    <section className="tech-slide" id={slide.id} data-slide>
+      <div className="tech-panel">
+        <div className="tech-panel-body">
+          <h2 className="tech-slide-title">{slide.title}</h2>
+
+          <ul className="tech-slide-list">
+            {slide.items.map((tech) => (
+              <li
+                key={tech}
+                className={`tech-item-${tech
+                  .toLowerCase()
+                  .replace(/\./g, '')
+                  .replace(/[(),&]/g, '')
+                  .replace(/\s+/g, '-')}`}
+              >
+                {tech}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default function TechStackPage() {
+  const sliderRef = useRef<HTMLDivElement | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const slider = sliderRef.current;
+    if (!slider) return;
+
+    const slideElements = slider.querySelectorAll<HTMLElement>('[data-slide]');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = Number((entry.target as HTMLElement).dataset.index);
+            setActiveIndex(index);
+          }
+        });
+      },
+      {
+        root: slider,
+        threshold: 0.65,
+      },
+    );
+
+    slideElements.forEach((slide, index) => {
+      slide.dataset.index = String(index);
+      observer.observe(slide);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const goToSlide = (index: number) => {
+    const slider = sliderRef.current;
+    if (!slider) return;
+
+    const slide = slider.querySelectorAll<HTMLElement>('[data-slide]')[index];
+    slide?.scrollIntoView({
+      behavior: 'smooth',
+      inline: 'start',
+      block: 'nearest',
+    });
   };
 
   return (
-    <div>
-      <div onClick={toggleExpand} style={{ cursor: 'pointer' }}>
-        <h3>
-          {title} {isExpanded ? '▲' : '▼'}
-        </h3>
-      </div>
-      {isExpanded && <div>{children}</div>}
-    </div>
-  );
-}
-export default function TechStackPage() {
-  return (
-    <div className="profile-container">
+    <div className="profile-container tech-stack-page">
       <div className="title">Tech Stack</div>
-      <div className="tech-container">
-        <div className="column">
-          <CollapsibleListItem title="Frontend">
-            <ul>
-              <ul>
-                {[
-                  'React',
-                  'Redux',
-                  'Typescript',
-                  'Solid.js',
-                  'Zustand',
-                  'Vite',
-                  'Tailwind CSS',
-                  'DaisyUI',
-                ].map((tech) => (
-                  <li
-                    key={tech}
-                    className={`frontend-${tech.toLowerCase().replace(/\./g, '').replace(/\s+/g, '-')}`}
-                  >
-                    {tech}
-                  </li>
-                ))}
-              </ul>
-            </ul>
-          </CollapsibleListItem>
+
+      <div className="tech-shell">
+        <div className="tech-slider" ref={sliderRef}>
+          {slides.map((slide) => (
+            <TechSlide key={slide.id} slide={slide} />
+          ))}
         </div>
-        <div className="column">
-          <CollapsibleListItem title="Backend">
-            <ul>
-              {[
-                'Node.js',
-                'Express',
-                'Electron.js',
-                'Python',
-                'PostgreSQL',
-                'MongoDB',
-                'Socket.IO',
-              ].map((tech) => (
-                <li
-                  key={tech}
-                  className={`backend-${tech.toLowerCase().replace(/\./g, '').replace(/\s+/g, '-')}`}
-                >
-                  {tech}
-                </li>
-              ))}
-            </ul>
-          </CollapsibleListItem>
+
+        <div className="tech-home-row">
+          <Link className="social-link" to="/">
+            Home
+          </Link>
         </div>
-        <div className="column">
-          <CollapsibleListItem title="Build & Testing">
-            <ul>
-              {['Vitest', 'webpack', 'Jest', 'Mocha', 'Chai', 'Github Actions'].map((tech) => (
-                <li
-                  key={tech}
-                  className={`backend-${tech.toLowerCase().replace(/\./g, '').replace(/\s+/g, '-')}`}
-                >
-                  {tech}
-                </li>
-              ))}
-            </ul>
-          </CollapsibleListItem>
+
+        <div className="slider-dots-panel" aria-label="Slide navigation">
+          {slides.map((slide, index) => (
+            <button
+              key={slide.id}
+              type="button"
+              className={`dot ${activeIndex === index ? 'active' : ''}`}
+              aria-label={`Go to ${slide.title}`}
+              aria-current={activeIndex === index ? 'true' : undefined}
+              onClick={() => goToSlide(index)}
+            />
+          ))}
         </div>
-        <div className="column">
-          <CollapsibleListItem title="Cloud & Containerization">
-            <ul>
-              {[
-                'AWS (EC2, S3, Aurora, Elastic Beanstalk, VPC)',
-                'Terraform',
-                'Docker',
-                'Kubernetes',
-              ].map((tech) => (
-                <li
-                  key={tech}
-                  className={`cloud-${tech.toLowerCase().replace('.', '').replace(' ', '-')}`}
-                >
-                  {tech}
-                </li>
-              ))}
-            </ul>
-          </CollapsibleListItem>
-        </div>
-      </div>
-      <div style={{ marginTop: '1.5rem' }}>
-        <Link className="social-link" to="/">
-          Home
-        </Link>
       </div>
     </div>
   );
