@@ -119,10 +119,17 @@ export default function ProfilePage() {
         </Link>
         <a
           className="social-link"
-          href="http://howardsun.me/resume/Howard_Sun-Resume-PROJECT-2026.pdf"
+          href="http://howardsun.me/resume/Howard_Sun-Resume-2026.docx"
           target="_blank"
         >
-          Resume
+          Resume [DOCX]
+        </a>
+        <a
+          className="social-link"
+          href="http://howardsun.me/resume/Howard_Sun-Resume-2026.pdf"
+          target="_blank"
+        >
+          Resume [PDF]
         </a>
         <Link className="social-link" to="/project">
           Projects
