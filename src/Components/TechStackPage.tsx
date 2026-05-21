@@ -30,7 +30,7 @@ const slides: SlideData[] = [
   {
     id: 'backend',
     title: 'Backend',
-    items: ['Node.js', 'Express', 'WebSocket'],
+    items: ['Node.js', 'Express', 'Socket.io', 'TypeScript', 'Python'],
   },
   {
     id: 'databases',
@@ -55,7 +55,7 @@ const slides: SlideData[] = [
   {
     id: 'tools',
     title: 'Tools',
-    items: ['Git', 'Cloudinary'],
+    items: ['Git', 'VS Code', 'Figma', 'Obsidian', 'Cloudinary'],
   },
 ];
 

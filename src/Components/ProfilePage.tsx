@@ -7,10 +7,11 @@ const fullName = 'Howard Sun';
 
 export default function ProfilePage() {
   const nameContainerRef = useRef<HTMLDivElement>(null);
-  // const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
-    const letters = Array.from(nameContainerRef.current!.querySelectorAll('.letter'));
+    const nameEl = nameContainerRef.current;
+    if (!nameEl) return;
+    const letters = Array.from(nameEl.querySelectorAll('.letter'));
 
     const timeline = createTimeline();
 

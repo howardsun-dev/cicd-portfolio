@@ -16,8 +16,7 @@ const projects: Project[] = [
       'A Discord bot that scrapes job sites (LinkedIn, Indeed, Glassdoor) on a schedule and posts matching listings to configured channels. Built to automate job search and learn Discord API, web scraping, and eventually AI-powered job matching with RAG.',
     tech: ['Node.js', 'TypeScript', 'discord.js', 'Puppeteer', 'PostgreSQL', 'Docker', 'AWS'],
     links: [
-      { label: 'GitHub', href: 'https://github.com/howardsun-dev' },
-      { label: 'YouTube Series', href: '#' },
+      { label: 'GitHub', href: 'https://github.com/howardsun-dev/discord-job-scraper' },
     ],
     status: 'in-progress',
   },
@@ -103,7 +102,6 @@ function ProjectCard({ project }: { project: Project }) {
 export default function ProjectPage() {
   return (
     <div className="profile-container">
-      <div className="name-container"></div>
       <div className="title">Projects</div>
       <div className="projects-list">
         {projects.map((project) => (
