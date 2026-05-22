@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { animate, stagger, createTimeline } from 'animejs';
 import { Link } from '@tanstack/react-router';
 import { usePageTitle } from '../hooks/usePageTitle';
-import './ProfilePage.css';
+import { RESUME_PDF_PATH } from '../links';
 
 const fullName = 'Howard Sun';
 
@@ -135,7 +135,7 @@ export default function ProfilePage() {
         </Link>
         <a
           className="social-link primary"
-          href="https://howardsun.me/resume/Howard_Sun-Resume-2026.pdf"
+          href={RESUME_PDF_PATH}
         >
           Download Resume
         </a>

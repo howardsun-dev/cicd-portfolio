@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router';
+import { RESUME_PDF_PATH } from '../links';
 
 const externalLinks = [
   { href: 'https://github.com/howardsun-dev', label: 'GitHub' },
@@ -18,7 +19,7 @@ export default function SiteNav() {
         <Link className="nav-link" to="/techstack" activeProps={{ 'aria-current': 'page' }}>
           Tech Stack
         </Link>
-        <a className="nav-link" href="https://howardsun.me/resume/Howard_Sun-Resume-2026.pdf">
+        <a className="nav-link" href={RESUME_PDF_PATH}>
           Resume
         </a>
         {externalLinks.map((link) => (
