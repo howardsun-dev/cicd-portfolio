@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import './ProfilePage.css';
 import { Link } from '@tanstack/react-router';
+import { usePageTitle } from '../hooks/usePageTitle';
 
 type SlideData = {
   id: string;
@@ -89,6 +90,7 @@ function TechSlide({ slide }: { slide: SlideData }) {
 export default function TechStackPage() {
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  usePageTitle('Howard Sun — Tech Stack');
 
   useEffect(() => {
     const slider = sliderRef.current;
@@ -125,15 +127,18 @@ export default function TechStackPage() {
 
     const slide = slider.querySelectorAll<HTMLElement>('[data-slide]')[index];
     slide?.scrollIntoView({
-      behavior: 'smooth',
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
       inline: 'start',
       block: 'nearest',
     });
   };
 
   return (
-    <div className="profile-container tech-stack-page">
-      <div className="title">Tech Stack</div>
+    <main id="main-content" className="profile-container tech-stack-page" tabIndex={-1}>
+      <header className="page-header">
+        <p className="eyebrow">Capabilities</p>
+        <h1 className="title">Tech Stack</h1>
+      </header>
 
       <div className="tech-shell">
         <div className="tech-slider" ref={sliderRef}>
@@ -161,6 +166,6 @@ export default function TechStackPage() {
           ))}
         </div>
       </div>
-    </div>
+    </main>
   );
 }
