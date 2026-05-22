@@ -1,18 +1,29 @@
 import { useEffect, useRef } from 'react';
 import { animate, stagger, createTimeline } from 'animejs';
 import { Link } from '@tanstack/react-router';
+import { usePageTitle } from '../hooks/usePageTitle';
 import './ProfilePage.css';
 
 const fullName = 'Howard Sun';
 
+function prefersReducedMotion() {
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
 export default function ProfilePage() {
-  const nameContainerRef = useRef<HTMLDivElement>(null);
+  const nameContainerRef = useRef<HTMLHeadingElement>(null);
+  usePageTitle('Howard Sun — Portfolio');
 
   useEffect(() => {
     const nameEl = nameContainerRef.current;
-    if (!nameEl) return;
-    const letters = Array.from(nameEl.querySelectorAll('.letter'));
+    if (!nameEl || prefersReducedMotion()) {
+      document.querySelector('.profile-info')?.classList.add('is-visible');
+      document.querySelector('.social-links')?.classList.add('is-visible');
+      return;
+    }
 
+    const letters = Array.from(nameEl.querySelectorAll('.letter'));
+    const cleanups: Array<() => void> = [];
     const timeline = createTimeline();
 
     timeline.add(letters, {
@@ -44,9 +55,8 @@ export default function ProfilePage() {
       '-=400',
     );
 
-    // Letter hover events
     letters.forEach((span) => {
-      span.addEventListener('mouseenter', function () {
+      const onEnter = () => {
         animate(span, {
           translateY: -20,
           rotateY: '1turn',
@@ -54,8 +64,8 @@ export default function ProfilePage() {
           duration: 600,
           ease: 'outElastic(1, .8)',
         });
-      });
-      span.addEventListener('mouseleave', function () {
+      };
+      const onLeave = () => {
         animate(span, {
           translateY: 0,
           rotateY: 0,
@@ -63,18 +73,20 @@ export default function ProfilePage() {
           duration: 400,
           ease: 'outQuad',
         });
+      };
+      span.addEventListener('mouseenter', onEnter);
+      span.addEventListener('mouseleave', onLeave);
+      cleanups.push(() => {
+        span.removeEventListener('mouseenter', onEnter);
+        span.removeEventListener('mouseleave', onLeave);
       });
     });
 
-    // Cleanup listeners on unmount
-    return () => {
-      letters.forEach((span) => {
-        span.replaceWith(span.cloneNode(true)); // Removes listeners
-      });
-    };
+    return () => cleanups.forEach((cleanup) => cleanup());
   }, []);
 
   function handleNameClick() {
+    if (prefersReducedMotion()) return;
     animate('.letter', {
       scale: [1, 1.3, 1],
       rotateY: '+=180',
@@ -85,64 +97,58 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="profile-container">
-      <div ref={nameContainerRef} className="name-container" onClick={handleNameClick}>
-        {fullName.split('').map((char, idx) =>
-          char === ' ' ? (
-            <span className="space" key={idx}>
-              {' '}
-            </span>
-          ) : (
-            <span className="letter" key={idx}>
-              {char}
-            </span>
-          ),
-        )}
-      </div>
-      <div className="profile-info">
-        <div className="title">
+    <main id="main-content" className="profile-container" tabIndex={-1}>
+      <h1 ref={nameContainerRef} className="name-container" aria-label={fullName}>
+        <button className="name-button" type="button" onClick={handleNameClick} aria-label="Animate Howard Sun name">
+          {fullName.split('').map((char, idx) =>
+            char === ' ' ? (
+              <span className="space" key={idx} aria-hidden="true">
+                {' '}
+              </span>
+            ) : (
+              <span className="letter" key={idx} aria-hidden="true">
+                {char}
+              </span>
+            ),
+          )}
+        </button>
+      </h1>
+      <section className="profile-info" aria-labelledby="profile-title">
+        <h2 id="profile-title" className="title">
           Full-stack engineer building reliable tools and clean interfaces
-        </div>
-        <div className="bio">
+        </h2>
+        <p className="bio">
           I work across the stack in TypeScript, React, and Node.js, with a focus on code quality,
           test coverage, and systems that are easy for other engineers to maintain. I've been on
           both the contributor side and the founding side — I co-led the engineering team at Mission
           Coders, shipping a kids' coding platform 5 weeks ahead of schedule.
-          <br /><br />
+        </p>
+        <p className="bio">
           Now I'm building toward AI engineering — learning RAG systems, LLM integrations, and
           vector search by shipping real projects. I document the journey through build-along
           content and open-source code.
-          <br />
-        </div>
-      </div>
-      <div className="social-links">
-        <a className="social-link" href="https://github.com/howardsun-dev" target="_blank">
-          GitHub
-        </a>
-        <a className="social-link" href="https://www.linkedin.com/in/howardsun-swe" target="_blank">
-          LinkedIn
+        </p>
+      </section>
+      <div className="social-links" aria-label="Primary actions">
+        <Link className="social-link primary" to="/project">
+          View Projects
+        </Link>
+        <a
+          className="social-link primary"
+          href="https://howardsun.me/resume/Howard_Sun-Resume-2026.pdf"
+        >
+          Download Resume
         </a>
         <Link className="social-link" to="/techstack">
           Tech Stack
         </Link>
-        <a
-          className="social-link"
-          href="http://howardsun.me/resume/Howard_Sun-Resume-2026.docx"
-          target="_blank"
-        >
-          Resume [DOCX]
+        <a className="social-link" href="https://github.com/howardsun-dev" target="_blank" rel="noreferrer">
+          GitHub<span className="sr-only"> (opens in a new tab)</span>
         </a>
-        <a
-          className="social-link"
-          href="http://howardsun.me/resume/Howard_Sun-Resume-2026.pdf"
-          target="_blank"
-        >
-          Resume [PDF]
+        <a className="social-link" href="https://www.linkedin.com/in/howardsun-swe" target="_blank" rel="noreferrer">
+          LinkedIn<span className="sr-only"> (opens in a new tab)</span>
         </a>
-        <Link className="social-link" to="/project">
-          Projects
-        </Link>
       </div>
-    </div>
+    </main>
   );
 }

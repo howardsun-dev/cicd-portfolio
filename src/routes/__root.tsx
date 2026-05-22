@@ -1,13 +1,16 @@
 import { Outlet, createRootRoute } from '@tanstack/react-router';
+import SiteNav from '../Components/SiteNav';
 // import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 
 export const Route = createRootRoute({
   component: () => {
     return (
       <>
-        <div>
-          <Outlet />
-        </div>
+        <a className="skip-link" href="#main-content">
+          Skip to content
+        </a>
+        <SiteNav />
+        <Outlet />
         {/* <TanStackRouterDevtools /> */}
       </>
     );

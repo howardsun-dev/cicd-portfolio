@@ -4,11 +4,16 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
+
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-  
+  NODE_VERSION: '20'
+
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,15 +23,30 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Audit dependencies
+        run: npm audit --audit-level=high
+
+      - name: Lint
+        run: npm run lint
 
       - name: Build React + Vite app
         run: npm run build
 
+      - name: Upload build artifact
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-dist
+          path: dist
+
       - name: Configure AWS credentials
+        if: github.event_name == 'push'
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -34,4 +54,20 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Deploy to S3
-        run: aws s3 sync ./dist s3://${{ secrets.AWS_S3_BUCKET }}
+        if: github.event_name == 'push'
+        run: |
+          aws s3 sync ./dist s3://${{ secrets.AWS_S3_BUCKET }} --delete
+          # Extensionless SPA route objects fix direct navigation through S3/CloudFront.
+          aws s3 cp ./dist/index.html s3://${{ secrets.AWS_S3_BUCKET }}/project \
+            --content-type text/html \
+            --cache-control "no-cache"
+          aws s3 cp ./dist/index.html s3://${{ secrets.AWS_S3_BUCKET }}/techstack \
+            --content-type text/html \
+            --cache-control "no-cache"
+
+      - name: Invalidate CloudFront cache
+        if: github.event_name == 'push' && vars.CLOUDFRONT_DISTRIBUTION_ID != ''
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
