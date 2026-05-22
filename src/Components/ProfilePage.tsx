@@ -28,8 +28,8 @@ export default function ProfilePage() {
 
     timeline.add(letters, {
       scale: [0, 1],
-      duration: 1000,
-      delay: stagger(100),
+      duration: 3000,
+      delay: stagger(180),
       ease: 'outElastic(1, .8)',
     });
 
