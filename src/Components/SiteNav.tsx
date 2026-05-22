@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import { RESUME_PDF_PATH } from '../links';
+import { RESUME_DOCX_PATH, RESUME_PDF_PATH } from '../links';
 
 const externalLinks = [
   { href: 'https://github.com/howardsun-dev', label: 'GitHub' },
@@ -13,6 +13,9 @@ export default function SiteNav() {
         HS
       </Link>
       <div className="nav-links">
+        <Link className="nav-link" to="/" activeProps={{ 'aria-current': 'page' }}>
+          Home
+        </Link>
         <Link className="nav-link" to="/project" activeProps={{ 'aria-current': 'page' }}>
           Projects
         </Link>
@@ -20,7 +23,10 @@ export default function SiteNav() {
           Tech Stack
         </Link>
         <a className="nav-link" href={RESUME_PDF_PATH}>
-          Resume
+          Resume PDF
+        </a>
+        <a className="nav-link" href={RESUME_DOCX_PATH}>
+          Resume DOCX
         </a>
         {externalLinks.map((link) => (
           <a key={link.href} className="nav-link" href={link.href} target="_blank" rel="noreferrer">
