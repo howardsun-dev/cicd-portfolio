@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import './ProfilePage.css';
 import { Link } from '@tanstack/react-router';
 import { usePageTitle } from '../hooks/usePageTitle';
 
@@ -94,31 +93,37 @@ export default function TechStackPage() {
 
   useEffect(() => {
     const slider = sliderRef.current;
-    if (!slider) return;
+    if (!slider || typeof IntersectionObserver === 'undefined') return;
 
-    const slideElements = slider.querySelectorAll<HTMLElement>('[data-slide]');
+    let observer: IntersectionObserver | undefined;
+    const frameId = window.requestAnimationFrame(() => {
+      const slideElements = slider.querySelectorAll<HTMLElement>('[data-slide]');
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = Number((entry.target as HTMLElement).dataset.index);
-            setActiveIndex(index);
-          }
-        });
-      },
-      {
-        root: slider,
-        threshold: 0.65,
-      },
-    );
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const index = Number((entry.target as HTMLElement).dataset.index);
+              setActiveIndex(index);
+            }
+          });
+        },
+        {
+          root: slider,
+          threshold: 0.65,
+        },
+      );
 
-    slideElements.forEach((slide, index) => {
-      slide.dataset.index = String(index);
-      observer.observe(slide);
+      slideElements.forEach((slide, index) => {
+        slide.dataset.index = String(index);
+        observer?.observe(slide);
+      });
     });
 
-    return () => observer.disconnect();
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      observer?.disconnect();
+    };
   }, []);
 
   const goToSlide = (index: number) => {

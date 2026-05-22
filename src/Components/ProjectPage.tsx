@@ -1,6 +1,5 @@
 import { Link } from '@tanstack/react-router';
 import { usePageTitle } from '../hooks/usePageTitle';
-import './ProfilePage.css';
 
 type Project = {
   name: string;
