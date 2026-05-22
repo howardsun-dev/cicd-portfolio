@@ -133,15 +133,15 @@ export default function ProfilePage() {
         <Link className="social-link primary" to="/project">
           View Projects
         </Link>
-        <a className="social-link primary" href={RESUME_PDF_PATH}>
+        <Link className="social-link" to="/techstack">
+          Tech Stack
+        </Link>
+        <a className="social-link" href={RESUME_PDF_PATH}>
           Resume PDF
         </a>
         <a className="social-link" href={RESUME_DOCX_PATH}>
           Resume DOCX
         </a>
-        <Link className="social-link" to="/techstack">
-          Tech Stack
-        </Link>
         <a className="social-link" href="https://github.com/howardsun-dev" target="_blank" rel="noreferrer">
           GitHub<span className="sr-only"> (opens in a new tab)</span>
         </a>

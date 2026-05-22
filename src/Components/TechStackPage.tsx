@@ -154,7 +154,7 @@ export default function TechStackPage() {
 
         <div className="tech-home-row">
           <Link className="social-link" to="/">
-            Home
+            ← Home
           </Link>
         </div>
 
