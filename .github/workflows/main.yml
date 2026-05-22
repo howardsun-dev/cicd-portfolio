@@ -57,17 +57,44 @@ jobs:
         if: github.event_name == 'push'
         run: |
           aws s3 sync ./dist s3://${{ secrets.AWS_S3_BUCKET }} --delete
+
+          # HTML entrypoints must not be cached by S3/CloudFront, otherwise clients can keep
+          # loading an old JS bundle after a deploy.
+          aws s3 cp ./dist/index.html s3://${{ secrets.AWS_S3_BUCKET }}/index.html \
+            --content-type text/html \
+            --cache-control "no-cache, no-store, must-revalidate" \
+            --metadata-directive REPLACE
+          aws s3 cp ./dist/404.html s3://${{ secrets.AWS_S3_BUCKET }}/404.html \
+            --content-type text/html \
+            --cache-control "no-cache, no-store, must-revalidate" \
+            --metadata-directive REPLACE
+
           # Extensionless SPA route objects fix direct navigation through S3/CloudFront.
           aws s3 cp ./dist/index.html s3://${{ secrets.AWS_S3_BUCKET }}/project \
             --content-type text/html \
-            --cache-control "no-cache"
+            --cache-control "no-cache, no-store, must-revalidate" \
+            --metadata-directive REPLACE
           aws s3 cp ./dist/index.html s3://${{ secrets.AWS_S3_BUCKET }}/techstack \
             --content-type text/html \
-            --cache-control "no-cache"
+            --cache-control "no-cache, no-store, must-revalidate" \
+            --metadata-directive REPLACE
 
       - name: Invalidate CloudFront cache
-        if: github.event_name == 'push' && vars.CLOUDFRONT_DISTRIBUTION_ID != ''
+        if: github.event_name == 'push'
         run: |
+          DISTRIBUTION_ID="${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}"
+
+          if [ -z "$DISTRIBUTION_ID" ]; then
+            DISTRIBUTION_ID=$(aws cloudfront list-distributions \
+              --query "DistributionList.Items[?Aliases.Items && contains(Aliases.Items, 'howardsun.me')].Id | [0]" \
+              --output text)
+          fi
+
+          if [ -z "$DISTRIBUTION_ID" ] || [ "$DISTRIBUTION_ID" = "None" ]; then
+            echo "No CloudFront distribution found for howardsun.me; skipping invalidation."
+            exit 0
+          fi
+
           aws cloudfront create-invalidation \
-            --distribution-id ${{ vars.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --distribution-id "$DISTRIBUTION_ID" \
             --paths "/*"
