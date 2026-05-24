@@ -27,7 +27,7 @@ const projects: Project[] = [
     proofPoints: ['Slash-command architecture', 'Docker-ready Node.js service', 'Roadmap toward AI/RAG job matching'],
   },
   {
-    name: 'LAN File Server',
+    name: 'LANShare',
     description:
       'A tiny TypeScript app for sharing a local folder across a trusted LAN through either a browser control UI or a direct CLI command.',
     role: 'Solo builder',
@@ -35,16 +35,16 @@ const projects: Project[] = [
       'Demonstrates CLI/product design, Express file streaming, secure path handling, browser-based controls, and CI-backed test coverage across unit, integration, and functional layers.',
     tech: ['TypeScript', 'Node.js', 'Express', 'Playwright', 'Vitest', 'GitHub Actions'],
     links: [
-      { label: 'View Repository', href: 'https://github.com/howardsun-dev/lan-file-server', kind: 'primary' },
-      { label: 'View Workflow', href: 'https://github.com/howardsun-dev/lan-file-server/actions/workflows/ci.yml' },
+      { label: 'View Repository', href: 'https://github.com/howardsun-dev/LANShare', kind: 'primary' },
+      { label: 'View Workflow', href: 'https://github.com/howardsun-dev/LANShare/actions/workflows/ci.yml' },
     ],
     status: 'live',
     proofPoints: ['Local control UI + direct CLI mode', 'Traversal-safe file serving', 'CI quality gate with lint, tests, and build'],
   },
   {
-    name: 'LAN File Server — Electron Desktop App',
+    name: 'LANShare — Electron Desktop App',
     description:
-      'A cross-platform Electron wrapper around the LAN file server that launches the local control server and presents it as a desktop app.',
+      'A cross-platform Electron wrapper around LANShare that launches the local control server and presents it as a desktop app.',
     role: 'Desktop app + release pipeline owner',
     outcome:
       'Ships signed-release-ready desktop packages through GitHub Actions, with Windows, macOS, and Linux artifacts published from a tagged release workflow.',
