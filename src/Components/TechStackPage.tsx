@@ -78,7 +78,7 @@ function TechSlide({ slide }: { slide: SlideData }) {
                 className={`tech-item-${tech
                   .toLowerCase()
                   .replace(/\./g, '')
-                  .replace(/[(),&]/g, '')
+                  .replace(/[(),&/+]/g, '')
                   .replace(/\s+/g, '-')}`}
               >
                 {tech}
