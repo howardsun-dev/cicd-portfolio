@@ -14,19 +14,6 @@ type Project = {
 
 const projects: Project[] = [
   {
-    name: 'Discord Job Scraper Bot',
-    description:
-      'A Discord bot that turns job search into a programmable feed: slash commands now, scheduled scraping, persistence, filtering, and AI-assisted matching next.',
-    role: 'Solo builder',
-    outcome: 'Current milestone: Discord bot skeleton with /ping and /jobs commands; next milestone adds scraping and PostgreSQL.',
-    tech: ['Node.js', 'TypeScript', 'discord.js', 'Puppeteer', 'PostgreSQL', 'Docker', 'AWS'],
-    links: [
-      { label: 'View Repository', href: 'https://github.com/howardsun-dev/discord-job-scraper', kind: 'primary' },
-    ],
-    status: 'in-progress',
-    proofPoints: ['Slash-command architecture', 'Docker-ready Node.js service', 'Roadmap toward AI/RAG job matching'],
-  },
-  {
     name: 'LANShare',
     description:
       'A tiny TypeScript app for sharing a local folder across a trusted LAN through either a browser control UI or a direct CLI command.',
@@ -80,6 +67,19 @@ const projects: Project[] = [
     ],
     status: 'live',
     proofPoints: ['Live deployed app', 'JWT auth + realtime messaging', 'Frontend/backend integration'],
+  },
+  {
+    name: 'Discord Job Scraper Bot',
+    description:
+      'A Discord bot that turns job search into a programmable feed: slash commands now, scheduled scraping, persistence, filtering, and AI-assisted matching next.',
+    role: 'Solo builder',
+    outcome: 'Current milestone: Discord bot skeleton with /ping and /jobs commands; next milestone adds scraping and PostgreSQL.',
+    tech: ['Node.js', 'TypeScript', 'discord.js', 'Puppeteer', 'PostgreSQL', 'Docker', 'AWS'],
+    links: [
+      { label: 'View Repository', href: 'https://github.com/howardsun-dev/discord-job-scraper', kind: 'primary' },
+    ],
+    status: 'in-progress',
+    proofPoints: ['Slash-command architecture', 'Docker-ready Node.js service', 'Roadmap toward AI/RAG job matching'],
   },
   {
     name: 'Swell — Open Source Contribution',
