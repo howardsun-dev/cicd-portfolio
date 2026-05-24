@@ -52,16 +52,16 @@ const projects: Project[] = [
     links: [
       {
         label: 'View Repository',
-        href: 'https://github.com/howardsun-dev/lan-file-server-electron',
+        href: 'https://github.com/howardsun-dev/LANShare-electron',
         kind: 'primary',
       },
       {
         label: 'View Release',
-        href: 'https://github.com/howardsun-dev/lan-file-server-electron/releases/tag/v1.0.0',
+        href: 'https://github.com/howardsun-dev/LANShare-electron/releases/tag/v1.0.0',
       },
       {
         label: 'View Workflow',
-        href: 'https://github.com/howardsun-dev/lan-file-server-electron/actions/workflows/release.yml',
+        href: 'https://github.com/howardsun-dev/LANShare-electron/actions/workflows/release.yml',
       },
     ],
     status: 'live',
