@@ -26,7 +26,6 @@ const slides: SlideData[] = [
       'Tailwind CSS',
       'Material UI',
       'DaisyUI',
-      'Solid.js',
       'React Router',
       'TanStack Router',
       'Vite',
