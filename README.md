@@ -1,6 +1,6 @@
 # 🌐 Howard Sun — Full-Stack Engineer & Builder
 
-Welcome to my portfolio. I'm a full-stack engineer with backend and infrastructure roots, currently building full-stack, desktop, CI/CD, and AI-adjacent projects end to end.
+Welcome to my portfolio. I'm a full-stack engineer with backend and infrastructure roots, currently building full-stack, desktop, CI/CD, and developer tooling projects end to end.
 
 Live site: [howardsun.me](https://howardsun.me)
 
@@ -19,20 +19,13 @@ I build practical software from the system layer up: APIs, realtime services, lo
 
 - **Languages:** TypeScript, JavaScript (ES6), Python, C++
 - **Frontend:** React, Redux Toolkit, Zustand, TanStack Router, React Router, HTML5, CSS3/Sass, Tailwind CSS, Material UI, DaisyUI, Chart.js, webpack, Vite
-- **Backend & APIs:** Node.js, Express, WebSocket, Socket.IO, REST APIs, JWT/Auth, Cloudinary, Arcjet
+- **Backend & APIs:** Node.js, Express, WebSocket, Socket.IO, REST APIs, JWT Authentication, Cloudinary, Arcjet
 - **Desktop & Tooling:** Electron, electron-builder, CLI tools, Git, Figma
 - **Databases:** PostgreSQL, MongoDB, Amazon Aurora
-- **Infrastructure & Cloud:** AWS EC2, AWS S3, AWS Elastic Beanstalk, AWS VPC, CloudFront, ELB/ALB, Docker, Kubernetes, GitHub Actions
+- **Infrastructure & Cloud:** AWS EC2, AWS S3, AWS Elastic Beanstalk, AWS VPC, CloudFront, ELB/ALB, Docker, GitHub Actions
 - **Testing:** Jest, Playwright, Mocha, Chai, Vitest
 
 ## 🚀 Featured Projects
-
-### Discord Job Scraper Bot
-A Discord bot that turns job search into a programmable feed: slash commands now, scheduled scraping, persistence, filtering, and AI-assisted matching next.
-- **Role:** Solo builder
-- **Tech:** Node.js, TypeScript, discord.js, Puppeteer, PostgreSQL, Docker, AWS
-- **Status:** In Progress — slash-command architecture is in place; scraping, persistence, and filtering are next
-- **GitHub:** [howardsun-dev/discord-job-scraper](https://github.com/howardsun-dev/discord-job-scraper)
 
 ### LANShare
 A tiny TypeScript app for sharing a local folder across a trusted LAN through either a browser control UI or a direct CLI command.
@@ -57,6 +50,13 @@ A deployed full-stack realtime chat app with authentication, Socket.IO messaging
 - **Tech:** React, Node.js, Express, Socket.IO, MongoDB, Zustand, Tailwind CSS
 - **Live Demo:** [quickchat-v72jh.sevalla.app](https://quickchat-v72jh.sevalla.app/login)
 - **GitHub:** [howardsun-dev/quickchat](https://github.com/howardsun-dev/quickchat)
+
+### Discord Job Scraper Bot
+A Discord bot that turns job search into a programmable feed: slash commands now, scheduled scraping, persistence, filtering, and AI-assisted matching next.
+- **Role:** Solo builder
+- **Tech:** Node.js, TypeScript, discord.js, Puppeteer, PostgreSQL, Docker, AWS
+- **Status:** In Progress — slash-command architecture is in place; scraping, persistence, and filtering are next
+- **GitHub:** [howardsun-dev/discord-job-scraper](https://github.com/howardsun-dev/discord-job-scraper)
 
 ### Swell — Open Source Contribution
 Open-source contribution experience in Swell, an Electron/React API testing tool from Open Source Labs.
@@ -122,6 +122,20 @@ The deploy workflow validates the app before shipping:
 5. Deploy `dist/` to S3 on pushes to `main`
 6. Upload SPA route fallbacks for direct `/project` and `/techstack` navigation
 7. Optionally invalidate CloudFront if `CLOUDFRONT_DISTRIBUTION_ID` is configured as a repository variable
+
+## 🧑‍💻 Local Development
+
+```bash
+npm ci
+npm run dev
+npm run lint
+npm run build
+npm run preview
+```
+
+- `npm run dev` starts the Vite dev server for local iteration.
+- `npm run build` runs the same TypeScript + Vite production build used by CI.
+- `npm run preview` serves the built `dist/` output locally for a production-like smoke test.
 
 ## 📬 Connect
 
