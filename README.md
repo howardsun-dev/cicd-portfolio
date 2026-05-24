@@ -72,6 +72,35 @@ This portfolio is itself a deployable artifact: React 19, TypeScript, Vite, TanS
 - **GitHub:** [howardsun-dev/cicd-portfolio](https://github.com/howardsun-dev/cicd-portfolio)
 - **Workflow:** [Deploy Portfolio to AWS S3](https://github.com/howardsun-dev/cicd-portfolio/actions/workflows/main.yml)
 
+## 🏗️ Architecture
+
+This portfolio is a static React application deployed through a GitHub Actions pipeline into AWS-hosted static infrastructure.
+
+▶ **[View the editable Excalidraw architecture diagram](docs/architecture.excalidraw)**
+
+**Build path:**
+
+1. Source code lives in GitHub on the `main` branch.
+2. GitHub Actions runs the deployment workflow on pushes to `main`.
+3. The workflow installs dependencies with `npm ci`, runs `npm audit --audit-level=high`, lints the codebase, and builds the app with Vite.
+4. Vite outputs production-ready static assets into `dist/`.
+5. The workflow syncs `dist/` to an AWS S3 bucket configured for static site hosting.
+6. The deploy script also uploads SPA route fallback files so direct navigation to `/project` and `/techstack` works after refresh.
+7. CloudFront sits in front of S3 to provide HTTPS, caching, and faster global delivery. If `CLOUDFRONT_DISTRIBUTION_ID` is configured, the workflow can invalidate the CDN cache after deployment.
+
+**Runtime path:** browser → CloudFront → S3 static assets → React/TanStack Router renders the page client-side.
+
+## 🖼️ Screenshots
+
+### Homepage
+![Homepage screenshot](docs/screenshots/homepage.png)
+
+### Projects section
+![Projects page screenshot](docs/screenshots/projects.png)
+
+### Mobile view
+![Mobile homepage screenshot](docs/screenshots/mobile.png)
+
 ## 🔁 CI/CD
 
 The deploy workflow validates the app before shipping:
