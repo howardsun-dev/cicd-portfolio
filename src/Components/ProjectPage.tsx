@@ -42,6 +42,32 @@ const projects: Project[] = [
     proofPoints: ['Local control UI + direct CLI mode', 'Traversal-safe file serving', 'CI quality gate with lint, tests, and build'],
   },
   {
+    name: 'LAN File Server — Electron Desktop App',
+    description:
+      'A cross-platform Electron wrapper around the LAN file server that launches the local control server and presents it as a desktop app.',
+    role: 'Desktop app + release pipeline owner',
+    outcome:
+      'Ships signed-release-ready desktop packages through GitHub Actions, with Windows, macOS, and Linux artifacts published from a tagged release workflow.',
+    tech: ['Electron', 'TypeScript', 'Node.js', 'Express', 'electron-builder', 'GitHub Actions'],
+    links: [
+      {
+        label: 'View Repository',
+        href: 'https://github.com/howardsun-dev/lan-file-server-electron',
+        kind: 'primary',
+      },
+      {
+        label: 'View Release',
+        href: 'https://github.com/howardsun-dev/lan-file-server-electron/releases/tag/v1.0.0',
+      },
+      {
+        label: 'View Workflow',
+        href: 'https://github.com/howardsun-dev/lan-file-server-electron/actions/workflows/release.yml',
+      },
+    ],
+    status: 'live',
+    proofPoints: ['Windows/macOS/Linux release artifacts', 'Electron-hosted local control UI', 'Tagged release pipeline'],
+  },
+  {
     name: 'QuickChat — Real-Time Chat App',
     description:
       'A deployed real-time chat app with authentication, Socket.io messaging, Zustand state management, and a polished Tailwind UI.',
