@@ -27,6 +27,21 @@ const projects: Project[] = [
     proofPoints: ['Slash-command architecture', 'Docker-ready Node.js service', 'Roadmap toward AI/RAG job matching'],
   },
   {
+    name: 'LAN File Server',
+    description:
+      'A tiny TypeScript app for sharing a local folder across a trusted LAN through either a browser control UI or a direct CLI command.',
+    role: 'Solo builder',
+    outcome:
+      'Demonstrates CLI/product design, Express file streaming, secure path handling, browser-based controls, and CI-backed test coverage across unit, integration, and functional layers.',
+    tech: ['TypeScript', 'Node.js', 'Express', 'Playwright', 'Vitest', 'GitHub Actions'],
+    links: [
+      { label: 'View Repository', href: 'https://github.com/howardsun-dev/lan-file-server', kind: 'primary' },
+      { label: 'View Workflow', href: 'https://github.com/howardsun-dev/lan-file-server/actions/workflows/ci.yml' },
+    ],
+    status: 'live',
+    proofPoints: ['Local control UI + direct CLI mode', 'Traversal-safe file serving', 'CI quality gate with lint, tests, and build'],
+  },
+  {
     name: 'QuickChat — Real-Time Chat App',
     description:
       'A deployed real-time chat app with authentication, Socket.io messaging, Zustand state management, and a polished Tailwind UI.',
