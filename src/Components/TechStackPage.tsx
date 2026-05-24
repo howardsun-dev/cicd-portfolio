@@ -23,6 +23,8 @@ const slides: SlideData[] = [
       'TanStack Router',
       'Zustand',
       'Redux Toolkit',
+      'HTML5',
+      'CSS3',
       'Tailwind CSS',
       'DaisyUI',
       'Material UI',
