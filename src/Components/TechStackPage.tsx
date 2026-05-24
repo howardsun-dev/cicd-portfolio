@@ -10,52 +10,57 @@ type SlideData = {
 
 const slides: SlideData[] = [
   {
+    id: 'languages',
+    title: 'Languages',
+    items: ['TypeScript', 'JavaScript', 'Python', 'C++'],
+  },
+  {
     id: 'frontend',
     title: 'Frontend',
     items: [
       'React',
-      'Redux',
+      'React Router',
+      'TanStack Router',
       'Zustand',
+      'Redux Toolkit',
       'HTML5',
-      'CSS (Sass)',
+      'CSS3',
       'Tailwind CSS',
-      'Material UI',
       'DaisyUI',
-      'Solid.js',
-      'Electron.js',
-      'webpack',
+      'Material UI',
+      'Chart.js',
       'Vite',
     ],
   },
   {
     id: 'backend',
-    title: 'Backend',
-    items: ['Node.js', 'Express', 'Socket.io', 'TypeScript', 'Python'],
+    title: 'Backend & APIs',
+    items: ['Node.js', 'Express', 'Socket.IO', 'REST APIs', 'JWT/Auth', 'Cloudinary', 'Arcjet'],
+  },
+  {
+    id: 'desktop',
+    title: 'Desktop & Tooling',
+    items: ['Electron', 'electron-builder', 'CLI tools', 'Git', 'VS Code', 'Figma'],
   },
   {
     id: 'databases',
     title: 'Databases',
-    items: ['PostgreSQL', 'MongoDB'],
+    items: ['MongoDB', 'PostgreSQL', 'Amazon Aurora'],
   },
   {
     id: 'infrastructure',
-    title: 'Infrastructure & Cloud',
-    items: [
-      'AWS (EC2, S3, Aurora, Elastic Beanstalk, VPC)',
-      'Docker',
-      'Kubernetes',
-      'GitHub Actions',
-    ],
+    title: 'Cloud & DevOps',
+    items: ['AWS EC2', 'AWS S3', 'CloudFront', 'ELB/ALB', 'Docker', 'Kubernetes', 'GitHub Actions'],
   },
   {
     id: 'testing',
     title: 'Testing',
-    items: ['Jest', 'Playwright', 'Mocha', 'Chai', 'Vitest'],
+    items: ['Jest', 'Vitest', 'Playwright', 'Mocha', 'Chai'],
   },
   {
-    id: 'tools',
-    title: 'Tools',
-    items: ['Git', 'VS Code', 'Figma', 'Obsidian', 'Cloudinary'],
+    id: 'hardware',
+    title: 'Hardware & Automation',
+    items: ['Raspberry Pi', 'Arduino', 'PWM control', 'Home automation'],
   },
 ];
 
@@ -73,7 +78,7 @@ function TechSlide({ slide }: { slide: SlideData }) {
                 className={`tech-item-${tech
                   .toLowerCase()
                   .replace(/\./g, '')
-                  .replace(/[(),&]/g, '')
+                  .replace(/[(),&/+]/g, '')
                   .replace(/\s+/g, '-')}`}
               >
                 {tech}
