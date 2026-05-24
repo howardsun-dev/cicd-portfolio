@@ -90,6 +90,16 @@ This portfolio is a static React application deployed through a GitHub Actions p
 
 **Runtime path:** browser → CloudFront → S3 static assets → React/TanStack Router renders the page client-side.
 
+## 🔑 Key Engineering Features
+
+- Automated CI/CD deployment pipeline with GitHub Actions
+- Production builds deployed to AWS S3 + CloudFront
+- SPA route fallback support for client-side routing
+- Cache-aware deployment strategy for HTML assets
+- Type-safe React 19 + TypeScript architecture
+- Modular routing using TanStack Router
+- Dependency auditing and linting in CI workflows
+
 ## 🖼️ Screenshots
 
 ### Homepage
