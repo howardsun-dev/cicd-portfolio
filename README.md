@@ -76,7 +76,7 @@ This portfolio is itself a deployable artifact: React 19, TypeScript, Vite, TanS
 
 This portfolio is a static React application deployed through a GitHub Actions pipeline into AWS-hosted static infrastructure.
 
-▶ **[View the editable Excalidraw architecture diagram](docs/architecture.excalidraw)**
+▶ **[View the editable Excalidraw architecture diagram](https://excalidraw.com/#json=yfXp3Zq0CcyA_uIKxqfy_,xrJuxUvJL5N82ebCd9zapw)**
 
 **Build path:**
 
