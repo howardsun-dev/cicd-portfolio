@@ -35,12 +35,21 @@ const slides: SlideData[] = [
   {
     id: 'backend',
     title: 'Backend & APIs',
-    items: ['Node.js', 'Express', 'WebSocket', 'Socket.IO', 'REST APIs', 'JWT/Auth', 'Cloudinary', 'Arcjet'],
+    items: [
+      'Node.js',
+      'Express',
+      'WebSocket',
+      'Socket.IO',
+      'REST APIs',
+      'JWT/Auth',
+      'Cloudinary',
+      'Arcjet',
+    ],
   },
   {
     id: 'desktop',
     title: 'Desktop & Tooling',
-    items: ['Electron', 'electron-builder', 'CLI tools', 'Git'],
+    items: ['Electron', 'electron-builder', 'CLI tools', 'Git', 'Figma'],
   },
   {
     id: 'databases',

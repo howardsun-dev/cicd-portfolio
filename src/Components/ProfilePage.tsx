@@ -28,8 +28,8 @@ export default function ProfilePage() {
 
     timeline.add(letters, {
       scale: [0, 1],
-      duration: 3000,
-      delay: stagger(180),
+      duration: 1500,
+      delay: stagger(100),
       ease: 'outElastic(1, .8)',
     });
 
@@ -99,7 +99,12 @@ export default function ProfilePage() {
   return (
     <main id="main-content" className="profile-container" tabIndex={-1}>
       <h1 ref={nameContainerRef} className="name-container" aria-label={fullName}>
-        <button className="name-button" type="button" onClick={handleNameClick} aria-label="Animate Howard Sun name">
+        <button
+          className="name-button"
+          type="button"
+          onClick={handleNameClick}
+          aria-label="Animate Howard Sun name"
+        >
           {fullName.split('').map((char, idx) =>
             char === ' ' ? (
               <span className="space" key={idx} aria-hidden="true">
@@ -115,7 +120,8 @@ export default function ProfilePage() {
       </h1>
       <section className="profile-info" aria-labelledby="profile-title">
         <h2 id="profile-title" className="title">
-          Full-stack engineer building reliable tools and clean interfaces
+          Full-Stack Software Engineer | TypeScript, React, Node.js | Security, Testing & Reliable
+          Systems
         </h2>
         <p className="bio">
           I work across the stack in TypeScript, React, and Node.js, with a focus on code quality,
@@ -142,10 +148,20 @@ export default function ProfilePage() {
         <a className="social-link" href={RESUME_DOCX_PATH}>
           Resume DOCX
         </a>
-        <a className="social-link" href="https://github.com/howardsun-dev" target="_blank" rel="noreferrer">
+        <a
+          className="social-link"
+          href="https://github.com/howardsun-dev"
+          target="_blank"
+          rel="noreferrer"
+        >
           GitHub<span className="sr-only"> (opens in a new tab)</span>
         </a>
-        <a className="social-link" href="https://www.linkedin.com/in/howardsun-swe" target="_blank" rel="noreferrer">
+        <a
+          className="social-link"
+          href="https://www.linkedin.com/in/howardsun-swe"
+          target="_blank"
+          rel="noreferrer"
+        >
           LinkedIn<span className="sr-only"> (opens in a new tab)</span>
         </a>
       </div>
