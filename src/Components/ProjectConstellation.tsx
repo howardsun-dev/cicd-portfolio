@@ -147,15 +147,15 @@ function ConstellationScene({ activeId }: { activeId: string | null }) {
 }
 
 function scrollToProject(projectId: string) {
-  document.getElementById(projectId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+  document.getElementById(projectId)?.scrollIntoView({ behavior, block: 'start' });
 }
 
 export default function ProjectConstellation() {
   const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
-  const isCompact = useMediaQuery('(max-width: 768px)');
   const [activeId, setActiveId] = useState<string | null>(null);
 
-  if (prefersReducedMotion || isCompact) {
+  if (prefersReducedMotion) {
     return null;
   }
 
