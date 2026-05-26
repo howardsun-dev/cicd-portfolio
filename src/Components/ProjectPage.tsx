@@ -1,7 +1,11 @@
 import { Link } from '@tanstack/react-router';
+import { lazy, Suspense } from 'react';
 import { usePageTitle } from '../hooks/usePageTitle';
 
+const ProjectConstellation = lazy(() => import('./ProjectConstellation'));
+
 type Project = {
+  id: string;
   name: string;
   description: string;
   role: string;
@@ -14,6 +18,7 @@ type Project = {
 
 const projects: Project[] = [
   {
+    id: 'lanshare',
     name: 'LANShare',
     description:
       'A tiny TypeScript app for sharing a local folder across a trusted LAN through either a browser control UI or a direct CLI command.',
@@ -29,6 +34,7 @@ const projects: Project[] = [
     proofPoints: ['Local control UI + direct CLI mode', 'Traversal-safe file serving', 'CI quality gate with lint, tests, and build'],
   },
   {
+    id: 'lanshare-electron-desktop-app',
     name: 'LANShare — Electron Desktop App',
     description:
       'A cross-platform Electron wrapper around LANShare that launches the local control server and presents it as a desktop app.',
@@ -55,6 +61,7 @@ const projects: Project[] = [
     proofPoints: ['Windows/macOS/Linux release artifacts', 'Electron-hosted local control UI', 'Tagged release pipeline'],
   },
   {
+    id: 'quickchat-real-time-chat-app',
     name: 'QuickChat — Real-Time Chat App',
     description:
       'A deployed real-time chat app with authentication, Socket.io messaging, Zustand state management, and a polished Tailwind UI.',
@@ -69,6 +76,7 @@ const projects: Project[] = [
     proofPoints: ['Live deployed app', 'JWT auth + realtime messaging', 'Frontend/backend integration'],
   },
   {
+    id: 'discord-job-scraper-bot',
     name: 'Discord Job Scraper Bot',
     description:
       'A Discord bot that turns job search into a programmable feed: slash commands now, scheduled scraping, persistence, filtering, and AI-assisted matching next.',
@@ -82,6 +90,7 @@ const projects: Project[] = [
     proofPoints: ['Slash-command architecture', 'Docker-ready Node.js service', 'Roadmap toward AI/RAG job matching'],
   },
   {
+    id: 'swell-open-source-contribution',
     name: 'Swell — Open Source Contribution',
     description:
       'Open-source contribution experience in Swell, an Electron/React API testing tool from Open Source Labs.',
@@ -99,6 +108,7 @@ const projects: Project[] = [
     proofPoints: ['Co-authored commit credited to Howard S.', 'Existing production-scale codebase', 'Electron desktop app experience'],
   },
   {
+    id: 'ci-cd-portfolio-site',
     name: 'CI/CD Portfolio Site',
     description:
       'This portfolio is itself a deployable artifact: React 19, TypeScript, Vite, TanStack Router, and AWS deployment through GitHub Actions.',
@@ -130,10 +140,10 @@ function StatusBadge({ status }: { status: Project['status'] }) {
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="project-card" aria-labelledby={`${project.name}-title`}>
+    <article id={project.id} className="project-card" aria-labelledby={`${project.id}-title`}>
       <div className="project-header">
         <div>
-          <h2 id={`${project.name}-title`} className="project-name">
+          <h2 id={`${project.id}-title`} className="project-name">
             {project.name}
           </h2>
           <p className="project-role">{project.role}</p>
@@ -184,6 +194,9 @@ export default function ProjectPage() {
           A focused set of projects showing full-stack product work, open-source contribution, and deployment ownership.
         </p>
       </header>
+      <Suspense fallback={null}>
+        <ProjectConstellation />
+      </Suspense>
       <div className="projects-list">
         {projects.map((project) => (
           <ProjectCard key={project.name} project={project} />
