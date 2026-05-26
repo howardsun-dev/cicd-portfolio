@@ -14,12 +14,12 @@ ul, ol, li {
     padding: 0;
 }
 
-.profile-info, .social-links {
+.profile-info, .social-links, .portfolio-built-note {
     opacity: 0;
     transform: translateY(20px);
 }
 
-.profile-info.is-visible, .social-links.is-visible {
+.profile-info.is-visible, .social-links.is-visible, .portfolio-built-note.is-visible {
     opacity: 1;
     transform: none;
 }

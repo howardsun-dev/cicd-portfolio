@@ -19,6 +19,7 @@ export default function ProfilePage() {
     if (!nameEl || prefersReducedMotion()) {
       document.querySelector('.profile-info')?.classList.add('is-visible');
       document.querySelector('.social-links')?.classList.add('is-visible');
+      document.querySelector('.portfolio-built-note')?.classList.add('is-visible');
       return;
     }
 
@@ -53,6 +54,17 @@ export default function ProfilePage() {
         ease: 'outQuad',
       },
       '-=400',
+    );
+
+    timeline.add(
+      '.portfolio-built-note',
+      {
+        opacity: [0, 1],
+        translateY: [12, 0],
+        duration: 450,
+        ease: 'outQuad',
+      },
+      '-=250',
     );
 
     letters.forEach((span) => {
