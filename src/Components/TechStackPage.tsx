@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { usePageTitle } from '../hooks/usePageTitle';
+
+const TechStackCube = lazy(() => import('./TechStackCube'));
 
 type SlideData = {
   id: string;
@@ -164,6 +166,10 @@ export default function TechStackPage() {
       </header>
 
       <div className="tech-shell">
+        <Suspense fallback={null}>
+          <TechStackCube slides={slides} activeIndex={activeIndex} onSelectSlide={goToSlide} />
+        </Suspense>
+
         <div className="tech-slider" ref={sliderRef}>
           {slides.map((slide) => (
             <TechSlide key={slide.id} slide={slide} />
