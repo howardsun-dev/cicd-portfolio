@@ -16,6 +16,32 @@ type Project = {
 
 const projects: Project[] = [
   {
+    name: 'Swell — Open Source Contribution',
+    description:
+      'Open-source contribution experience in Swell, an Electron/React API testing tool from Open Source Labs.',
+    role: 'Contributor in existing codebase',
+    outcome:
+      'Shows ability to navigate a mature codebase, understand product workflows, and contribute in a team-owned repository.',
+    tech: ['Electron.js', 'React', 'Node.js'],
+    links: [
+      {
+        label: 'View Project Repository',
+        href: 'https://github.com/open-source-labs/Swell',
+        kind: 'primary',
+      },
+      {
+        label: 'View Co-authored Commit',
+        href: 'https://github.com/open-source-labs/Swell/commit/964142802b6a09362bd16c968501d511c3f42858',
+      },
+    ],
+    status: 'contribution',
+    proofPoints: [
+      'Co-authored commit credited to Howard S.',
+      'Existing production-scale codebase',
+      'Electron desktop app experience',
+    ],
+  },
+  {
     name: 'LANShare',
     description:
       'A tiny TypeScript app for sharing a local folder across a trusted LAN through either a browser control UI or a direct CLI command.',
@@ -114,32 +140,6 @@ const projects: Project[] = [
       'Slash-command architecture',
       'Docker-ready Node.js service',
       'Roadmap toward AI/RAG job matching',
-    ],
-  },
-  {
-    name: 'Swell — Open Source Contribution',
-    description:
-      'Open-source contribution experience in Swell, an Electron/React API testing tool from Open Source Labs.',
-    role: 'Contributor in existing codebase',
-    outcome:
-      'Shows ability to navigate a mature codebase, understand product workflows, and contribute in a team-owned repository.',
-    tech: ['Electron.js', 'React', 'Node.js'],
-    links: [
-      {
-        label: 'View Project Repository',
-        href: 'https://github.com/open-source-labs/Swell',
-        kind: 'primary',
-      },
-      {
-        label: 'View Co-authored Commit',
-        href: 'https://github.com/open-source-labs/Swell/commit/964142802b6a09362bd16c968501d511c3f42858',
-      },
-    ],
-    status: 'contribution',
-    proofPoints: [
-      'Co-authored commit credited to Howard S.',
-      'Existing production-scale codebase',
-      'Electron desktop app experience',
     ],
   },
   {
