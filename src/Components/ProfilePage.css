@@ -14,12 +14,12 @@ ul, ol, li {
     padding: 0;
 }
 
-.profile-info, .social-links {
+.profile-info, .social-links, .portfolio-built-note {
     opacity: 0;
     transform: translateY(20px);
 }
 
-.profile-info.is-visible, .social-links.is-visible {
+.profile-info.is-visible, .social-links.is-visible, .portfolio-built-note.is-visible {
     opacity: 1;
     transform: none;
 }
@@ -457,6 +457,18 @@ body {
     font-size: 0.82rem;
     line-height: 1.35;
     overflow-wrap: anywhere;
+}
+
+.portfolio-built-note {
+    max-width: 760px;
+    margin: 1rem auto 0;
+    color: rgba(255, 255, 255, 0.74);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .status-badge {
