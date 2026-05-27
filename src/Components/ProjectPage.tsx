@@ -42,6 +42,29 @@ const projects: Project[] = [
     ],
   },
   {
+    name: 'QuickChat — Real-Time Chat App',
+    description:
+      'A deployed real-time chat app with authentication, Socket.io messaging, Zustand state management, and a polished Tailwind UI.',
+    role: 'Full-stack builder',
+    outcome:
+      'Demonstrates realtime client/server behavior, auth flow, persistent chat data, and production deployment.',
+    tech: ['React', 'Node.js', 'Express', 'Socket.io', 'MongoDB', 'Zustand', 'Tailwind CSS'],
+    links: [
+      {
+        label: 'Open Live Demo',
+        href: 'https://quickchat-v72jh.sevalla.app/login',
+        kind: 'primary',
+      },
+      { label: 'View Repository', href: 'https://github.com/howardsun-dev/quickchat' },
+    ],
+    status: 'live',
+    proofPoints: [
+      'Live deployed app',
+      'JWT auth + realtime messaging',
+      'Frontend/backend integration',
+    ],
+  },
+  {
     name: 'LANShare',
     description:
       'A tiny TypeScript app for sharing a local folder across a trusted LAN through either a browser control UI or a direct CLI command.',
@@ -95,29 +118,6 @@ const projects: Project[] = [
       'Windows/macOS/Linux release artifacts',
       'Electron-hosted local control UI',
       'Tagged release pipeline',
-    ],
-  },
-  {
-    name: 'QuickChat — Real-Time Chat App',
-    description:
-      'A deployed real-time chat app with authentication, Socket.io messaging, Zustand state management, and a polished Tailwind UI.',
-    role: 'Full-stack builder',
-    outcome:
-      'Demonstrates realtime client/server behavior, auth flow, persistent chat data, and production deployment.',
-    tech: ['React', 'Node.js', 'Express', 'Socket.io', 'MongoDB', 'Zustand', 'Tailwind CSS'],
-    links: [
-      {
-        label: 'Open Live Demo',
-        href: 'https://quickchat-v72jh.sevalla.app/login',
-        kind: 'primary',
-      },
-      { label: 'View Repository', href: 'https://github.com/howardsun-dev/quickchat' },
-    ],
-    status: 'live',
-    proofPoints: [
-      'Live deployed app',
-      'JWT auth + realtime messaging',
-      'Frontend/backend integration',
     ],
   },
   {
