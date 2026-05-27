@@ -3,7 +3,7 @@
 .resume-split {
   position: relative;
   display: inline-flex;
-  --resume-split-duration: 220ms;
+  --resume-split-duration: 200ms;
   --resume-split-ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -69,48 +69,51 @@
   position: absolute;
   top: 100%;
   left: 50%;
-  transform: translateX(-50%) translateY(4px);
   display: flex;
   flex-direction: column;
   gap: 0;
-  overflow: hidden;
-  max-height: 0;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
   z-index: 10;
+  transform: translateX(-50%) translateY(4px);
   transition:
-    max-height var(--resume-split-duration) var(--resume-split-ease),
-    opacity calc(var(--resume-split-duration) * 0.7) var(--resume-split-ease) calc(var(--resume-split-duration) * 0.15),
-    transform calc(var(--resume-split-duration) * 0.8) var(--resume-split-ease);
+    opacity var(--resume-split-duration) var(--resume-split-ease),
+    visibility 0s linear var(--resume-split-duration),
+    transform var(--resume-split-duration) var(--resume-split-ease);
 }
 
 .resume-split__options.is-visible {
-  max-height: 200px;
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
-  transform: translateX(-50%) translateY(6px);
+  transform: translateX(-50%) translateY(8px);
+  transition:
+    opacity var(--resume-split-duration) var(--resume-split-ease),
+    visibility 0s linear 0s,
+    transform var(--resume-split-duration) var(--resume-split-ease);
 }
 
 /* Hero variant dropdown */
 .resume-split--hero .resume-split__options {
-  padding: 0.35rem;
-  background: rgba(30, 35, 70, 0.92);
+  padding: 0.4rem;
+  background: rgba(30, 35, 70, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 14px;
   backdrop-filter: blur(12px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
-  min-width: 110px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  min-width: 120px;
 }
 
 /* Nav variant dropdown */
 .resume-split--nav .resume-split__options {
-  padding: 0.25rem;
-  background: rgba(21, 25, 54, 0.95);
+  padding: 0.3rem;
+  background: rgba(21, 25, 54, 0.97);
   border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 12px;
   backdrop-filter: blur(14px);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.32);
-  min-width: 90px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.36);
+  min-width: 100px;
 }
 
 /* ---- Sub-option buttons ---- */

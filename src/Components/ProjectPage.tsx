@@ -1,5 +1,7 @@
+import { useEffect, useRef } from 'react';
 import { Link } from '@tanstack/react-router';
 import { usePageTitle } from '../hooks/usePageTitle';
+import ProjectConstellation from './ProjectConstellation';
 
 type Project = {
   name: string;
@@ -130,7 +132,7 @@ function StatusBadge({ status }: { status: Project['status'] }) {
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="project-card" aria-labelledby={`${project.name}-title`}>
+    <article className="project-card" id={project.name} aria-labelledby={`${project.name}-title`}>
       <div className="project-header">
         <div>
           <h2 id={`${project.name}-title`} className="project-name">
@@ -174,6 +176,16 @@ function ProjectCard({ project }: { project: Project }) {
 
 export default function ProjectPage() {
   usePageTitle('Howard Sun — Projects');
+  const listRef = useRef<HTMLDivElement>(null);
+
+  // Re-init constellation canvas on mount
+  useEffect(() => {
+    // Small delay to ensure layout is settled
+    const timer = window.setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 100);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   return (
     <main id="main-content" className="profile-container" tabIndex={-1}>
@@ -184,14 +196,18 @@ export default function ProjectPage() {
           A focused set of projects showing full-stack product work, open-source contribution, and deployment ownership.
         </p>
       </header>
-      <div className="projects-list">
+
+      <ProjectConstellation />
+
+      <div className="projects-list" ref={listRef}>
         {projects.map((project) => (
           <ProjectCard key={project.name} project={project} />
         ))}
       </div>
+
       <div className="back-link-row">
         <Link className="social-link" to="/">
-          ← Home
+          &larr; Home
         </Link>
       </div>
     </main>

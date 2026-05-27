@@ -1,6 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { usePageTitle } from '../hooks/usePageTitle';
+
+const TechStackCube = lazy(() => import('./TechStackCube'));
 
 type SlideData = {
   id: string;
@@ -164,6 +166,10 @@ export default function TechStackPage() {
       </header>
 
       <div className="tech-shell">
+        <Suspense fallback={null}>
+          <TechStackCube slides={slides} activeIndex={activeIndex} onSelectSlide={goToSlide} />
+        </Suspense>
+
         <div className="tech-slider" ref={sliderRef}>
           {slides.map((slide) => (
             <TechSlide key={slide.id} slide={slide} />
@@ -172,9 +178,15 @@ export default function TechStackPage() {
 
         <div className="tech-home-row">
           <Link className="social-link" to="/">
-            ← Home
+            &larr; Home
           </Link>
         </div>
+
+        <aside className="portfolio-built-note" aria-label="Portfolio technology note">
+          This portfolio is a working project built with the same stack I use to ship software:
+          React 19, TypeScript, Vite, TanStack Router, Three.js, anime.js, GitHub Actions, AWS
+          S3, and CloudFront.
+        </aside>
 
         <div className="slider-dots-panel" aria-label="Slide navigation">
           {slides.map((slide, index) => (
