@@ -179,14 +179,12 @@ export default function ProfilePage() {
         >
           LinkedIn<span className="sr-only"> (opens in a new tab)</span>
         </a>
-        <a
+        <Link
           className="social-link"
-          href="mailto:howardsun@pm.me"
-          target="_blank"
-          rel="noreferrer"
+          to="/contact"
         >
-          Contact<span className="sr-only"> (email Howard)</span>
-        </a>
+          Contact
+        </Link>
       </div>
       <aside className="portfolio-built-note" aria-label="Portfolio technology note">
         This portfolio is a working project built with the same stack I use to ship software:
