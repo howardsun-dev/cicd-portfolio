@@ -3,13 +3,8 @@
 .resume-split {
   position: relative;
   display: inline-flex;
-  --resume-split-duration: 280ms;
+  --resume-split-duration: 220ms;
   --resume-split-ease: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Wrapper when open: subtle highlight */
-.resume-split.is-open .resume-split__main {
-  background: rgba(255, 255, 255, 0.25);
 }
 
 /* ---- Main button ---- */
@@ -68,45 +63,54 @@
   transform: rotate(180deg);
 }
 
-/* ---- Options panel ---- */
+/* ---- Dropdown panel ---- */
 
 .resume-split__options {
   position: absolute;
-  top: 0;
-  left: 100%;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
   display: flex;
-  align-items: center;
-  padding-left: 0;
+  flex-direction: column;
+  gap: 0;
   overflow: hidden;
-  max-width: 0;
+  max-height: 0;
   opacity: 0;
   pointer-events: none;
+  z-index: 10;
   transition:
-    max-width var(--resume-split-duration) var(--resume-split-ease),
-    opacity calc(var(--resume-split-duration) * 0.6) var(--resume-split-ease) calc(var(--resume-split-duration) * 0.3);
-  z-index: 5;
+    max-height var(--resume-split-duration) var(--resume-split-ease),
+    opacity calc(var(--resume-split-duration) * 0.7) var(--resume-split-ease) calc(var(--resume-split-duration) * 0.15),
+    transform calc(var(--resume-split-duration) * 0.8) var(--resume-split-ease);
 }
 
 .resume-split__options.is-visible {
-  max-width: 200px;
+  max-height: 200px;
   opacity: 1;
   pointer-events: auto;
+  transform: translateX(-50%) translateY(6px);
 }
 
-/* Hero variant: options slide out right */
+/* Hero variant dropdown */
 .resume-split--hero .resume-split__options {
-  padding-left: 0.5rem;
-  height: 100%;
-  flex-direction: row;
-  gap: 0.4rem;
+  padding: 0.35rem;
+  background: rgba(30, 35, 70, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+  min-width: 110px;
 }
 
-/* Nav variant: options slide out right inline */
+/* Nav variant dropdown */
 .resume-split--nav .resume-split__options {
-  padding-left: 0.25rem;
-  height: 100%;
-  flex-direction: row;
-  gap: 0.2rem;
+  padding: 0.25rem;
+  background: rgba(21, 25, 54, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.32);
+  min-width: 90px;
 }
 
 /* ---- Sub-option buttons ---- */
@@ -117,45 +121,45 @@
   justify-content: center;
   white-space: nowrap;
   text-decoration: none;
-  font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.9);
   transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.2s ease,
-    opacity 0.25s ease;
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
   cursor: pointer;
 }
 
 .resume-split--hero .resume-split__option {
   padding: 0.5rem 0.85rem;
-  backdrop-filter: blur(5px);
+  font-size: 0.82rem;
+  width: 100%;
 }
 
 .resume-split--nav .resume-split__option {
-  padding: 0.35rem 0.6rem;
-  font-size: 0.72rem;
+  padding: 0.38rem 0.7rem;
+  font-size: 0.75rem;
+  width: 100%;
 }
 
 .resume-split__option:hover {
-  background: rgba(255, 255, 255, 0.28);
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
 }
 
 .resume-split__option--pdf:hover {
-  border-color: rgba(255, 107, 107, 0.6);
-  background: rgba(255, 107, 107, 0.18);
+  border-color: rgba(255, 107, 107, 0.5);
+  background: rgba(255, 107, 107, 0.14);
 }
 
 .resume-split__option--docx:hover {
-  border-color: rgba(78, 168, 255, 0.6);
-  background: rgba(78, 168, 255, 0.18);
+  border-color: rgba(78, 168, 255, 0.5);
+  background: rgba(78, 168, 255, 0.14);
 }
 
 /* ---- Focus-visible ring (consistent with site) ---- */
@@ -177,7 +181,7 @@
     transition: none;
   }
 
-  .resume-split__option:hover {
+  .resume-split--hero .resume-split__main:hover {
     transform: none;
   }
 }

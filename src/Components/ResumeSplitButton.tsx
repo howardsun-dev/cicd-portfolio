@@ -67,14 +67,13 @@ export default function ResumeSplitButton({ className = '', size = 'hero' }: Res
         </svg>
       </button>
 
-      {/* Sub-buttons */}
+      {/* Dropdown */}
       <div className={`resume-split__options ${open ? 'is-visible' : ''}`} role="menu">
         <a
           className="resume-split__option resume-split__option--pdf"
           href={RESUME_PDF_PATH}
           role="menuitem"
           onClick={handleClose}
-          onKeyDown={(e) => e.key === 'Tab' && handleClose()}
         >
           PDF
         </a>
@@ -83,7 +82,6 @@ export default function ResumeSplitButton({ className = '', size = 'hero' }: Res
           href={RESUME_DOCX_PATH}
           role="menuitem"
           onClick={handleClose}
-          onKeyDown={(e) => e.key === 'Tab' && handleClose()}
         >
           DOCX
         </a>
