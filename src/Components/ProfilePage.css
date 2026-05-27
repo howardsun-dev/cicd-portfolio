@@ -1057,7 +1057,7 @@ body {
     }
 }
 
-/* ===== Resume dropdowns (fully opaque — no background bleed-through) ===== */
+/* ===== Resume dropdowns (fully opaque — no transparency of any kind) ===== */
 
 .nav-resume-group,
 .social-resume-group {
@@ -1068,6 +1068,16 @@ body {
 .social-resume-group > summary {
     list-style: none;
     cursor: pointer;
+}
+
+.social-resume-group,
+.social-resume-group > summary,
+.social-resume-menu,
+.social-resume-menu .social-link {
+    background: #151936 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    opacity: 1 !important;
 }
 
 .nav-resume-group > summary::-webkit-details-marker,
@@ -1086,7 +1096,6 @@ body {
     gap: 0.25rem;
     min-width: 100%;
     padding: 0.35rem;
-    background: #151936;
     border: 1px solid rgba(255, 255, 255, 0.22);
     border-radius: 0.75rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
@@ -1105,14 +1114,12 @@ body {
 }
 
 .social-resume-menu .social-link {
-    background: #151936;
-    border-color: rgba(255, 255, 255, 0.18);
-    border-radius: 12px;
-    backdrop-filter: none;
-    box-shadow: none;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
 }
 
 .social-resume-menu .social-link:hover {
-    background: #1e2250;
+    background: #1e2250 !important;
     transform: none;
 }
