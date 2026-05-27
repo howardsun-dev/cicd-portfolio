@@ -22,9 +22,6 @@ export default function SiteNav() {
         <Link className="nav-link" to="/techstack" activeProps={{ 'aria-current': 'page' }}>
           Tech Stack
         </Link>
-        <Link className="nav-link" to="/contact" activeProps={{ 'aria-current': 'page' }}>
-          Contact
-        </Link>
         <a className="nav-link" href={RESUME_PDF_PATH}>
           Resume PDF
         </a>
@@ -37,6 +34,9 @@ export default function SiteNav() {
             <span className="sr-only"> (opens in a new tab)</span>
           </a>
         ))}
+        <Link className="nav-link" to="/contact" activeProps={{ 'aria-current': 'page' }}>
+          Contact
+        </Link>
       </div>
     </nav>
   );
