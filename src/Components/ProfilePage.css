@@ -75,10 +75,11 @@ body {
     justify-content: space-between;
     gap: 1rem;
     padding: 0.75rem 1rem;
-    background: #151936;
+    background: rgba(21, 25, 54, 0.72);
     border: 1px solid rgba(255, 255, 255, 0.22);
     border-radius: 999px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(14px);
 }
 
 .nav-brand,
@@ -135,15 +136,15 @@ body {
 .profile-container {
     text-align: center;
     padding: 2rem;
-    background: rgba(15, 23, 42, 0.72);
-    backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
     border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28);
-    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     width: calc(100vw - 4rem);  /* absolute, ignores all parent context */
     max-width: 1200px;
     box-sizing: border-box;
-    overflow: visible;
+    overflow: hidden;
     /* no margin — body padding handles spacing */
 }
 
@@ -1054,82 +1055,4 @@ body {
     .project-badge {
         font-size: 0.65rem;
     }
-}
-
-/* ===== Resume dropdowns ===== */
-
-.nav-resume-group,
-.social-resume-group {
-    position: relative;
-}
-
-.nav-resume-group > summary {
-    list-style: none;
-    cursor: pointer;
-    background: #151936;
-    border-radius: 999px;
-}
-
-.social-resume-group > summary {
-    list-style: none;
-    cursor: pointer;
-}
-
-.nav-resume-group > summary::-webkit-details-marker,
-.social-resume-group > summary::-webkit-details-marker {
-    display: none;
-}
-
-.nav-resume-menu,
-.social-resume-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 200;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    min-width: 100%;
-    padding: 0.35rem;
-    background: #151936;
-    border: 1px solid rgba(255, 255, 255, 0.22);
-    border-radius: 0.75rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-}
-
-.social-resume-menu {
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.nav-resume-menu .nav-link,
-.social-resume-menu .social-link {
-    display: block;
-    white-space: nowrap;
-    text-align: center;
-}
-
-.nav-resume-menu .nav-link {
-    background: #151936;
-    border-color: rgba(255, 255, 255, 0.18);
-    box-shadow: none;
-}
-
-.nav-resume-menu,
-.nav-resume-menu .nav-link,
-.social-resume-menu,
-.social-resume-menu .social-link {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-}
-
-.social-resume-menu .social-link {
-    background: #151936;
-    border-color: rgba(255, 255, 255, 0.18);
-    box-shadow: none;
-}
-
-.social-resume-menu .social-link:hover {
-    background: rgba(255, 255, 255, 0.16);
-    transform: none;
 }
