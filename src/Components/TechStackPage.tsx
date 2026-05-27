@@ -190,6 +190,11 @@ export default function TechStackPage() {
           ))}
         </div>
       </div>
+      <aside className="portfolio-built-note" aria-label="Portfolio technology note">
+        This portfolio is a working project built with the same stack I use to ship software: React
+        19, TypeScript, Vite, TanStack Router, Three.js, anime.js, GitHub Actions, AWS S3, and
+        CloudFront.
+      </aside>
     </main>
   );
 }

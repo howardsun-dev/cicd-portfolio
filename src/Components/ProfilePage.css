@@ -14,8 +14,8 @@ ul, ol, li {
     padding: 0;
 }
 
-.profile-info, .social-links, .portfolio-built-note {
-    opacity: 50;
+.profile-info, .social-links {
+    opacity: 0;
     transform: translateY(20px);
 }
 
