@@ -4,6 +4,18 @@ import { usePageTitle } from '../hooks/usePageTitle';
 
 const ProjectConstellation = lazy(() => import('./ProjectConstellation'));
 
+type Badge = {
+  type: 'build' | 'release' | 'deployed' | 'pipeline';
+  label: string;
+  url: string;
+};
+
+type Media = {
+  type: 'gif' | 'image';
+  url: string;
+  alt: string;
+};
+
 type Project = {
   id: string;
   name: string;
@@ -14,138 +26,78 @@ type Project = {
   links: { label: string; href: string; kind?: 'primary' | 'secondary' }[];
   status: 'live' | 'in-progress' | 'contribution';
   proofPoints: string[];
-  media?: Array<{ type: 'gif' | 'image'; url: string; alt: string }>;
-  badges?: Array<{ type: 'build' | 'release' | 'deployed' | 'pipeline'; label: string; url: string }>;
+  media?: Media[];
+  badges?: Badge[];
 };
 
 const projects: Project[] = [
   {
-    id: 'lanshare',
-    name: 'LANShare',
+    id: 'swell-open-source-contribution',
+    name: 'Swell — Open Source API Testing Tool',
     description:
-      'A tiny TypeScript app for sharing a local folder across a trusted LAN through either a browser control UI or a direct CLI command.',
-    role: 'Solo builder',
+      'Open-source API development tool for testing modern and streaming APIs across HTTP/2, SSE, WebSockets, GraphQL, gRPC, tRPC, WebRTC, and OpenAPI.',
+    role: 'Open-source contributor',
     outcome:
-      'Demonstrates CLI/product design, Express file streaming, secure path handling, browser-based controls, and CI-backed test coverage across unit, integration, and functional layers.',
-    tech: ['TypeScript', 'Node.js', 'Express', 'Playwright', 'Vitest', 'GitHub Actions'],
+      'Contributed to the 1.18 release cycle: refactored Redux-connected components to typed hooks, improved CSP/Webpack security handling, stabilized gRPC/WebRTC/OpenAPI/SSE integration tests, and contributed release/version updates.',
+    tech: ['Electron', 'React', 'Redux Toolkit', 'TypeScript', 'Node.js', 'Webpack', 'Jest', 'Mocha'],
     links: [
-      { label: 'View Repository', href: 'https://github.com/howardsun-dev/LANShare', kind: 'primary' },
-      { label: 'View Workflow', href: 'https://github.com/howardsun-dev/LANShare/actions/workflows/ci.yml' },
+      { label: 'View Project Repository', href: 'https://github.com/open-source-labs/Swell', kind: 'primary' },
+      {
+        label: 'View Co-authored Commit',
+        href: 'https://github.com/open-source-labs/Swell/commit/964142802b6a09362bd16c968501d511c3f42858',
+      },
     ],
-    status: 'live',
+    status: 'contribution',
     proofPoints: [
-      'Local control UI + direct CLI mode',
-      'Traversal-safe file serving',
-      'CI quality gate with lint, tests, and build',
+      'Redux connect() → typed hooks refactoring',
+      'CSP/Webpack security hardening',
+      'Stabilized gRPC, WebRTC, OpenAPI, SSE integration tests',
     ],
     media: [
       {
         type: 'gif',
-        url: 'https://raw.githubusercontent.com/howardsun-dev/LANShare/main/docs/demo.gif',
-        alt: 'LANShare demo showing CLI and browser UI',
+        url: 'https://raw.githubusercontent.com/open-source-labs/Swell/main/ReadMeGifs/Gifs/HttpTesting.gif',
+        alt: 'Swell HTTP/2 testing demo',
       },
       {
         type: 'image',
-        url: 'https://raw.githubusercontent.com/howardsun-dev/LANShare/main/docs/architecture.png',
-        alt: 'LANShare architecture diagram',
+        url: 'https://raw.githubusercontent.com/open-source-labs/Swell/main/src/assets/img/horizontal-logo-lockup.png',
+        alt: 'Swell logo',
       },
     ],
     badges: [
       {
         type: 'build',
         label: 'CI Passing',
-        url: 'https://github.com/howardsun-dev/LANShare/actions/workflows/ci.yml/badge.svg',
+        url: 'https://github.com/open-source-labs/Swell/actions/workflows/unit-tests.yml/badge.svg',
       },
       {
         type: 'release',
-        label: 'v1.2.0',
-        url: 'https://img.shields.io/github/v/release/howardsun-dev/LANShare',
+        label: 'v1.19.0',
+        url: 'https://img.shields.io/github/v/release/open-source-labs/Swell',
       },
       {
         type: 'pipeline',
-        label: 'Test/Lint/Build',
-        url: 'https://github.com/howardsun-dev/LANShare/actions/workflows/ci.yml/badge.svg',
-      },
-    ],
-  },
-  {
-    id: 'lanshare-electron-desktop-app',
-    name: 'LANShare — Electron Desktop App',
-    description:
-      'A cross-platform Electron wrapper around LANShare that launches the local control server and presents it as a desktop app.',
-    role: 'Desktop app + release pipeline owner',
-    outcome:
-      'Ships signed-release-ready desktop packages through GitHub Actions, with Windows, macOS, and Linux artifacts published from a tagged release workflow.',
-    tech: ['Electron', 'TypeScript', 'Node.js', 'Express', 'electron-builder', 'GitHub Actions'],
-    links: [
-      {
-        label: 'View Repository',
-        href: 'https://github.com/howardsun-dev/LANShare-electron',
-        kind: 'primary',
-      },
-      {
-        label: 'View Release',
-        href: 'https://github.com/howardsun-dev/LANShare-electron/releases/tag/v1.0.0',
-      },
-      {
-        label: 'View Workflow',
-        href: 'https://github.com/howardsun-dev/LANShare-electron/actions/workflows/release.yml',
-      },
-    ],
-    status: 'live',
-    proofPoints: [
-      'Windows/macOS/Linux release artifacts',
-      'Electron-hosted local control UI',
-      'Tagged release pipeline',
-    ],
-    media: [
-      {
-        type: 'gif',
-        url: 'https://raw.githubusercontent.com/howardsun-dev/LANShare-electron/main/docs/desktop-demo.gif',
-        alt: 'LANShare Desktop app running on Windows/macOS/Linux',
-      },
-      {
-        type: 'image',
-        url: 'https://raw.githubusercontent.com/howardsun-dev/LANShare-electron/main/docs/releases.png',
-        alt: 'Cross-platform release artifacts',
-      },
-    ],
-    badges: [
-      {
-        type: 'build',
-        label: 'CI Passing',
-        url: 'https://github.com/howardsun-dev/LANShare-electron/actions/workflows/ci.yml/badge.svg',
-      },
-      {
-        type: 'release',
-        label: 'v1.0.0',
-        url: 'https://img.shields.io/github/v/release/howardsun-dev/LANShare-electron',
-      },
-      {
-        type: 'deployed',
-        label: 'Cross-platform',
-        url: 'https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-blue',
+        label: '~984 Stars',
+        url: 'https://img.shields.io/github/stars/open-source-labs/Swell',
       },
     ],
   },
   {
     id: 'quickchat-real-time-chat-app',
-    name: 'QuickChat — Real-Time Chat App',
+    name: 'QuickChat — Full-Stack Real-Time Chat',
     description:
       'A deployed real-time chat app with authentication, Socket.io messaging, Zustand state management, and a polished Tailwind UI.',
     role: 'Full-stack builder',
-    outcome: 'Demonstrates realtime client/server behavior, auth flow, persistent chat data, and production deployment.',
+    outcome:
+      'Demonstrates realtime client/server behavior, auth flow, persistent chat data, and production deployment.',
     tech: ['React', 'Node.js', 'Express', 'Socket.io', 'MongoDB', 'Zustand', 'Tailwind CSS'],
     links: [
       { label: 'Open Live Demo', href: 'https://quickchat-v72jh.sevalla.app/login', kind: 'primary' },
       { label: 'View Repository', href: 'https://github.com/howardsun-dev/quickchat' },
     ],
     status: 'live',
-    proofPoints: [
-      'Live deployed app',
-      'JWT auth + realtime messaging',
-      'Frontend/backend integration',
-    ],
+    proofPoints: ['Live deployed app', 'JWT auth + realtime messaging', 'Frontend/backend integration'],
     media: [
       {
         type: 'gif',
@@ -160,19 +112,64 @@ const projects: Project[] = [
     ],
     badges: [
       {
-        type: 'build',
-        label: 'CI Passing',
-        url: 'https://github.com/howardsun-dev/quickchat/actions/workflows/ci.yml/badge.svg',
-      },
-      {
         type: 'deployed',
         label: 'Live Demo',
         url: 'https://img.shields.io/badge/demo-live-brightgreen',
       },
       {
-        type: 'pipeline',
-        label: 'Test/Lint/Build',
-        url: 'https://github.com/howardsun-dev/quickchat/actions/workflows/ci.yml/badge.svg',
+        type: 'build',
+        label: 'Full-Stack',
+        url: 'https://img.shields.io/badge/stack-frontend%20%2B%20backend-blue',
+      },
+    ],
+  },
+  {
+    id: 'lanshare',
+    name: 'LANShare + LANShare Desktop — Local File Sharing Tool',
+    description:
+      'A tiny TypeScript app for sharing a local folder across a trusted LAN through either a browser control UI or a direct CLI command. Ships a cross-platform Electron desktop wrapper with signed release artifacts.',
+    role: 'Solo builder + release pipeline owner',
+    outcome:
+      'Demonstrates CLI/product design, Express file streaming, secure path handling, browser-based controls, CI-backed test coverage, and signed cross-platform release artifacts through GitHub Actions.',
+    tech: ['TypeScript', 'Node.js', 'Express', 'Electron', 'Playwright', 'Vitest', 'electron-builder', 'GitHub Actions'],
+    links: [
+      { label: 'View Repository', href: 'https://github.com/howardsun-dev/LANShare', kind: 'primary' },
+      { label: 'View Desktop Repository', href: 'https://github.com/howardsun-dev/LANShare-electron' },
+      { label: 'View Workflow', href: 'https://github.com/howardsun-dev/LANShare/actions/workflows/ci.yml' },
+    ],
+    status: 'live',
+    proofPoints: [
+      'Local control UI + direct CLI mode',
+      'Traversal-safe file serving',
+      'Windows/macOS/Linux release artifacts',
+    ],
+    media: [
+      {
+        type: 'gif',
+        url: 'https://raw.githubusercontent.com/howardsun-dev/LANShare/main/docs/demo.gif',
+        alt: 'LANShare demo showing CLI and browser UI',
+      },
+      {
+        type: 'image',
+        url: 'https://raw.githubusercontent.com/howardsun-dev/LANShare-electron/main/docs/desktop-demo.gif',
+        alt: 'LANShare Desktop app running on Windows/macOS/Linux',
+      },
+    ],
+    badges: [
+      {
+        type: 'build',
+        label: 'CI Passing',
+        url: 'https://github.com/howardsun-dev/LANShare/actions/workflows/ci.yml/badge.svg',
+      },
+      {
+        type: 'release',
+        label: 'v1.2.0',
+        url: 'https://img.shields.io/github/v/release/howardsun-dev/LANShare',
+      },
+      {
+        type: 'deployed',
+        label: 'Cross-platform',
+        url: 'https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-blue',
       },
     ],
   },
@@ -209,74 +206,19 @@ const projects: Project[] = [
     badges: [
       {
         type: 'build',
-        label: 'CI Passing',
-        url: 'https://github.com/howardsun-dev/discord-job-scraper/actions/workflows/ci.yml/badge.svg',
+        label: 'In Progress',
+        url: 'https://img.shields.io/badge/status-in%20progress-yellowgreen',
       },
       {
         type: 'pipeline',
-        label: 'Test/Lint/Build',
-        url: 'https://github.com/howardsun-dev/discord-job-scraper/actions/workflows/ci.yml/badge.svg',
-      },
-    ],
-  },
-  {
-    id: 'swell-open-source-contribution',
-    name: 'Swell — Open Source Contribution',
-    description:
-      'Open-source contribution experience in Swell, an Electron/React API testing tool from Open Source Labs.',
-    role: 'Contributor in existing codebase',
-    outcome: 'Shows ability to navigate a mature codebase, understand product workflows, and contribute in a team-owned repository.',
-    tech: ['Electron.js', 'React', 'Node.js'],
-    links: [
-      {
-        label: 'View Project Repository',
-        href: 'https://github.com/open-source-labs/Swell',
-        kind: 'primary',
-      },
-      {
-        label: 'View Co-authored Commit',
-        href: 'https://github.com/open-source-labs/Swell/commit/964142802b6a09362bd16c968501d511c3f42858',
-      },
-    ],
-    status: 'contribution',
-    proofPoints: [
-      'Co-authored commit credited to Howard S.',
-      'Existing production-scale codebase',
-      'Electron desktop app experience',
-    ],
-    media: [
-      {
-        type: 'gif',
-        url: 'https://raw.githubusercontent.com/open-source-labs/Swell/main/ReadMeGifs/Gifs/HttpTesting.gif',
-        alt: 'Swell HTTP/2 testing demo',
-      },
-      {
-        type: 'image',
-        url: 'https://raw.githubusercontent.com/open-source-labs/Swell/main/src/assets/img/horizontal-logo-lockup.png',
-        alt: 'Swell logo',
-      },
-    ],
-    badges: [
-      {
-        type: 'build',
-        label: 'CI Passing',
-        url: 'https://github.com/open-source-labs/Swell/actions/workflows/unit-tests.yml/badge.svg',
-      },
-      {
-        type: 'release',
-        label: 'v1.19.0',
-        url: 'https://img.shields.io/github/v/release/open-source-labs/Swell',
-      },
-      {
-        type: 'pipeline',
-        label: 'Test/Lint/Build',
-        url: 'https://github.com/open-source-labs/Swell/actions/workflows/unit-tests.yml/badge.svg',
+        label: 'Discord.js',
+        url: 'https://img.shields.io/badge/built%20with-discord.js-blue',
       },
     ],
   },
   {
     id: 'ci-cd-portfolio-site',
-    name: 'CI/CD Portfolio Site',
+    name: 'Portfolio CI/CD — AWS S3/CloudFront Deployment',
     description:
       'This portfolio is itself a deployable artifact: React 19, TypeScript, Vite, TanStack Router, and AWS deployment through GitHub Actions.',
     role: 'Frontend + DevOps owner',
@@ -295,7 +237,7 @@ const projects: Project[] = [
     ],
     media: [
       {
-        type: 'gif',
+        type: 'image',
         url: '/docs/screenshots/homepage.png',
         alt: 'Portfolio homepage showing project constellation',
       },
@@ -318,8 +260,8 @@ const projects: Project[] = [
       },
       {
         type: 'pipeline',
-        label: 'Test/Lint/Build',
-        url: 'https://github.com/howardsun-dev/cicd-portfolio/actions/workflows/main.yml/badge.svg',
+        label: 'React 19',
+        url: 'https://img.shields.io/badge/React-19-61DAFB?logo=react',
       },
     ],
   },
@@ -353,23 +295,28 @@ function ProjectCard({ project }: { project: Project }) {
       </div>
       <p className="project-description">{project.description}</p>
       <p className="project-outcome">{project.outcome}</p>
-      
+
       {/* Media section */}
       {project.media && project.media.length > 0 && (
         <div className="project-media">
           {project.media.map((media, index) => (
             <figure key={index} className={`project-media-item ${media.type}`}>
-              {media.type === 'gif' ? (
-                <img src={media.url} alt={media.alt} className="project-gif" />
-              ) : (
-                <img src={media.url} alt={media.alt} className="project-image" />
-              )}
+              <img
+                src={media.url}
+                alt={media.alt}
+                className={media.type === 'gif' ? 'project-gif' : 'project-image'}
+                onError={(e) => {
+                  const img = e.currentTarget;
+                  const figure = img.closest('figure');
+                  if (figure) figure.style.display = 'none';
+                }}
+              />
               <figcaption>{media.alt}</figcaption>
             </figure>
           ))}
         </div>
       )}
-      
+
       <ul className="project-proof" aria-label={`${project.name} proof points`}>
         {project.proofPoints.map((point) => (
           <li key={point}>{point}</li>
@@ -382,7 +329,7 @@ function ProjectCard({ project }: { project: Project }) {
           </span>
         ))}
       </div>
-      
+
       {/* Badges section */}
       {project.badges && project.badges.length > 0 && (
         <div className="project-badges" aria-label={`${project.name} badges`}>
@@ -395,12 +342,20 @@ function ProjectCard({ project }: { project: Project }) {
               className={`project-badge project-badge--${badge.type}`}
             >
               {badge.label}
-              <img src={badge.url} alt={`${badge.label} badge`} className="badge-image" />
+              <img
+                src={badge.url}
+                alt={`${badge.label} badge`}
+                className="badge-image"
+                onError={(e) => {
+                  const img = e.currentTarget;
+                  img.style.display = 'none';
+                }}
+              />
             </a>
           ))}
         </div>
       )}
-      
+
       <div className="project-links">
         {project.links.map((link) => (
           <a
@@ -428,7 +383,8 @@ export default function ProjectPage() {
         <p className="eyebrow">Selected work</p>
         <h1 className="title">Projects</h1>
         <p className="page-intro">
-          A focused set of projects showing full-stack product work, open-source contribution, and deployment ownership.
+          A focused set of projects showing full-stack product work, open-source contribution, and
+          deployment ownership.
         </p>
       </header>
       <Suspense fallback={null}>

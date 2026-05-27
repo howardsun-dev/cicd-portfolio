@@ -78,6 +78,10 @@ jobs:
             --content-type text/html \
             --cache-control "no-cache, no-store, must-revalidate" \
             --metadata-directive REPLACE
+          aws s3 cp ./dist/index.html s3://${{ secrets.AWS_S3_BUCKET }}/contact \
+            --content-type text/html \
+            --cache-control "no-cache, no-store, must-revalidate" \
+            --metadata-directive REPLACE
 
       - name: Invalidate CloudFront cache
         if: github.event_name == 'push' && vars.CLOUDFRONT_DISTRIBUTION_ID != ''

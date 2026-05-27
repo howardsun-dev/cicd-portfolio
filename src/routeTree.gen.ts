@@ -14,6 +14,7 @@ import { Route as rootRouteImport } from './routes/__root'
 
 const TechstackLazyRouteImport = createFileRoute('/techstack')()
 const ProjectLazyRouteImport = createFileRoute('/project')()
+const ContactLazyRouteImport = createFileRoute('/contact')()
 const IndexLazyRouteImport = createFileRoute('/')()
 
 const TechstackLazyRoute = TechstackLazyRouteImport.update({
@@ -26,6 +27,11 @@ const ProjectLazyRoute = ProjectLazyRouteImport.update({
   path: '/project',
   getParentRoute: () => rootRouteImport,
 } as any).lazy(() => import('./routes/project.lazy').then((d) => d.Route))
+const ContactLazyRoute = ContactLazyRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() => import('./routes/contact.lazy').then((d) => d.Route))
 const IndexLazyRoute = IndexLazyRouteImport.update({
   id: '/',
   path: '/',
@@ -34,30 +40,34 @@ const IndexLazyRoute = IndexLazyRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
+  '/contact': typeof ContactLazyRoute
   '/project': typeof ProjectLazyRoute
   '/techstack': typeof TechstackLazyRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
+  '/contact': typeof ContactLazyRoute
   '/project': typeof ProjectLazyRoute
   '/techstack': typeof TechstackLazyRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexLazyRoute
+  '/contact': typeof ContactLazyRoute
   '/project': typeof ProjectLazyRoute
   '/techstack': typeof TechstackLazyRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/project' | '/techstack'
+  fullPaths: '/' | '/contact' | '/project' | '/techstack'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/project' | '/techstack'
-  id: '__root__' | '/' | '/project' | '/techstack'
+  to: '/' | '/contact' | '/project' | '/techstack'
+  id: '__root__' | '/' | '/contact' | '/project' | '/techstack'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
+  ContactLazyRoute: typeof ContactLazyRoute
   ProjectLazyRoute: typeof ProjectLazyRoute
   TechstackLazyRoute: typeof TechstackLazyRoute
 }
@@ -78,6 +88,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectLazyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactLazyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -90,6 +107,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
+  ContactLazyRoute: ContactLazyRoute,
   ProjectLazyRoute: ProjectLazyRoute,
   TechstackLazyRoute: TechstackLazyRoute,
 }
