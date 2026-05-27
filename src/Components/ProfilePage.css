@@ -215,7 +215,6 @@ body {
     color: white;
     text-decoration: none;
     transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
 }
 
 .social-link.primary {
@@ -1123,13 +1122,24 @@ body {
     -webkit-backdrop-filter: none;
 }
 
+.social-resume-menu::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #151936;
+    border-radius: inherit;
+    z-index: -1;
+}
+
 .social-resume-menu .social-link {
     background: #151936;
     border-color: rgba(255, 255, 255, 0.18);
     box-shadow: none;
+    position: relative;
+    z-index: 1;
 }
 
 .social-resume-menu .social-link:hover {
-    background: rgba(255, 255, 255, 0.16);
+    background: #1e2250;
     transform: none;
 }
