@@ -15,7 +15,7 @@ ul, ol, li {
 }
 
 .profile-info, .social-links, .portfolio-built-note {
-    opacity: 50;
+    opacity: 0;
     transform: translateY(20px);
 }
 
