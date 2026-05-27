@@ -144,7 +144,7 @@ body {
     width: calc(100vw - 4rem);  /* absolute, ignores all parent context */
     max-width: 1200px;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: visible;
     /* no margin — body padding handles spacing */
 }
 
@@ -1086,11 +1086,10 @@ body {
     gap: 0.25rem;
     min-width: 100%;
     padding: 0.35rem;
-    background: rgba(21, 25, 54, 0.95);
+    background: #151936;
     border: 1px solid rgba(255, 255, 255, 0.22);
     border-radius: 0.75rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(14px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
 .social-resume-menu {
