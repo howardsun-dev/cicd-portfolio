@@ -11,7 +11,8 @@ type ConstellationNode = {
 const nodes: ConstellationNode[] = [
   { id: 'swell-open-source-contribution', label: 'Swell OSS', tech: 'Open-source contribution', x: 18, y: 69 },
   { id: 'quickchat-real-time-chat-app', label: 'QuickChat', tech: 'Realtime auth + Socket.io', x: 44, y: 48 },
-  { id: 'lanshare', label: 'LANShare', tech: 'CLI + Express + testing', x: 17, y: 31 },
+  { id: 'lanshare-desktop', label: 'LANShare Elect.', tech: 'Electron + desktop packaging', x: 17, y: 31 },
+  { id: 'lanshare', label: 'LANShare', tech: 'CLI + Express + testing', x: 28, y: 22 },
   { id: 'discord-job-scraper-bot', label: 'Job Bot', tech: 'Discord + scraping roadmap', x: 72, y: 66 },
   { id: 'ci-cd-portfolio-site', label: 'CI/CD Portfolio', tech: 'AWS + GitHub Actions', x: 47, y: 80 },
 ];
