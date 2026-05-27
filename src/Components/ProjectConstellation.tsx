@@ -23,7 +23,6 @@ export default function ProjectConstellation() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
@@ -43,7 +42,6 @@ export default function ProjectConstellation() {
     const draw = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
       ctx.clearRect(0, 0, w, h);
 
-      // Draw connection lines
       ctx.strokeStyle = 'rgba(147, 197, 253, 0.12)';
       ctx.lineWidth = 1;
       for (let i = 0; i < nodes.length; i++) {
@@ -59,7 +57,6 @@ export default function ProjectConstellation() {
         }
       }
 
-      // Draw node dots
       nodes.forEach((node) => {
         const x = (node.x / 100) * w;
         const y = (node.y / 100) * h;

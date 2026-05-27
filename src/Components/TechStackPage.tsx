@@ -20,32 +20,17 @@ const slides: SlideData[] = [
     id: 'frontend',
     title: 'Frontend',
     items: [
-      'React',
-      'Redux',
-      'Zustand',
-      'HTML5',
-      'CSS3 / Sass',
-      'Tailwind CSS',
-      'Material UI',
-      'DaisyUI',
-      'React Router',
-      'TanStack Router',
-      'Vite',
-      'webpack',
+      'React', 'Redux', 'Zustand', 'HTML5', 'CSS3 / Sass',
+      'Tailwind CSS', 'Material UI', 'DaisyUI', 'React Router',
+      'TanStack Router', 'Vite', 'webpack',
     ],
   },
   {
     id: 'backend',
     title: 'Backend & APIs',
     items: [
-      'Node.js',
-      'Express',
-      'WebSocket',
-      'Socket.IO',
-      'REST APIs',
-      'JWT Authentication',
-      'Cloudinary',
-      'Arcjet',
+      'Node.js', 'Express', 'WebSocket', 'Socket.IO',
+      'REST APIs', 'JWT Authentication', 'Cloudinary', 'Arcjet',
     ],
   },
   {
@@ -62,14 +47,8 @@ const slides: SlideData[] = [
     id: 'infrastructure',
     title: 'Cloud & DevOps',
     items: [
-      'AWS EC2',
-      'AWS S3',
-      'AWS Elastic Beanstalk',
-      'AWS VPC',
-      'CloudFront',
-      'ELB/ALB',
-      'Docker',
-      'GitHub Actions',
+      'AWS EC2', 'AWS S3', 'AWS Elastic Beanstalk', 'AWS VPC',
+      'CloudFront', 'ELB/ALB', 'Docker', 'GitHub Actions',
     ],
   },
   {
@@ -85,7 +64,6 @@ function TechSlide({ slide }: { slide: SlideData }) {
       <div className="tech-panel">
         <div className="tech-panel-body">
           <h2 className="tech-slide-title">{slide.title}</h2>
-
           <ul className="tech-slide-list">
             {slide.items.map((tech) => (
               <li
@@ -128,10 +106,7 @@ export default function TechStackPage() {
             }
           });
         },
-        {
-          root: slider,
-          threshold: 0.65,
-        },
+        { root: slider, threshold: 0.65 },
       );
 
       slideElements.forEach((slide, index) => {
@@ -149,7 +124,6 @@ export default function TechStackPage() {
   const goToSlide = (index: number) => {
     const slider = sliderRef.current;
     if (!slider) return;
-
     const slide = slider.querySelectorAll<HTMLElement>('[data-slide]')[index];
     slide?.scrollIntoView({
       behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
