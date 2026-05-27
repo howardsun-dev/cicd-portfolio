@@ -20,17 +20,32 @@ const slides: SlideData[] = [
     id: 'frontend',
     title: 'Frontend',
     items: [
-      'React', 'Redux', 'Zustand', 'HTML5', 'CSS3 / Sass',
-      'Tailwind CSS', 'Material UI', 'DaisyUI', 'React Router',
-      'TanStack Router', 'Vite', 'webpack',
+      'React',
+      'Redux',
+      'Zustand',
+      'HTML5',
+      'CSS3 / Sass',
+      'Tailwind CSS',
+      'Material UI',
+      'DaisyUI',
+      'React Router',
+      'TanStack Router',
+      'Vite',
+      'webpack',
     ],
   },
   {
     id: 'backend',
     title: 'Backend & APIs',
     items: [
-      'Node.js', 'Express', 'WebSocket', 'Socket.IO',
-      'REST APIs', 'JWT Authentication', 'Cloudinary', 'Arcjet',
+      'Node.js',
+      'Express',
+      'WebSocket',
+      'Socket.IO',
+      'REST APIs',
+      'JWT Authentication',
+      'Cloudinary',
+      'Arcjet',
     ],
   },
   {
@@ -47,8 +62,14 @@ const slides: SlideData[] = [
     id: 'infrastructure',
     title: 'Cloud & DevOps',
     items: [
-      'AWS EC2', 'AWS S3', 'AWS Elastic Beanstalk', 'AWS VPC',
-      'CloudFront', 'ELB/ALB', 'Docker', 'GitHub Actions',
+      'AWS EC2',
+      'AWS S3',
+      'AWS Elastic Beanstalk',
+      'AWS VPC',
+      'CloudFront',
+      'ELB/ALB',
+      'Docker',
+      'GitHub Actions',
     ],
   },
   {
@@ -155,12 +176,6 @@ export default function TechStackPage() {
             &larr; Home
           </Link>
         </div>
-
-        <aside className="portfolio-built-note" aria-label="Portfolio technology note">
-          This portfolio is a working project built with the same stack I use to ship software:
-          React 19, TypeScript, Vite, TanStack Router, Three.js, anime.js, GitHub Actions, AWS
-          S3, and CloudFront.
-        </aside>
 
         <div className="slider-dots-panel" aria-label="Slide navigation">
           {slides.map((slide, index) => (

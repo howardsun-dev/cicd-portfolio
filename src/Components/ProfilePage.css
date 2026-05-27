@@ -15,7 +15,7 @@ ul, ol, li {
 }
 
 .profile-info, .social-links, .portfolio-built-note {
-    opacity: 0;
+    opacity: 50;
     transform: translateY(20px);
 }
 
@@ -464,10 +464,10 @@ body {
 .portfolio-built-note {
     max-width: 760px;
     margin: 0.5rem auto 0;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.5);
     font-size: 0.75rem;
     line-height: 1.5;
-    text-align: right;
+    text-align: center;
 }
 
 .status-badge {
