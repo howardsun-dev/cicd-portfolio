@@ -142,6 +142,9 @@ export default function ProfilePage() {
         <Link className="social-link" to="/techstack">
           Tech Stack
         </Link>
+        <Link className="social-link" to="/contact">
+          Contact
+        </Link>
         <a className="social-link" href={RESUME_PDF_PATH}>
           Resume PDF
         </a>

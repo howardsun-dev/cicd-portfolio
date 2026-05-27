@@ -613,3 +613,284 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* ===== Project Badges ===== */
+
+.project-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.project-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    padding: 0.2rem 0.55rem;
+    background: rgba(17, 24, 39, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.project-badge:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.badge-image {
+    height: 1.15rem;
+    width: auto;
+    border-radius: 3px;
+}
+
+/* ===== Project Media ===== */
+
+.project-media {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.project-media-item {
+    margin: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(17, 24, 39, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-media-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.project-media-item figcaption {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.65);
+    text-align: center;
+}
+
+.project-gif {
+    max-height: 200px;
+    object-fit: contain;
+    background: #0f172a;
+}
+
+.project-image {
+    max-height: 200px;
+    object-fit: contain;
+    background: rgba(15, 22, 42, 0.3);
+}
+
+/* ===== Project Constellation ===== */
+
+.project-constellation {
+    display: grid;
+    grid-template-columns: minmax(15rem, 0.78fr) minmax(25rem, 1.22fr);
+    align-items: stretch;
+    gap: 1.25rem;
+    max-width: 1000px;
+    margin: 0 auto 1.75rem;
+    padding: 1rem;
+    text-align: left;
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.34), rgba(255, 255, 255, 0.07));
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 18px;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.constellation-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.65rem;
+    min-width: 0;
+}
+
+.constellation-copy h2 {
+    margin: 0;
+    font-size: clamp(1.25rem, 2vw, 1.8rem);
+    color: #fff;
+}
+
+.constellation-copy p:not(.eyebrow) {
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.6;
+}
+
+.constellation-stage {
+    position: relative;
+    min-height: 22rem;
+    overflow: hidden;
+    border-radius: 16px;
+    background: radial-gradient(circle at 50% 45%, rgba(125, 211, 252, 0.18), transparent 38%),
+        radial-gradient(circle at 78% 22%, rgba(196, 181, 253, 0.14), transparent 28%),
+        rgba(15, 22, 42, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.constellation-controls {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.constellation-node-button {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.12rem;
+    max-width: 9.5rem;
+    padding: 0.42rem 0.62rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    background: rgba(15, 22, 42, 0.46);
+    color: rgba(255, 255, 255, 0.86);
+    box-shadow: 0 10px 24px rgba(15, 22, 42, 0.16);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+
+.constellation-node-button span {
+    font-size: 0.76rem;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.constellation-node-button small {
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 0.62rem;
+    line-height: 1.15;
+}
+
+.constellation-node-button:hover,
+.constellation-node-button:focus-visible,
+.constellation-node-button.is-active {
+    transform: translate(-50%, -50%) scale(1.04);
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.52);
+}
+
+/* ===== Contact Page ===== */
+
+.contact-page {
+    text-align: left;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.contact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    text-decoration: none;
+    color: #fff;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.contact-item:hover {
+    background: rgba(255, 255, 255, 0.14);
+    transform: translateY(-2px);
+}
+
+.contact-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.12);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.contact-label {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.contact-value {
+    font-size: 0.95rem;
+    margin-top: 0.15rem;
+}
+
+/* ===== Focus styles for constellation ===== */
+
+.constellation-node-button:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 3px;
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 768px) {
+    .project-constellation {
+        grid-template-columns: 1fr;
+        padding: 0.85rem;
+    }
+
+    .constellation-copy {
+        text-align: center;
+    }
+
+    .constellation-stage {
+        min-height: 19rem;
+    }
+
+    .constellation-node-button {
+        max-width: 7rem;
+        padding: 0.34rem 0.48rem;
+    }
+
+    .constellation-node-button span {
+        font-size: 0.68rem;
+    }
+
+    .constellation-node-button small {
+        font-size: 0.56rem;
+    }
+
+    .project-media {
+        grid-template-columns: 1fr;
+    }
+
+    .badge-image {
+        height: 1rem;
+    }
+}
+
+@media (max-width: 430px) {
+    .constellation-stage {
+        min-height: 17rem;
+    }
+
+    .project-badge {
+        font-size: 0.65rem;
+    }
+}
