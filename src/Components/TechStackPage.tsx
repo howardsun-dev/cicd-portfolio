@@ -8,6 +8,7 @@ type SlideData = {
   id: string;
   title: string;
   items: string[];
+  proof?: Array<{ skill: string; projects: string[] }>;
 };
 
 const slides: SlideData[] = [
@@ -15,6 +16,12 @@ const slides: SlideData[] = [
     id: 'languages',
     title: 'Languages',
     items: ['TypeScript', 'JavaScript (ES6)', 'Python', 'C++'],
+    proof: [
+      {
+        skill: 'TypeScript',
+        projects: ['LANShare', 'QuickChat', 'CI/CD Portfolio'],
+      },
+    ],
   },
   {
     id: 'frontend',
@@ -33,6 +40,12 @@ const slides: SlideData[] = [
       'Vite',
       'webpack',
     ],
+    proof: [
+      {
+        skill: 'React',
+        projects: ['QuickChat', 'CI/CD Portfolio'],
+      },
+    ],
   },
   {
     id: 'backend',
@@ -46,6 +59,12 @@ const slides: SlideData[] = [
       'JWT Authentication',
       'Cloudinary',
       'Arcjet',
+    ],
+    proof: [
+      {
+        skill: 'Node.js',
+        projects: ['LANShare', 'QuickChat'],
+      },
     ],
   },
   {
@@ -71,6 +90,12 @@ const slides: SlideData[] = [
       'Docker',
       'GitHub Actions',
     ],
+    proof: [
+      {
+        skill: 'AWS/GitHub Actions',
+        projects: ['CI/CD Portfolio'],
+      },
+    ],
   },
   {
     id: 'testing',
@@ -92,14 +117,33 @@ function TechSlide({ slide }: { slide: SlideData }) {
                 key={tech}
                 className={`tech-item-${tech
                   .toLowerCase()
-                  .replace(/\./g, '')
+                  .replace(/\\./g, '')
                   .replace(/[(),&/+]/g, '')
-                  .replace(/\s+/g, '-')}`}
+                  .replace(/\\s+/g, '-')}`}
               >
                 {tech}
               </li>
             ))}
           </ul>
+
+          {/* Proof connections */}
+          {slide.proof && slide.proof.length > 0 && (
+            <div className="tech-proof-connections">
+              <h3 className="tech-proof-title">Applied in:</h3>
+              <ul className="tech-proof-list">
+                {slide.proof.map((connection) => (
+                  <li key={connection.skill} className="tech-proof-item">
+                    <strong>{connection.skill}</strong> → {connection.projects.map((p, i) => (
+                      <>
+                        {i > 0 && ', '}
+                        <span className="tech-project">{p}</span>
+                      </>
+                    ))}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -131,7 +175,7 @@ export default function TechStackPage() {
         {
           root: slider,
           threshold: 0.65,
-        },
+        }
       );
 
       slideElements.forEach((slide, index) => {

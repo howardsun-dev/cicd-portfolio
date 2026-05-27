@@ -103,13 +103,16 @@ This portfolio is a static React application deployed through a GitHub Actions p
 ## 🖼️ Screenshots
 
 ### Homepage
-![Homepage screenshot](docs/screenshots/homepage.png)
+![Homepage screenshot showing project constellation and profile section](docs/screenshots/homepage.png)
+*The homepage features the animated name constellation, profile section with new "Contact" button and "Open to" line, and project constellation visualization.*
 
 ### Projects section
-![Projects page screenshot](docs/screenshots/projects.png)
+![Projects page showing enhanced project cards with media and badges](docs/screenshots/projects.png)
+*The projects section displays enhanced project cards featuring media previews (GIFs/images), proof points, technology stacks, and proof badges showing CI status, releases, and deployment information.*
 
 ### Mobile view
-![Mobile homepage screenshot](docs/screenshots/mobile.png)
+![Mobile homepage screenshot showing responsive design](docs/screenshots/mobile.png)
+*The mobile view demonstrates responsive design with the profile section, project constellation (in reduced motion mode), and easy navigation to all sections.*
 
 ## 🔁 CI/CD
 
@@ -143,6 +146,7 @@ npm run preview
 - **LinkedIn:** [linkedin.com/in/howardsun-swe](https://linkedin.com/in/howardsun-swe)
 - **GitHub:** [github.com/howardsun-dev](https://github.com/howardsun-dev)
 - **Resume:** [PDF](https://howardsun.me/resume/Howard_Sun-Resume-2026.pdf) | [DOCX](https://howardsun.me/resume/Howard_Sun-Resume-2026.docx)
+- **Email:** [howardsun@pm.me](mailto:howardsun@pm.me)
 
 ## 🌱 What's Next
 

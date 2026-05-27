@@ -146,6 +146,9 @@ export default function ProfilePage() {
           vector search by shipping real projects. I document the journey through build-along
           content and open-source code.
         </p>
+        <p className="bio open-to">
+          Open to full-stack, frontend, and backend TypeScript/Node roles.
+        </p>
       </section>
       <div className="social-links" aria-label="Primary actions">
         <Link className="social-link primary" to="/project">
@@ -175,6 +178,14 @@ export default function ProfilePage() {
           rel="noreferrer"
         >
           LinkedIn<span className="sr-only"> (opens in a new tab)</span>
+        </a>
+        <a
+          className="social-link"
+          href="mailto:howardsun@pm.me"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Contact<span className="sr-only"> (email Howard)</span>
         </a>
       </div>
       <aside className="portfolio-built-note" aria-label="Portfolio technology note">
