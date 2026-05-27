@@ -117,42 +117,36 @@ const projects: Project[] = [
         url: 'https://img.shields.io/badge/demo-live-brightgreen',
       },
       {
-        type: 'build',
-        label: 'Full-Stack',
-        url: 'https://img.shields.io/badge/stack-frontend%20%2B%20backend-blue',
+        type: 'pipeline',
+        label: 'Socket.io',
+        url: 'https://img.shields.io/badge/realtime-Socket.io-010101?logo=socketdotio',
       },
     ],
   },
   {
     id: 'lanshare',
-    name: 'LANShare + LANShare Desktop — Local File Sharing Tool',
+    name: 'LANShare — Local File Sharing Tool',
     description:
-      'A tiny TypeScript app for sharing a local folder across a trusted LAN through either a browser control UI or a direct CLI command. Ships a cross-platform Electron desktop wrapper with signed release artifacts.',
-    role: 'Solo builder + release pipeline owner',
+      'A tiny TypeScript app for sharing a local folder across a trusted LAN through either a browser control UI or a direct CLI command.',
+    role: 'Solo builder',
     outcome:
-      'Demonstrates CLI/product design, Express file streaming, secure path handling, browser-based controls, CI-backed test coverage, and signed cross-platform release artifacts through GitHub Actions.',
-    tech: ['TypeScript', 'Node.js', 'Express', 'Electron', 'Playwright', 'Vitest', 'electron-builder', 'GitHub Actions'],
+      'Demonstrates CLI/product design, Express file streaming, secure path handling, browser-based controls, and CI-backed test coverage.',
+    tech: ['TypeScript', 'Node.js', 'Express', 'Vitest', 'Playwright', 'GitHub Actions'],
     links: [
       { label: 'View Repository', href: 'https://github.com/howardsun-dev/LANShare', kind: 'primary' },
-      { label: 'View Desktop Repository', href: 'https://github.com/howardsun-dev/LANShare-electron' },
       { label: 'View Workflow', href: 'https://github.com/howardsun-dev/LANShare/actions/workflows/ci.yml' },
     ],
     status: 'live',
     proofPoints: [
       'Local control UI + direct CLI mode',
       'Traversal-safe file serving',
-      'Windows/macOS/Linux release artifacts',
+      'CI-backed test coverage',
     ],
     media: [
       {
         type: 'gif',
         url: 'https://raw.githubusercontent.com/howardsun-dev/LANShare/main/docs/demo.gif',
         alt: 'LANShare demo showing CLI and browser UI',
-      },
-      {
-        type: 'image',
-        url: 'https://raw.githubusercontent.com/howardsun-dev/LANShare-electron/main/docs/desktop-demo.gif',
-        alt: 'LANShare Desktop app running on Windows/macOS/Linux',
       },
     ],
     badges: [
@@ -165,6 +159,40 @@ const projects: Project[] = [
         type: 'release',
         label: 'v1.2.0',
         url: 'https://img.shields.io/github/v/release/howardsun-dev/LANShare',
+      },
+    ],
+  },
+  {
+    id: 'lanshare-desktop',
+    name: 'LANShare Desktop — Electron Desktop Wrapper',
+    description:
+      'Cross-platform Electron desktop wrapper for LANShare with signed release artifacts for Windows, macOS, and Linux.',
+    role: 'Solo builder + release pipeline owner',
+    outcome:
+      'Demonstrates Electron packaging, code signing, and multi-platform release automation through GitHub Actions.',
+    tech: ['Electron', 'TypeScript', 'Node.js', 'electron-builder', 'GitHub Actions'],
+    links: [
+      { label: 'View Repository', href: 'https://github.com/howardsun-dev/LANShare-electron', kind: 'primary' },
+      { label: 'View Releases', href: 'https://github.com/howardsun-dev/LANShare-electron/releases' },
+    ],
+    status: 'live',
+    proofPoints: [
+      'Signed Windows/macOS/Linux release artifacts',
+      'Electron-builder release pipeline',
+      'Cross-platform desktop packaging',
+    ],
+    media: [
+      {
+        type: 'image',
+        url: 'https://raw.githubusercontent.com/howardsun-dev/LANShare-electron/main/docs/desktop-demo.gif',
+        alt: 'LANShare Desktop app running on Windows/macOS/Linux',
+      },
+    ],
+    badges: [
+      {
+        type: 'release',
+        label: 'v1.0.0',
+        url: 'https://img.shields.io/github/v/release/howardsun-dev/LANShare-electron',
       },
       {
         type: 'deployed',
@@ -300,15 +328,17 @@ function ProjectCard({ project }: { project: Project }) {
       {project.media && project.media.length > 0 && (
         <div className="project-media">
           {project.media.map((media, index) => (
-            <figure key={index} className={`project-media-item ${media.type}`}>
+            <figure
+              key={index}
+              className={`project-media-item ${media.type}`}
+            >
               <img
                 src={media.url}
                 alt={media.alt}
                 className={media.type === 'gif' ? 'project-gif' : 'project-image'}
                 onError={(e) => {
-                  const img = e.currentTarget;
-                  const figure = img.closest('figure');
-                  if (figure) figure.style.display = 'none';
+                  const figure = e.currentTarget.closest('figure');
+                  if (figure) figure.remove();
                 }}
               />
               <figcaption>{media.alt}</figcaption>
@@ -347,8 +377,8 @@ function ProjectCard({ project }: { project: Project }) {
                 alt={`${badge.label} badge`}
                 className="badge-image"
                 onError={(e) => {
-                  const img = e.currentTarget;
-                  img.style.display = 'none';
+                  const badgeLink = e.currentTarget.closest('.project-badge');
+                  if (badgeLink) badgeLink.remove();
                 }}
               />
             </a>

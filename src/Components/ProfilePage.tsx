@@ -157,12 +157,19 @@ export default function ProfilePage() {
         <Link className="social-link" to="/techstack">
           Tech Stack
         </Link>
-        <a className="social-link" href={RESUME_PDF_PATH}>
-          Resume PDF
-        </a>
-        <a className="social-link" href={RESUME_DOCX_PATH}>
-          Resume DOCX
-        </a>
+        <details className="social-resume-group" aria-label="Resume downloads">
+          <summary className="social-link social-resume-toggle" aria-haspopup="menu">
+            Resume (PDF/DOCX)
+          </summary>
+          <div className="social-resume-menu" role="menu">
+            <a className="social-link" href={RESUME_PDF_PATH} role="menuitem">
+              Resume PDF
+            </a>
+            <a className="social-link" href={RESUME_DOCX_PATH} role="menuitem">
+              Resume DOCX
+            </a>
+          </div>
+        </details>
         <a
           className="social-link"
           href="https://github.com/howardsun-dev"

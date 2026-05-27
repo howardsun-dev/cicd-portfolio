@@ -22,12 +22,19 @@ export default function SiteNav() {
         <Link className="nav-link" to="/techstack" activeProps={{ 'aria-current': 'page' }}>
           Tech Stack
         </Link>
-        <a className="nav-link" href={RESUME_PDF_PATH}>
-          Resume PDF
-        </a>
-        <a className="nav-link" href={RESUME_DOCX_PATH}>
-          Resume DOCX
-        </a>
+        <details className="nav-resume-group" aria-label="Resume downloads">
+          <summary className="nav-link nav-resume-toggle" aria-haspopup="menu">
+            Resume (PDF/DOCX)
+          </summary>
+          <div className="nav-resume-menu" role="menu">
+            <a className="nav-link" href={RESUME_PDF_PATH} role="menuitem">
+              Resume PDF
+            </a>
+            <a className="nav-link" href={RESUME_DOCX_PATH} role="menuitem">
+              Resume DOCX
+            </a>
+          </div>
+        </details>
         {externalLinks.map((link) => (
           <a key={link.href} className="nav-link" href={link.href} target="_blank" rel="noreferrer">
             {link.label}
