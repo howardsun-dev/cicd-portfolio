@@ -75,11 +75,10 @@ body {
     justify-content: space-between;
     gap: 1rem;
     padding: 0.75rem 1rem;
-    background: rgba(21, 25, 54, 0.72);
+    background: #151936;
     border: 1px solid rgba(255, 255, 255, 0.22);
     border-radius: 999px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
-    backdrop-filter: blur(14px);
 }
 
 .nav-brand,
@@ -1064,7 +1063,13 @@ body {
     position: relative;
 }
 
-.nav-resume-group > summary,
+.nav-resume-group > summary {
+    list-style: none;
+    cursor: pointer;
+    background: #151936;
+    border-radius: 999px;
+}
+
 .social-resume-group > summary {
     list-style: none;
     cursor: pointer;
@@ -1104,6 +1109,14 @@ body {
     text-align: center;
 }
 
+.nav-resume-menu .nav-link {
+    background: #151936;
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: none;
+}
+
+.nav-resume-menu,
+.nav-resume-menu .nav-link,
 .social-resume-menu,
 .social-resume-menu .social-link {
     backdrop-filter: none;
