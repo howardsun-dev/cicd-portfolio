@@ -463,14 +463,11 @@ body {
 
 .portfolio-built-note {
     max-width: 760px;
-    margin: 1rem auto 0;
-    color: rgba(255, 255, 255, 0.74);
-    font-size: 0.8rem;
+    margin: 0.5rem auto 0;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.75rem;
     line-height: 1.5;
     text-align: right;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .status-badge {
