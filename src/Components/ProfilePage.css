@@ -1105,12 +1105,12 @@ body {
 }
 
 .social-resume-menu .social-link {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.18);
+    background: #151936;
+    border-color: rgba(255, 255, 255, 0.22);
     box-shadow: none;
 }
 
 .social-resume-menu .social-link:hover {
-    background: rgba(255, 255, 255, 0.16);
+    background: #1e2250;
     transform: none;
 }
