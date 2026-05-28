@@ -13,6 +13,7 @@ interface ResumeSplitButtonProps {
 export default function ResumeSplitButton({ className = '', size = 'hero' }: ResumeSplitButtonProps) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
   const sizeClass = size === 'nav' ? 'resume-split--nav' : 'resume-split--hero';
   const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0 });
 
@@ -38,7 +39,11 @@ export default function ResumeSplitButton({ className = '', size = 'hero' }: Res
   useEffect(() => {
     if (!open) return;
     function handleOutside(e: PointerEvent) {
-      if (rootRef.current && !rootRef.current.contains(e.target as Node)) {
+      const target = e.target as Node;
+      if (
+        rootRef.current && !rootRef.current.contains(target) &&
+        menuRef.current && !menuRef.current.contains(target)
+      ) {
         setOpen(false);
       }
     }
@@ -69,6 +74,7 @@ export default function ResumeSplitButton({ className = '', size = 'hero' }: Res
 
   const dropdown = open ? (
     <div
+      ref={menuRef}
       className={`resume-split__options is-visible ${sizeClass}`}
       style={{
         position: 'absolute',
@@ -82,6 +88,8 @@ export default function ResumeSplitButton({ className = '', size = 'hero' }: Res
         className="resume-split__option resume-split__option--pdf"
         href={RESUME_PDF_PATH}
         role="menuitem"
+        target="_blank"
+        rel="noreferrer"
         onClick={handleClose}
       >
         PDF
@@ -90,6 +98,8 @@ export default function ResumeSplitButton({ className = '', size = 'hero' }: Res
         className="resume-split__option resume-split__option--docx"
         href={RESUME_DOCX_PATH}
         role="menuitem"
+        target="_blank"
+        rel="noreferrer"
         onClick={handleClose}
       >
         DOCX

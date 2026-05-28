@@ -158,6 +158,9 @@ export default function TechStackPage() {
       <header className="page-header">
         <p className="eyebrow">Capabilities</p>
         <h1 className="title">Tech Stack</h1>
+        <p className="page-intro">
+          A snapshot of the languages, frameworks, and tools I use to build and ship software.
+        </p>
       </header>
 
       <div className="tech-shell">
