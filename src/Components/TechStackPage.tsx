@@ -8,7 +8,6 @@ type SlideData = {
   id: string;
   title: string;
   items: string[];
-  proof?: Array<{ skill: string; projects: string[] }>;
 };
 
 const slides: SlideData[] = [
@@ -16,12 +15,6 @@ const slides: SlideData[] = [
     id: 'languages',
     title: 'Languages',
     items: ['TypeScript', 'JavaScript (ES6)', 'Python', 'C++'],
-    proof: [
-      {
-        skill: 'TypeScript',
-        projects: ['LANShare', 'QuickChat', 'CI/CD Portfolio'],
-      },
-    ],
   },
   {
     id: 'frontend',
@@ -40,12 +33,6 @@ const slides: SlideData[] = [
       'Vite',
       'webpack',
     ],
-    proof: [
-      {
-        skill: 'React',
-        projects: ['QuickChat', 'CI/CD Portfolio'],
-      },
-    ],
   },
   {
     id: 'backend',
@@ -59,12 +46,6 @@ const slides: SlideData[] = [
       'JWT Authentication',
       'Cloudinary',
       'Arcjet',
-    ],
-    proof: [
-      {
-        skill: 'Node.js',
-        projects: ['LANShare', 'QuickChat'],
-      },
     ],
   },
   {
@@ -90,12 +71,6 @@ const slides: SlideData[] = [
       'Docker',
       'GitHub Actions',
     ],
-    proof: [
-      {
-        skill: 'AWS/GitHub Actions',
-        projects: ['CI/CD Portfolio'],
-      },
-    ],
   },
   {
     id: 'testing',
@@ -110,40 +85,20 @@ function TechSlide({ slide }: { slide: SlideData }) {
       <div className="tech-panel">
         <div className="tech-panel-body">
           <h2 className="tech-slide-title">{slide.title}</h2>
-
           <ul className="tech-slide-list">
             {slide.items.map((tech) => (
               <li
                 key={tech}
                 className={`tech-item-${tech
                   .toLowerCase()
-                  .replace(/\\./g, '')
+                  .replace(/\./g, '')
                   .replace(/[(),&/+]/g, '')
-                  .replace(/\\s+/g, '-')}`}
+                  .replace(/\s+/g, '-')}`}
               >
                 {tech}
               </li>
             ))}
           </ul>
-
-          {/* Proof connections */}
-          {slide.proof && slide.proof.length > 0 && (
-            <div className="tech-proof-connections">
-              <h3 className="tech-proof-title">Applied in:</h3>
-              <ul className="tech-proof-list">
-                {slide.proof.map((connection) => (
-                  <li key={connection.skill} className="tech-proof-item">
-                    <strong>{connection.skill}</strong> → {connection.projects.map((p, i) => (
-                      <>
-                        {i > 0 && ', '}
-                        <span className="tech-project">{p}</span>
-                      </>
-                    ))}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
         </div>
       </div>
     </section>
@@ -172,10 +127,7 @@ export default function TechStackPage() {
             }
           });
         },
-        {
-          root: slider,
-          threshold: 0.65,
-        }
+        { root: slider, threshold: 0.65 },
       );
 
       slideElements.forEach((slide, index) => {
@@ -193,7 +145,6 @@ export default function TechStackPage() {
   const goToSlide = (index: number) => {
     const slider = sliderRef.current;
     if (!slider) return;
-
     const slide = slider.querySelectorAll<HTMLElement>('[data-slide]')[index];
     slide?.scrollIntoView({
       behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
@@ -222,7 +173,7 @@ export default function TechStackPage() {
 
         <div className="tech-home-row">
           <Link className="social-link" to="/">
-            ← Home
+            &larr; Home
           </Link>
         </div>
 
@@ -239,6 +190,11 @@ export default function TechStackPage() {
           ))}
         </div>
       </div>
+      <aside className="portfolio-built-note" aria-label="Portfolio technology note">
+        This portfolio is a working project built with the same stack I use to ship software: React
+        19, TypeScript, Vite, TanStack Router, Three.js, anime.js, GitHub Actions, AWS S3, and
+        CloudFront.
+      </aside>
     </main>
   );
 }

@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import { RESUME_DOCX_PATH, RESUME_PDF_PATH } from '../links';
+import ResumeSplitButton from './ResumeSplitButton';
 
 const externalLinks = [
   { href: 'https://github.com/howardsun-dev', label: 'GitHub' },
@@ -22,12 +22,7 @@ export default function SiteNav() {
         <Link className="nav-link" to="/techstack" activeProps={{ 'aria-current': 'page' }}>
           Tech Stack
         </Link>
-        <a className="nav-link" href={RESUME_PDF_PATH}>
-          Resume PDF
-        </a>
-        <a className="nav-link" href={RESUME_DOCX_PATH}>
-          Resume DOCX
-        </a>
+        <ResumeSplitButton size="nav" />
         {externalLinks.map((link) => (
           <a key={link.href} className="nav-link" href={link.href} target="_blank" rel="noreferrer">
             {link.label}

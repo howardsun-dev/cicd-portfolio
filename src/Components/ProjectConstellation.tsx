@@ -9,12 +9,12 @@ type ConstellationNode = {
 };
 
 const nodes: ConstellationNode[] = [
-  { id: 'swell-open-source-contribution', label: 'Swell OSS', tech: 'Open-source contribution', x: 18, y: 69 },
-  { id: 'quickchat-real-time-chat-app', label: 'QuickChat', tech: 'Realtime auth + Socket.io', x: 44, y: 48 },
-  { id: 'lanshare-desktop', label: 'LANShare Elect.', tech: 'Electron + desktop packaging', x: 17, y: 31 },
-  { id: 'lanshare', label: 'LANShare', tech: 'CLI + Express + testing', x: 28, y: 22 },
-  { id: 'discord-job-scraper-bot', label: 'Job Bot', tech: 'Discord + scraping roadmap', x: 72, y: 66 },
-  { id: 'ci-cd-portfolio-site', label: 'CI/CD Portfolio', tech: 'AWS + GitHub Actions', x: 47, y: 80 },
+  { id: 'Swell — Open Source Contribution', label: 'Swell OSS', tech: 'Open-source contribution', x: 18, y: 69 },
+  { id: 'QuickChat — Real-Time Chat App', label: 'QuickChat', tech: 'Realtime auth + Socket.io', x: 44, y: 48 },
+  { id: 'LANShare', label: 'LANShare', tech: 'CLI + Express + testing', x: 28, y: 22 },
+  { id: 'LANShare — Electron Desktop App', label: 'LANShare Elect.', tech: 'Electron + desktop packaging', x: 17, y: 31 },
+  { id: 'Discord Job Scraper Bot', label: 'Job Bot', tech: 'Discord + scraping roadmap', x: 72, y: 66 },
+  { id: 'CI/CD Portfolio Site', label: 'CI/CD Portfolio', tech: 'AWS + GitHub Actions', x: 47, y: 80 },
 ];
 
 export default function ProjectConstellation() {
@@ -23,7 +23,6 @@ export default function ProjectConstellation() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
@@ -43,7 +42,6 @@ export default function ProjectConstellation() {
     const draw = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
       ctx.clearRect(0, 0, w, h);
 
-      // Draw connection lines
       ctx.strokeStyle = 'rgba(147, 197, 253, 0.12)';
       ctx.lineWidth = 1;
       for (let i = 0; i < nodes.length; i++) {
@@ -59,7 +57,6 @@ export default function ProjectConstellation() {
         }
       }
 
-      // Draw node dots
       nodes.forEach((node) => {
         const x = (node.x / 100) * w;
         const y = (node.y / 100) * h;
@@ -95,7 +92,11 @@ export default function ProjectConstellation() {
               className="constellation-node-button"
               style={{ left: `${node.x}%`, top: `${node.y}%` }}
               onClick={() => {
-                document.getElementById(node.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                const el = document.getElementById(node.id);
+                if (el) {
+                  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  el.focus({ preventScroll: true });
+                }
               }}
             >
               <span>{node.label}</span>
