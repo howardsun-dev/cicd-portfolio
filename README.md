@@ -44,7 +44,7 @@ A cross-platform Electron wrapper around LANShare that launches the local contro
 - **Tech:** Electron, TypeScript, Node.js, Express, electron-builder, GitHub Actions
 - **Proof:** Windows/macOS/Linux release artifacts, Electron-hosted local control UI, tagged release pipeline
 - **GitHub:** [howardsun-dev/LANShare-electron](https://github.com/howardsun-dev/LANShare-electron)
-- **Release:** [v1.0.0](https://github.com/howardsun-dev/LANShare-electron/releases/tag/v1.0.0)
+- **Release:** [v1.0.1](https://github.com/howardsun-dev/LANShare-electron/releases)
 - **Workflow:** [Release workflow](https://github.com/howardsun-dev/LANShare-electron/actions/workflows/release.yml)
 
 ### QuickChat — Real-Time Chat App
