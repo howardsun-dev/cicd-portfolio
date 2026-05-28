@@ -18,7 +18,7 @@ const projects: Project[] = [
   {
     name: 'Swell — Open Source Contribution',
     description:
-      'Open-source contribution experience in Swell, an Electron/React API testing tool from Open Source Labs.',
+      'Open-source contribution to Swell (Electron/React API testing tool).',
     role: 'Contributor in existing codebase',
     outcome:
       'Shows ability to navigate a mature codebase, understand product workflows, and contribute in a team-owned repository.',
@@ -44,7 +44,7 @@ const projects: Project[] = [
   {
     name: 'QuickChat — Real-Time Chat App',
     description:
-      'A deployed real-time chat app with authentication, Socket.io messaging, Zustand state management, and a polished Tailwind UI.',
+      'Real-time chat app with React, Node.js, Socket.io, MongoDB, and Tailwind CSS.',
     role: 'Full-stack builder',
     outcome:
       'Demonstrates realtime client/server behavior, auth flow, persistent chat data, and production deployment.',
@@ -67,7 +67,7 @@ const projects: Project[] = [
   {
     name: 'LANShare',
     description:
-      'A tiny TypeScript app for sharing a local folder across a trusted LAN through either a browser control UI or a direct CLI command.',
+      'TypeScript LAN file-sharing tool with browser UI, CLI, and security protections.',
     role: 'Solo builder',
     outcome:
       'Demonstrates CLI/product design, Express file streaming, secure path handling, browser-based controls, and CI-backed test coverage across unit, integration, and functional layers.',
@@ -93,7 +93,7 @@ const projects: Project[] = [
   {
     name: 'LANShare — Electron Desktop App',
     description:
-      'A cross-platform Electron wrapper around LANShare that launches the local control server and presents it as a desktop app.',
+      'Cross-platform Electron desktop app for LANShare with GitHub Actions releases.',
     role: 'Desktop app + release pipeline owner',
     outcome:
       'Ships signed-release-ready desktop packages through GitHub Actions, with Windows, macOS, and Linux artifacts published from a tagged release workflow.',
@@ -123,7 +123,7 @@ const projects: Project[] = [
   {
     name: 'Discord Job Scraper Bot',
     description:
-      'A Discord bot that turns job search into a programmable feed: slash commands now, scheduled scraping, persistence, filtering, and AI-assisted matching next.',
+      'Discord bot for automated job scraping with scheduled execution and filtering.',
     role: 'Solo builder',
     outcome:
       'Current milestone: Discord bot skeleton with /ping and /jobs commands; next milestone adds scraping and PostgreSQL.',
@@ -145,7 +145,7 @@ const projects: Project[] = [
   {
     name: 'CI/CD Portfolio Site',
     description:
-      'This portfolio is itself a deployable artifact: React 19, TypeScript, Vite, TanStack Router, and AWS deployment through GitHub Actions.',
+      'This portfolio site - React 19 + TypeScript deployed to AWS via GitHub Actions.',
     role: 'Frontend + DevOps owner',
     outcome:
       'Validated CI/CD pipeline with dependency audit, linting, production build, S3 deploy, SPA route support, and optional CloudFront invalidation.',
@@ -194,7 +194,7 @@ function StatusBadge({ status }: { status: Project['status'] }) {
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <article className="project-card" id={project.name} aria-labelledby={`${project.name}-title`}>
+    <article className="project-card" id={project.name} tabIndex={-1} aria-labelledby={`${project.name}-title`}>
       <div className="project-header">
         <div>
           <h2 id={`${project.name}-title`} className="project-name">
