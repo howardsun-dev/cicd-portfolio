@@ -1,5 +1,8 @@
 # 🌐 Howard Sun — Full-Stack Engineer & Builder
 
+[![Deploy Portfolio to AWS S3](https://github.com/howardsun-dev/cicd-portfolio/actions/workflows/main.yml/badge.svg)](https://github.com/howardsun-dev/cicd-portfolio/actions/workflows/main.yml)
+[![Site](https://img.shields.io/badge/site-howardsun.me-667eea?logo=google-chrome&logoColor=white)](https://howardsun.me)
+
 Welcome to my portfolio. I'm a full-stack engineer with backend and infrastructure roots, currently building full-stack, desktop, CI/CD, and developer tooling projects end to end.
 
 Live site: [howardsun.me](https://howardsun.me)
