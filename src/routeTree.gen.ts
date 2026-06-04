@@ -1,3 +1,13 @@
+/*
+ * Pseudo-code: File routeTree.gen.ts defines the routeTree.gen component/module.
+ * Why added: Added to provide pseudo-code documentation for the CI/CD portfolio.
+ */
+
+/*
+ * Pseudo-code: File routeTree.gen.ts defines the routeTree.gen component/module.
+ * Why added: Added to provide pseudo-code documentation for the CI/CD portfolio.
+ */
+
 /* eslint-disable */
 
 // @ts-nocheck

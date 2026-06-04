@@ -1,3 +1,13 @@
+/*
+ * Pseudo-code: File contact.tsx defines the contact component/module.
+ * Why added: Added to provide pseudo-code documentation for the CI/CD portfolio.
+ */
+
+/*
+ * Pseudo-code: File contact.tsx defines the contact component/module.
+ * Why added: Added to provide pseudo-code documentation for the CI/CD portfolio.
+ */
+
 import { usePageTitle } from '../hooks/usePageTitle';
 import { Link } from '@tanstack/react-router';
 
@@ -23,6 +33,8 @@ const contactMethods = [
 ];
 
 export default function ContactPage() {
+    // Pseudo-code: Function logic describes the behavior of this function.
+    // Added to explain the function's role in the CI/CD portfolio.
   usePageTitle('Howard Sun — Contact');
 
   return (

@@ -1,3 +1,13 @@
+/*
+ * Pseudo-code: File ProfilePage.tsx defines the ProfilePage component/module.
+ * Why added: Added to provide pseudo-code documentation for the CI/CD portfolio.
+ */
+
+/*
+ * Pseudo-code: File ProfilePage.tsx defines the ProfilePage component/module.
+ * Why added: Added to provide pseudo-code documentation for the CI/CD portfolio.
+ */
+
 import { useEffect, useRef } from 'react';
 import { animate, stagger, createTimeline } from 'animejs';
 import { Link } from '@tanstack/react-router';
@@ -7,10 +17,14 @@ import ResumeSplitButton from './ResumeSplitButton';
 const fullName = 'Howard Sun';
 
 function prefersReducedMotion() {
+    // Pseudo-code: Function logic describes the behavior of this function.
+    // Added to explain the function's role in the CI/CD portfolio.
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
 export default function ProfilePage() {
+    // Pseudo-code: Function logic describes the behavior of this function.
+    // Added to explain the function's role in the CI/CD portfolio.
   const nameContainerRef = useRef<HTMLHeadingElement>(null);
   usePageTitle('Howard Sun — Portfolio');
 
@@ -68,7 +82,11 @@ export default function ProfilePage() {
     );
 
     letters.forEach((span) => {
+        // Pseudo-code: Function logic describes the behavior of this function.
+        // Added to explain the function's role in the CI/CD portfolio.
       const onEnter = () => {
+          // Pseudo-code: Function logic describes the behavior of this function.
+          // Added to explain the function's role in the CI/CD portfolio.
         animate(span, {
           translateY: -20,
           rotateY: '1turn',
@@ -78,6 +96,8 @@ export default function ProfilePage() {
         });
       };
       const onLeave = () => {
+          // Pseudo-code: Function logic describes the behavior of this function.
+          // Added to explain the function's role in the CI/CD portfolio.
         animate(span, {
           translateY: 0,
           rotateY: 0,
@@ -98,6 +118,8 @@ export default function ProfilePage() {
   }, []);
 
   function handleNameClick() {
+      // Pseudo-code: Function logic describes the behavior of this function.
+      // Added to explain the function's role in the CI/CD portfolio.
     if (prefersReducedMotion()) return;
     animate('.letter', {
       scale: [1, 1.3, 1],

@@ -1,3 +1,13 @@
+/*
+ * Pseudo-code: File TechStackCube.tsx defines the TechStackCube component/module.
+ * Why added: Added to provide pseudo-code documentation for the CI/CD portfolio.
+ */
+
+/*
+ * Pseudo-code: File TechStackCube.tsx defines the TechStackCube component/module.
+ * Why added: Added to provide pseudo-code documentation for the CI/CD portfolio.
+ */
+
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
@@ -16,6 +26,8 @@ type TechStackCubeProps = {
 const cubeColors = ['#f8fafc', '#93c5fd', '#7dd3fc', '#c4b5fd', '#86efac', '#facc15'];
 
 function useMediaQuery(query: string) {
+    // Pseudo-code: Function logic describes the behavior of this function.
+    // Added to explain the function's role in the CI/CD portfolio.
   const [matches, setMatches] = useState(() =>
     typeof window === 'undefined' ? false : window.matchMedia(query).matches,
   );
@@ -32,6 +44,8 @@ function useMediaQuery(query: string) {
 }
 
 function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; reducedMotion: boolean }) {
+    // Pseudo-code: Function logic describes the behavior of this function.
+    // Added to explain the function's role in the CI/CD portfolio.
   const groupRef = useRef<THREE.Group>(null);
   const color = cubeColors[activeIndex % cubeColors.length];
 
@@ -63,6 +77,8 @@ function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; red
 }
 
 export default function TechStackCube({ slides, activeIndex, onSelectSlide }: TechStackCubeProps) {
+    // Pseudo-code: Function logic describes the behavior of this function.
+    // Added to explain the function's role in the CI/CD portfolio.
   const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
 
   return (

@@ -1,3 +1,13 @@
+/*
+ * Pseudo-code: File TechStackPage.tsx defines the TechStackPage component/module.
+ * Why added: Added to provide pseudo-code documentation for the CI/CD portfolio.
+ */
+
+/*
+ * Pseudo-code: File TechStackPage.tsx defines the TechStackPage component/module.
+ * Why added: Added to provide pseudo-code documentation for the CI/CD portfolio.
+ */
+
 import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import { Link } from '@tanstack/react-router';
 import { usePageTitle } from '../hooks/usePageTitle';
@@ -80,6 +90,8 @@ const slides: SlideData[] = [
 ];
 
 function TechSlide({ slide }: { slide: SlideData }) {
+    // Pseudo-code: Function logic describes the behavior of this function.
+    // Added to explain the function's role in the CI/CD portfolio.
   return (
     <section className="tech-slide" id={slide.id} data-slide>
       <div className="tech-panel">
@@ -106,6 +118,8 @@ function TechSlide({ slide }: { slide: SlideData }) {
 }
 
 export default function TechStackPage() {
+    // Pseudo-code: Function logic describes the behavior of this function.
+    // Added to explain the function's role in the CI/CD portfolio.
   const sliderRef = useRef<HTMLDivElement | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   usePageTitle('Howard Sun — Tech Stack');
@@ -116,12 +130,16 @@ export default function TechStackPage() {
 
     let observer: IntersectionObserver | undefined;
     const frameId = window.requestAnimationFrame(() => {
+        // Pseudo-code: Function logic describes the behavior of this function.
+        // Added to explain the function's role in the CI/CD portfolio.
       const slideElements = slider.querySelectorAll<HTMLElement>('[data-slide]');
 
       observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
+                // Pseudo-code: Function logic describes the behavior of this function.
+                // Added to explain the function's role in the CI/CD portfolio.
               const index = Number((entry.target as HTMLElement).dataset.index);
               setActiveIndex(index);
             }
@@ -143,6 +161,8 @@ export default function TechStackPage() {
   }, []);
 
   const goToSlide = (index: number) => {
+      // Pseudo-code: Function logic describes the behavior of this function.
+      // Added to explain the function's role in the CI/CD portfolio.
     const slider = sliderRef.current;
     if (!slider) return;
     const slide = slider.querySelectorAll<HTMLElement>('[data-slide]')[index];

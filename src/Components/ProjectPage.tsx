@@ -1,3 +1,13 @@
+/*
+ * Pseudo-code: File ProjectPage.tsx defines the ProjectPage component/module.
+ * Why added: Added to provide pseudo-code documentation for the CI/CD portfolio.
+ */
+
+/*
+ * Pseudo-code: File ProjectPage.tsx defines the ProjectPage component/module.
+ * Why added: Added to provide pseudo-code documentation for the CI/CD portfolio.
+ */
+
 import { useEffect, useRef } from 'react';
 import { Link } from '@tanstack/react-router';
 import { usePageTitle } from '../hooks/usePageTitle';
@@ -179,6 +189,8 @@ const projects: Project[] = [
 ];
 
 function StatusBadge({ status }: { status: Project['status'] }) {
+    // Pseudo-code: Function logic describes the behavior of this function.
+    // Added to explain the function's role in the CI/CD portfolio.
   const styles: Record<Project['status'], string> = {
     live: 'status-completed',
     'in-progress': 'status-in-progress',
@@ -193,6 +205,8 @@ function StatusBadge({ status }: { status: Project['status'] }) {
 }
 
 function ProjectCard({ project }: { project: Project }) {
+    // Pseudo-code: Function logic describes the behavior of this function.
+    // Added to explain the function's role in the CI/CD portfolio.
   return (
     <article className="project-card" id={project.name} tabIndex={-1} aria-labelledby={`${project.name}-title`}>
       <div className="project-header">
@@ -237,6 +251,8 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 export default function ProjectPage() {
+    // Pseudo-code: Function logic describes the behavior of this function.
+    // Added to explain the function's role in the CI/CD portfolio.
   usePageTitle('Howard Sun — Projects');
   const listRef = useRef<HTMLDivElement>(null);
 
@@ -244,6 +260,8 @@ export default function ProjectPage() {
   useEffect(() => {
     // Small delay to ensure layout is settled
     const timer = window.setTimeout(() => {
+        // Pseudo-code: Function logic describes the behavior of this function.
+        // Added to explain the function's role in the CI/CD portfolio.
       window.dispatchEvent(new Event('resize'));
     }, 100);
     return () => window.clearTimeout(timer);
