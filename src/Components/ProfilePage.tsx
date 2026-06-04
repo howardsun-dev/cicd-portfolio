@@ -24,7 +24,7 @@ const fullName = 'Howard Sun';
 // Why added: Users with vestibular disorders can be nauseated by animations. This check
 // lets us skip all animation and show content immediately.
 function prefersReducedMotion() {
-  return window.matchMedia('(prefers-reduced-motion: reduce)').matches();
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
 // Pseudo-code: Render the profile page with animated name, bio, social links, and resume button.
