@@ -17,8 +17,8 @@ const externalLinks = [
 ];
 
 export default function SiteNav() {
-    // Pseudo-code: Function logic describes the behavior of this function.
-    // Added to explain the function's role in the CI/CD portfolio.
+    // Pseudo-code: Main SiteNav component that renders the UI.
+    // Added to document the function's purpose in the CI/CD portfolio.
   return (
     <nav className="site-nav" aria-label="Primary navigation">
       <Link className="nav-brand" to="/" aria-label="Howard Sun home">

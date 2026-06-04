@@ -28,8 +28,8 @@ const nodes: ConstellationNode[] = [
 ];
 
 export default function ProjectConstellation() {
-    // Pseudo-code: Function logic describes the behavior of this function.
-    // Added to explain the function's role in the CI/CD portfolio.
+    // Pseudo-code: Main ProjectConstellation component that renders the UI.
+    // Added to document the function's purpose in the CI/CD portfolio.
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -39,8 +39,8 @@ export default function ProjectConstellation() {
     if (!ctx) return;
 
     const resize = () => {
-        // Pseudo-code: Function logic describes the behavior of this function.
-        // Added to explain the function's role in the CI/CD portfolio.
+    // Pseudo-code: Performs resize.
+    // Added to document the function's purpose in the CI/CD portfolio.
       const parent = canvas.parentElement;
       if (!parent) return;
       const dpr = window.devicePixelRatio || 1;
@@ -54,18 +54,18 @@ export default function ProjectConstellation() {
     };
 
     const draw = (ctx: CanvasRenderingContext2D, w: number, h: number) => {
-        // Pseudo-code: Function logic describes the behavior of this function.
-        // Added to explain the function's role in the CI/CD portfolio.
+    // Pseudo-code: Performs draw.
+    // Added to document the function's purpose in the CI/CD portfolio.
       ctx.clearRect(0, 0, w, h);
 
       ctx.strokeStyle = 'rgba(147, 197, 253, 0.12)';
       ctx.lineWidth = 1;
       for (let i = 0; i < nodes.length; i++) {
-          // Pseudo-code: Function logic describes the behavior of this function.
-          // Added to explain the function's role in the CI/CD portfolio.
+    // Pseudo-code: Performs draw.
+    // Added to document the function's purpose in the CI/CD portfolio.
         for (let j = i + 1; j < nodes.length; j++) {
-            // Pseudo-code: Function logic describes the behavior of this function.
-            // Added to explain the function's role in the CI/CD portfolio.
+    // Pseudo-code: Performs for.
+    // Added to document the function's purpose in the CI/CD portfolio.
           const x1 = (nodes[i].x / 100) * w;
           const y1 = (nodes[i].y / 100) * h;
           const x2 = (nodes[j].x / 100) * w;
@@ -114,8 +114,8 @@ export default function ProjectConstellation() {
               onClick={() => {
                 const el = document.getElementById(node.id);
                 if (el) {
-                    // Pseudo-code: Function logic describes the behavior of this function.
-                    // Added to explain the function's role in the CI/CD portfolio.
+    // Pseudo-code: Performs if.
+    // Added to document the function's purpose in the CI/CD portfolio.
                   el.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   el.focus({ preventScroll: true });
                 }

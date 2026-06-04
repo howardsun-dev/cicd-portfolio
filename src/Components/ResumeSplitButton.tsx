@@ -21,16 +21,16 @@ interface ResumeSplitButtonProps {
 }
 
 export default function ResumeSplitButton({ className = '', size = 'hero' }: ResumeSplitButtonProps) {
-    // Pseudo-code: Function logic describes the behavior of this function.
-    // Added to explain the function's role in the CI/CD portfolio.
+    // Pseudo-code: Main ResumeSplitButton component that renders the UI.
+    // Added to document the function's purpose in the CI/CD portfolio.
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const sizeClass = size === 'nav' ? 'resume-split--nav' : 'resume-split--hero';
   const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0 });
 
   const updatePosition = useCallback(() => {
-      // Pseudo-code: Function logic describes the behavior of this function.
-      // Added to explain the function's role in the CI/CD portfolio.
+    // Pseudo-code: Performs update position.
+    // Added to document the function's purpose in the CI/CD portfolio.
     if (!rootRef.current) return;
     const rect = rootRef.current.getBoundingClientRect();
     setDropdownPos({
@@ -40,8 +40,8 @@ export default function ResumeSplitButton({ className = '', size = 'hero' }: Res
   }, []);
 
   const handleToggle = useCallback(() => {
-      // Pseudo-code: Function logic describes the behavior of this function.
-      // Added to explain the function's role in the CI/CD portfolio.
+    // Pseudo-code: Handles the  toggle event.
+    // Added to document the function's purpose in the CI/CD portfolio.
     setOpen((v) => {
       if (!v) updatePosition();
       return !v;
@@ -54,8 +54,8 @@ export default function ResumeSplitButton({ className = '', size = 'hero' }: Res
   useEffect(() => {
     if (!open) return;
     function handleOutside(e: PointerEvent) {
-        // Pseudo-code: Function logic describes the behavior of this function.
-        // Added to explain the function's role in the CI/CD portfolio.
+    // Pseudo-code: Handles the  close event.
+    // Added to document the function's purpose in the CI/CD portfolio.
       if (rootRef.current && !rootRef.current.contains(e.target as Node)) {
         setOpen(false);
       }
@@ -68,8 +68,8 @@ export default function ResumeSplitButton({ className = '', size = 'hero' }: Res
   useEffect(() => {
     if (!open) return;
     function handleKey(e: KeyboardEvent) {
-        // Pseudo-code: Function logic describes the behavior of this function.
-        // Added to explain the function's role in the CI/CD portfolio.
+    // Pseudo-code: Handles the  key event.
+    // Added to document the function's purpose in the CI/CD portfolio.
       if (e.key === 'Escape') setOpen(false);
     }
     document.addEventListener('keydown', handleKey);

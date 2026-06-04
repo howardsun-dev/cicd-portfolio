@@ -17,8 +17,8 @@ const router = createRouter({
 });
 
 function App() {
-    // Pseudo-code: Function logic describes the behavior of this function.
-    // Added to explain the function's role in the CI/CD portfolio.
+    // Pseudo-code: Main App component that renders the UI.
+    // Added to document the function's purpose in the CI/CD portfolio.
   return <RouterProvider router={router} />;
 }
 

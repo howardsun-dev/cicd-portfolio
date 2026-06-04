@@ -33,8 +33,8 @@ const contactMethods = [
 ];
 
 export default function ContactPage() {
-    // Pseudo-code: Function logic describes the behavior of this function.
-    // Added to explain the function's role in the CI/CD portfolio.
+    // Pseudo-code: Performs contact page.
+    // Added to document the function's purpose in the CI/CD portfolio.
   usePageTitle('Howard Sun — Contact');
 
   return (

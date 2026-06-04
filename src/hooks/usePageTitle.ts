@@ -11,8 +11,8 @@
 import { useEffect } from 'react';
 
 export function usePageTitle(title: string) {
-    // Pseudo-code: Function logic describes the behavior of this function.
-    // Added to explain the function's role in the CI/CD portfolio.
+    // Pseudo-code: React hook that page title.
+    // Added to document the function's purpose in the CI/CD portfolio.
   useEffect(() => {
     document.title = title;
   }, [title]);

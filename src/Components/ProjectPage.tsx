@@ -189,8 +189,8 @@ const projects: Project[] = [
 ];
 
 function StatusBadge({ status }: { status: Project['status'] }) {
-    // Pseudo-code: Function logic describes the behavior of this function.
-    // Added to explain the function's role in the CI/CD portfolio.
+    // Pseudo-code: Performs status badge.
+    // Added to document the function's purpose in the CI/CD portfolio.
   const styles: Record<Project['status'], string> = {
     live: 'status-completed',
     'in-progress': 'status-in-progress',
@@ -205,8 +205,8 @@ function StatusBadge({ status }: { status: Project['status'] }) {
 }
 
 function ProjectCard({ project }: { project: Project }) {
-    // Pseudo-code: Function logic describes the behavior of this function.
-    // Added to explain the function's role in the CI/CD portfolio.
+    // Pseudo-code: Performs project card.
+    // Added to document the function's purpose in the CI/CD portfolio.
   return (
     <article className="project-card" id={project.name} tabIndex={-1} aria-labelledby={`${project.name}-title`}>
       <div className="project-header">
@@ -251,8 +251,8 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 export default function ProjectPage() {
-    // Pseudo-code: Function logic describes the behavior of this function.
-    // Added to explain the function's role in the CI/CD portfolio.
+    // Pseudo-code: Main ProjectPage component that renders the UI.
+    // Added to document the function's purpose in the CI/CD portfolio.
   usePageTitle('Howard Sun — Projects');
   const listRef = useRef<HTMLDivElement>(null);
 
@@ -260,8 +260,8 @@ export default function ProjectPage() {
   useEffect(() => {
     // Small delay to ensure layout is settled
     const timer = window.setTimeout(() => {
-        // Pseudo-code: Function logic describes the behavior of this function.
-        // Added to explain the function's role in the CI/CD portfolio.
+    // Pseudo-code: Performs timer.
+    // Added to document the function's purpose in the CI/CD portfolio.
       window.dispatchEvent(new Event('resize'));
     }, 100);
     return () => window.clearTimeout(timer);

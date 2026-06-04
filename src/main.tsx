@@ -16,8 +16,8 @@ import App from './App.tsx';
 
 const container = document.getElementById('root');
 if (!container) {
-    // Pseudo-code: Function logic describes the behavior of this function.
-    // Added to explain the function's role in the CI/CD portfolio.
+    // Pseudo-code: Performs if.
+    // Added to document the function's purpose in the CI/CD portfolio.
   throw new Error(
     "Root element with id 'root' not found. Make sure index.html contains <div id='root'></div>.",
   );
