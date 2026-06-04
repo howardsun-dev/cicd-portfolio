@@ -21,15 +21,15 @@ import ResumeSplitButton from './ResumeSplitButton';
 const fullName = 'Howard Sun';
 
 // Pseudo-code: Check whether the user has requested reduced motion in their OS settings.
-// Why added: Users with vestibular disorders or motion sensitivity can be nauseated by
- * animations. This check lets us skip all animation and show content immediately.
+// Why added: Users with vestibular disorders can be nauseated by animations. This check
+// lets us skip all animation and show content immediately.
 function prefersReducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches();
 }
 
 // Pseudo-code: Render the profile page with animated name, bio, social links, and resume button.
-// Why added: This is the hero section of the portfolio — it introduces who the developer is,
- * what they do, and provides clear call-to-action links to projects, tech stack, and contact.
+// Why added: This is the hero section — it introduces who the developer is, what they do,
+// and provides clear call-to-action links to projects, tech stack, and contact.
 export default function ProfilePage() {
   const nameContainerRef = useRef<HTMLHeadingElement>(null);
   usePageTitle('Howard Sun — Portfolio');
