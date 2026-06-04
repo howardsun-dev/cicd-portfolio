@@ -1,3 +1,15 @@
+/*
+ * Pseudo-code: Projects showcase page component.
+ * - Defines the full project data set (name, description, role, outcome, tech stack,
+ *   external links, status, and proof points) as a typed array.
+ * - Renders the ProjectConstellation at the top for visual navigation.
+ * - Maps each project to a <ProjectCard> with status badges, proof points, tech tags, and links.
+ * - Dispatches a resize event on mount to re-initialize the constellation canvas after layout.
+ * Why added: This is the core portfolio page. It shows the depth and breadth of work
+ * through structured project cards, each with verifiable proof points and live links.
+ * The constellation at the top provides a visual entry point.
+ */
+
 import { useEffect, useRef } from 'react';
 import { Link } from '@tanstack/react-router';
 import { usePageTitle } from '../hooks/usePageTitle';
@@ -178,6 +190,9 @@ const projects: Project[] = [
   },
 ];
 
+// Pseudo-code: Render a status badge with different colors/labels for live, in-progress, and contribution.
+// Why added: Gives visitors an immediate visual indicator of each project's current state
+// without having to read the full description.
 function StatusBadge({ status }: { status: Project['status'] }) {
   const styles: Record<Project['status'], string> = {
     live: 'status-completed',
@@ -192,6 +207,9 @@ function StatusBadge({ status }: { status: Project['status'] }) {
   return <span className={`status-badge ${styles[status]}`}>{labels[status]}</span>;
 }
 
+// Pseudo-code: Render a single project card with header, description, outcome, proof points, tech tags, and links.
+// Why added: Each project card is a self-contained case study — it shows what was built,
+// why it matters, what technologies were used, and provides verifiable proof points.
 function ProjectCard({ project }: { project: Project }) {
   return (
     <article className="project-card" id={project.name} tabIndex={-1} aria-labelledby={`${project.name}-title`}>
@@ -236,13 +254,17 @@ function ProjectCard({ project }: { project: Project }) {
   );
 }
 
+// Pseudo-code: Render the full projects page with constellation, project cards, and back link.
+// Why added: This is the main showcase page — it combines the visual constellation map
+// with detailed project cards to demonstrate breadth and depth of work.
 export default function ProjectPage() {
   usePageTitle('Howard Sun — Projects');
   const listRef = useRef<HTMLDivElement>(null);
 
-  // Re-init constellation canvas on mount
+  // Pseudo-code: Trigger a resize event after mount so the constellation canvas re-draws.
+  // Why added: The canvas needs the parent container to have its final layout dimensions.
+  // A small delay ensures the DOM has settled before triggering the canvas resize handler.
   useEffect(() => {
-    // Small delay to ensure layout is settled
     const timer = window.setTimeout(() => {
       window.dispatchEvent(new Event('resize'));
     }, 100);

@@ -1,3 +1,12 @@
+/*
+ * Pseudo-code: Contact page component.
+ * - Sets the page title to "Howard Sun — Contact" via the usePageTitle hook.
+ * - Renders a list of contact methods (email, LinkedIn, GitHub) as clickable links.
+ * - Includes a "← Home" back link for easy navigation.
+ * Why added: Gives recruiters and collaborators a dedicated page with all contact
+ * methods in one place, each opening in a new tab with proper accessibility labels.
+ */
+
 import { usePageTitle } from '../hooks/usePageTitle';
 import { Link } from '@tanstack/react-router';
 
@@ -22,6 +31,9 @@ const contactMethods = [
   },
 ];
 
+// Pseudo-code: Render the contact page with all contact methods and a back-to-home link.
+// Why added: This is the dedicated contact route — it centralizes all ways to reach
+// the developer so recruiters don't have to hunt through the profile page.
 export default function ContactPage() {
   usePageTitle('Howard Sun — Contact');
 

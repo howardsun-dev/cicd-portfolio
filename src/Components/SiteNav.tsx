@@ -1,3 +1,15 @@
+/*
+ * Pseudo-code: Site-wide navigation bar component.
+ * - Renders the "HS" brand link that navigates to the home page.
+ * - Renders internal navigation links (Home, Projects, Tech Stack, Contact) using
+ *   TanStack Router's <Link> with `activeProps` for current-page highlighting.
+ * - Renders the ResumeSplitButton for downloading the resume.
+ * - Renders external links (GitHub, LinkedIn) that open in new tabs.
+ * Why added: Provides consistent navigation across all pages. Using TanStack Router's
+ * <Link> enables client-side navigation (no full page reload) and automatic
+ * active-state styling via `activeProps`.
+ */
+
 import { Link } from '@tanstack/react-router';
 import ResumeSplitButton from './ResumeSplitButton';
 
@@ -6,6 +18,9 @@ const externalLinks = [
   { href: 'https://www.linkedin.com/in/howardsun-swe', label: 'LinkedIn' },
 ];
 
+// Pseudo-code: Render the navigation bar with brand, internal links, resume button, and external links.
+// Why added: The nav bar is the primary way users move between sections of the portfolio.
+// It appears on every page via the root route layout.
 export default function SiteNav() {
   return (
     <nav className="site-nav" aria-label="Primary navigation">

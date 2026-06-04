@@ -1,3 +1,17 @@
+/*
+ * Pseudo-code: 3D rotating cube component using Three.js (via @react-three/fiber).
+ * - Renders a Three.js <Canvas> with a rotating box geometry that changes color
+ *   based on the active slide index.
+ * - The cube has a solid face with an emissive glow and a wireframe overlay.
+ * - Respects the user's "prefers-reduced-motion" setting by switching the render
+ *   loop from 'always' to 'demand' (only re-renders when props change).
+ * - Includes a CSS-only fallback cube with labeled faces for screen readers.
+ * - Exposes chip buttons to select a tech stack layer by index.
+ * Why added: Provides a visually engaging, interactive way to browse the tech stack.
+ * The 3D cube serves as a spatial metaphor for the different layers of the stack
+ * (React, Node, AWS, Tests, TS, CI/CD), making the page memorable and distinctive.
+ */
+
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
@@ -15,6 +29,9 @@ type TechStackCubeProps = {
 
 const cubeColors = ['#f8fafc', '#93c5fd', '#7dd3fc', '#c4b5fd', '#86efac', '#facc15'];
 
+// Pseudo-code: Custom hook that tracks a CSS media query match state.
+// Why added: Used to detect "prefers-reduced-motion" so the Three.js canvas can
+// switch from continuous rendering to on-demand rendering for accessibility.
 function useMediaQuery(query: string) {
   const [matches, setMatches] = useState(() =>
     typeof window === 'undefined' ? false : window.matchMedia(query).matches,
@@ -31,10 +48,18 @@ function useMediaQuery(query: string) {
   return matches;
 }
 
+// Pseudo-code: The 3D cube mesh that rotates continuously using useFrame.
+// Why added: useFrame runs on every animation frame, letting us update the cube's
+// rotation based on elapsed time for a smooth, continuous spin. The color changes
+// based on the active slide index.
 function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; reducedMotion: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
   const color = cubeColors[activeIndex % cubeColors.length];
 
+  // Pseudo-code: Update the cube's rotation every frame based on elapsed time.
+  // Why added: The sinusoidal rotation on X and Z axes combined with linear Y rotation
+  // creates an organic, non-repetitive spinning motion. Skipped entirely when
+  // reducedMotion is true.
   useFrame(({ clock }) => {
     if (!groupRef.current || reducedMotion) return;
     groupRef.current.rotation.x = 0.42 + Math.sin(clock.elapsedTime * 0.45) * 0.12;
@@ -62,6 +87,10 @@ function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; red
   );
 }
 
+// Pseudo-code: Render the full tech stack cube section — Three.js canvas, CSS fallback, and chip controls.
+// Why added: This is the visual centerpiece of the tech stack page. The Three.js canvas
+// provides the 3D experience, the CSS fallback ensures content is accessible without
+// WebGL, and the chip controls let users navigate between stack layers.
 export default function TechStackCube({ slides, activeIndex, onSelectSlide }: TechStackCubeProps) {
   const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
 
@@ -106,6 +135,9 @@ export default function TechStackCube({ slides, activeIndex, onSelectSlide }: Te
             type="button"
             className={`tech-cube-chip ${activeIndex === index ? 'is-active' : ''}`}
             aria-current={activeIndex === index ? 'true' : undefined}
+            // Pseudo-code: Notify the parent which slide index was selected.
+            // Why added: The parent (TechStackPage) uses this callback to scroll the
+            // matching skill slide into view and update the active index.
             onClick={() => onSelectSlide(index)}
           >
             {slide.title}

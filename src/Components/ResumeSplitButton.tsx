@@ -1,3 +1,13 @@
+/*
+ * Pseudo-code: Resume download split-button dropdown component.
+ * - Renders a "Resume" button that toggles a dropdown with PDF and DOCX download links.
+ * - Positions the dropdown using a portal so it's not clipped by overflow-hidden parents.
+ * - Supports two size variants: 'hero' (large, for the profile page) and 'nav' (compact, for the nav bar).
+ * - Closes on outside click, Escape key, scroll, and resize.
+ * Why added: Gives visitors two resume format options (PDF for viewing, DOCX for editing)
+ * in a compact UI that doesn't take up permanent screen real estate.
+ */
+
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { RESUME_PDF_PATH, RESUME_DOCX_PATH } from '../links';
@@ -10,12 +20,18 @@ interface ResumeSplitButtonProps {
   size?: 'nav' | 'hero';
 }
 
+// Pseudo-code: Render the resume split-button with a dropdown for PDF/DOCX download options.
+// Why added: Consolidates resume downloads into a single interactive element with a
+// portal-based dropdown that escapes overflow clipping in any parent container.
 export default function ResumeSplitButton({ className = '', size = 'hero' }: ResumeSplitButtonProps) {
   const [open, setOpen] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const sizeClass = size === 'nav' ? 'resume-split--nav' : 'resume-split--hero';
   const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0 });
 
+  // Pseudo-code: Calculate the dropdown position relative to the button's bounding rect.
+  // Why added: The dropdown is portaled to <body>, so it needs absolute coordinates
+  // based on the button's position + scroll offset to align correctly.
   const updatePosition = useCallback(() => {
     if (!rootRef.current) return;
     const rect = rootRef.current.getBoundingClientRect();
@@ -25,6 +41,9 @@ export default function ResumeSplitButton({ className = '', size = 'hero' }: Res
     });
   }, []);
 
+  // Pseudo-code: Toggle the dropdown open/closed, recalculating position on open.
+  // Why added: Updating position on open ensures the dropdown appears in the right
+  // place even if the layout shifted while it was closed.
   const handleToggle = useCallback(() => {
     setOpen((v) => {
       if (!v) updatePosition();
@@ -32,9 +51,14 @@ export default function ResumeSplitButton({ className = '', size = 'hero' }: Res
     });
   }, [updatePosition]);
 
+  // Pseudo-code: Close the dropdown menu.
+  // Why added: Used as a callback for after the user clicks a download link so the
+  // menu doesn't stay open after navigating away.
   const handleClose = useCallback(() => setOpen(false), []);
 
-  // Close on outside click
+  // Pseudo-code: Close the dropdown when the user clicks outside the button.
+  // Why added: Standard dropdown behavior — clicking anywhere else on the page
+  // should dismiss the menu.
   useEffect(() => {
     if (!open) return;
     function handleOutside(e: PointerEvent) {
@@ -46,7 +70,9 @@ export default function ResumeSplitButton({ className = '', size = 'hero' }: Res
     return () => document.removeEventListener('pointerdown', handleOutside);
   }, [open]);
 
-  // Close on Escape
+  // Pseudo-code: Close the dropdown when the user presses the Escape key.
+  // Why added: Keyboard accessibility — Escape is the standard key for dismissing
+  // popups and dropdowns.
   useEffect(() => {
     if (!open) return;
     function handleKey(e: KeyboardEvent) {
@@ -56,7 +82,9 @@ export default function ResumeSplitButton({ className = '', size = 'hero' }: Res
     return () => document.removeEventListener('keydown', handleKey);
   }, [open]);
 
-  // Update position on scroll/resize while open
+  // Pseudo-code: Reposition the dropdown on scroll and resize while it's open.
+  // Why added: Because the dropdown is absolutely positioned at <body> level,
+  // it must track the button's position as the user scrolls or resizes the window.
   useEffect(() => {
     if (!open) return;
     window.addEventListener('scroll', updatePosition, true);
@@ -67,6 +95,9 @@ export default function ResumeSplitButton({ className = '', size = 'hero' }: Res
     };
   }, [open, updatePosition]);
 
+  // Pseudo-code: Build the dropdown element with PDF and DOCX download links.
+  // Why added: Uses createPortal to render at <body> level so the dropdown is never
+  // clipped by overflow: hidden on parent containers (like the nav bar).
   const dropdown = open ? (
     <div
       className={`resume-split__options is-visible ${sizeClass}`}
