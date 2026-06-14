@@ -1,5 +1,5 @@
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 import * as THREE from 'three';
 
 type CubeSlide = {
@@ -14,6 +14,45 @@ type TechStackCubeProps = {
 };
 
 const cubeColors = ['#f8fafc', '#93c5fd', '#7dd3fc', '#c4b5fd', '#86efac', '#facc15'];
+const faceLabels = ['AWS', 'Tests', 'TS', 'CI/CD', 'React', 'Node']; // +X, -X, +Y, -Y, +Z, -Z
+
+function createTextTexture(text: string): THREE.CanvasTexture {
+  const canvas = document.createElement('canvas');
+  const size = 256;
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d')!;
+  
+  // Background (transparent)
+  ctx.clearRect(0, 0, size, size);
+  
+  // Text
+  ctx.font = 'bold 64px Inter, system-ui, sans-serif';
+  ctx.fillStyle = '#1e293b';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText(text, size / 2, size / 2);
+  
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.needsUpdate = true;
+  return texture;
+}
+
+function useFaceMaterials() {
+  return useMemo(() => {
+    if (typeof window === 'undefined') return [];
+    return faceLabels.map((label) => {
+      const texture = createTextTexture(label);
+      return new THREE.MeshStandardMaterial({
+        map: texture,
+        color: '#ffffff',
+        transparent: true,
+        roughness: 0.7,
+        metalness: 0.1,
+      });
+    });
+  }, []);
+}
 
 function useMediaQuery(query: string) {
   const [matches, setMatches] = useState(() => (typeof window === 'undefined' ? false : window.matchMedia(query).matches));
@@ -34,6 +73,7 @@ function useMediaQuery(query: string) {
 function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; reducedMotion: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
   const color = cubeColors[activeIndex % cubeColors.length];
+  const faceMaterials = useFaceMaterials();
 
   useFrame(({ clock }) => {
     if (!groupRef.current || reducedMotion) return;
@@ -45,10 +85,10 @@ function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; red
 
   return (
     <group ref={groupRef} rotation={[0.42, 0.62, 0.04]}>
-      <mesh>
-        <boxGeometry args={[1.85, 1.85, 1.85]} />
-        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.24} roughness={0.34} metalness={0.08} />
-      </mesh>
+      <mesh
+        geometry={new THREE.BoxGeometry(1.85, 1.85, 1.85)}
+        material={faceMaterials.length === 6 ? faceMaterials : new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 0.24, roughness: 0.34, metalness: 0.08 })}
+      />
       <mesh scale={1.012}>
         <boxGeometry args={[1.85, 1.85, 1.85]} />
         <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0.36} />
