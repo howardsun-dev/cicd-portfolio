@@ -15,7 +15,7 @@ type Project = {
   status: 'live' | 'in-progress' | 'contribution';
   proofPoints: string[];
   media?: Array<{ type: 'gif' | 'image'; url: string; alt: string }>;
-  badges?: Array<{ type: 'build' | 'release' | 'deployed' | 'pipeline'; label: string; url: string }>;
+  badges?: Array<{ type: 'build' | 'release' | 'deployed' | 'pipeline'; label: string; url: string; href: string }>;
 };
 
 const projects: Project[] = [
@@ -38,33 +38,25 @@ const projects: Project[] = [
       'Traversal-safe file serving',
       'CI quality gate with lint, tests, and build',
     ],
-    media: [
-      {
-        type: 'gif',
-        url: 'https://raw.githubusercontent.com/howardsun-dev/LANShare/main/docs/demo.gif',
-        alt: 'LANShare demo showing CLI and browser UI',
-      },
-      {
-        type: 'image',
-        url: 'https://raw.githubusercontent.com/howardsun-dev/LANShare/main/docs/architecture.png',
-        alt: 'LANShare architecture diagram',
-      },
-    ],
+    media: [],
     badges: [
       {
         type: 'build',
         label: 'CI Passing',
         url: 'https://github.com/howardsun-dev/LANShare/actions/workflows/ci.yml/badge.svg',
+        href: 'https://github.com/howardsun-dev/LANShare/actions/workflows/ci.yml',
       },
       {
         type: 'release',
         label: 'v1.2.0',
         url: 'https://img.shields.io/github/v/release/howardsun-dev/LANShare',
+        href: 'https://github.com/howardsun-dev/LANShare/releases',
       },
       {
         type: 'pipeline',
         label: 'Test/Lint/Build',
         url: 'https://github.com/howardsun-dev/LANShare/actions/workflows/ci.yml/badge.svg',
+        href: 'https://github.com/howardsun-dev/LANShare/actions/workflows/ci.yml',
       },
     ],
   },
@@ -98,33 +90,25 @@ const projects: Project[] = [
       'Electron-hosted local control UI',
       'Tagged release pipeline',
     ],
-    media: [
-      {
-        type: 'gif',
-        url: 'https://raw.githubusercontent.com/howardsun-dev/LANShare-electron/main/docs/desktop-demo.gif',
-        alt: 'LANShare Desktop app running on Windows/macOS/Linux',
-      },
-      {
-        type: 'image',
-        url: 'https://raw.githubusercontent.com/howardsun-dev/LANShare-electron/main/docs/releases.png',
-        alt: 'Cross-platform release artifacts',
-      },
-    ],
+    media: [],
     badges: [
       {
         type: 'build',
         label: 'CI Passing',
         url: 'https://github.com/howardsun-dev/LANShare-electron/actions/workflows/ci.yml/badge.svg',
+        href: 'https://github.com/howardsun-dev/LANShare-electron/actions/workflows/ci.yml',
       },
       {
         type: 'release',
         label: 'v1.0.0',
         url: 'https://img.shields.io/github/v/release/howardsun-dev/LANShare-electron',
+        href: 'https://github.com/howardsun-dev/LANShare-electron/releases',
       },
       {
         type: 'deployed',
         label: 'Cross-platform',
         url: 'https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-blue',
+        href: 'https://github.com/howardsun-dev/LANShare-electron/releases',
       },
     ],
   },
@@ -146,33 +130,25 @@ const projects: Project[] = [
       'JWT auth + realtime messaging',
       'Frontend/backend integration',
     ],
-    media: [
-      {
-        type: 'gif',
-        url: 'https://raw.githubusercontent.com/howardsun-dev/quickchat/main/docs/chat-demo.gif',
-        alt: 'QuickChat real-time messaging demo',
-      },
-      {
-        type: 'image',
-        url: 'https://raw.githubusercontent.com/howardsun-dev/quickchat/main/docs/auth-flow.png',
-        alt: 'QuickChat authentication flow diagram',
-      },
-    ],
+    media: [],
     badges: [
       {
         type: 'build',
         label: 'CI Passing',
         url: 'https://github.com/howardsun-dev/quickchat/actions/workflows/ci.yml/badge.svg',
+        href: 'https://github.com/howardsun-dev/quickchat/actions/workflows/ci.yml',
       },
       {
         type: 'deployed',
         label: 'Live Demo',
         url: 'https://img.shields.io/badge/demo-live-brightgreen',
+        href: 'https://quickchat-v72jh.sevalla.app/login',
       },
       {
         type: 'pipeline',
         label: 'Test/Lint/Build',
         url: 'https://github.com/howardsun-dev/quickchat/actions/workflows/ci.yml/badge.svg',
+        href: 'https://github.com/howardsun-dev/quickchat/actions/workflows/ci.yml',
       },
     ],
   },
@@ -194,28 +170,19 @@ const projects: Project[] = [
       'Docker-ready Node.js service',
       'Roadmap toward AI/RAG job matching',
     ],
-    media: [
-      {
-        type: 'gif',
-        url: 'https://raw.githubusercontent.com/howardsun-dev/discord-job-scraper/main/docs/bot-demo.gif',
-        alt: 'Discord Job Scraper bot in action',
-      },
-      {
-        type: 'image',
-        url: 'https://raw.githubusercontent.com/howardsun-dev/discord-job-scraper/main/docs/architecture.png',
-        alt: 'Discord Job Scraper architecture',
-      },
-    ],
+    media: [],
     badges: [
       {
         type: 'build',
         label: 'CI Passing',
         url: 'https://github.com/howardsun-dev/discord-job-scraper/actions/workflows/ci.yml/badge.svg',
+        href: 'https://github.com/howardsun-dev/discord-job-scraper/actions/workflows/ci.yml',
       },
       {
         type: 'pipeline',
         label: 'Test/Lint/Build',
         url: 'https://github.com/howardsun-dev/discord-job-scraper/actions/workflows/ci.yml/badge.svg',
+        href: 'https://github.com/howardsun-dev/discord-job-scraper/actions/workflows/ci.yml',
       },
     ],
   },
@@ -244,33 +211,25 @@ const projects: Project[] = [
       'Existing production-scale codebase',
       'Electron desktop app experience',
     ],
-    media: [
-      {
-        type: 'gif',
-        url: 'https://raw.githubusercontent.com/open-source-labs/Swell/main/ReadMeGifs/Gifs/HttpTesting.gif',
-        alt: 'Swell HTTP/2 testing demo',
-      },
-      {
-        type: 'image',
-        url: 'https://raw.githubusercontent.com/open-source-labs/Swell/main/src/assets/img/horizontal-logo-lockup.png',
-        alt: 'Swell logo',
-      },
-    ],
+    media: [],
     badges: [
       {
         type: 'build',
         label: 'CI Passing',
         url: 'https://github.com/open-source-labs/Swell/actions/workflows/unit-tests.yml/badge.svg',
+        href: 'https://github.com/open-source-labs/Swell/actions/workflows/unit-tests.yml',
       },
       {
         type: 'release',
         label: 'v1.19.0',
         url: 'https://img.shields.io/github/v/release/open-source-labs/Swell',
+        href: 'https://github.com/open-source-labs/Swell/releases',
       },
       {
         type: 'pipeline',
         label: 'Test/Lint/Build',
         url: 'https://github.com/open-source-labs/Swell/actions/workflows/unit-tests.yml/badge.svg',
+        href: 'https://github.com/open-source-labs/Swell/actions/workflows/unit-tests.yml',
       },
     ],
   },
@@ -295,13 +254,13 @@ const projects: Project[] = [
     ],
     media: [
       {
-        type: 'gif',
-        url: '/docs/screenshots/homepage.png',
+        type: 'image',
+        url: '/screenshots/homepage.png',
         alt: 'Portfolio homepage showing project constellation',
       },
       {
         type: 'image',
-        url: '/docs/screenshots/mobile.png',
+        url: '/screenshots/mobile.png',
         alt: 'Portfolio mobile view',
       },
     ],
@@ -310,16 +269,19 @@ const projects: Project[] = [
         type: 'build',
         label: 'CI Passing',
         url: 'https://github.com/howardsun-dev/cicd-portfolio/actions/workflows/main.yml/badge.svg',
+        href: 'https://github.com/howardsun-dev/cicd-portfolio/actions/workflows/main.yml',
       },
       {
         type: 'deployed',
         label: 'Live Site',
         url: 'https://img.shields.io/badge/Deployed-Howardsun.me-brightgreen',
+        href: 'https://howardsun.me',
       },
       {
         type: 'pipeline',
         label: 'Test/Lint/Build',
         url: 'https://github.com/howardsun-dev/cicd-portfolio/actions/workflows/main.yml/badge.svg',
+        href: 'https://github.com/howardsun-dev/cicd-portfolio/actions/workflows/main.yml',
       },
     ],
   },
@@ -389,13 +351,13 @@ function ProjectCard({ project }: { project: Project }) {
           {project.badges.map((badge, index) => (
             <a
               key={index}
-              href={badge.url}
+              href={badge.href}
               target="_blank"
               rel="noreferrer"
               className={`project-badge project-badge--${badge.type}`}
             >
-              {badge.label}
               <img src={badge.url} alt={`${badge.label} badge`} className="badge-image" />
+              {badge.label}
             </a>
           ))}
         </div>
