@@ -16,15 +16,15 @@ type TechStackCubeProps = {
 const cubeColors = ['#f8fafc', '#93c5fd', '#7dd3fc', '#c4b5fd', '#86efac', '#facc15'];
 
 function useMediaQuery(query: string) {
-  const [matches, setMatches] = useState(() =>
-    typeof window === 'undefined' ? false : window.matchMedia(query).matches,
-  );
+  const [matches, setMatches] = useState(() => (typeof window === 'undefined' ? false : window.matchMedia(query).matches));
 
   useEffect(() => {
     const mediaQuery = window.matchMedia(query);
     const updateMatches = () => setMatches(mediaQuery.matches);
+
     updateMatches();
     mediaQuery.addEventListener('change', updateMatches);
+
     return () => mediaQuery.removeEventListener('change', updateMatches);
   }, [query]);
 
@@ -37,6 +37,7 @@ function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; red
 
   useFrame(({ clock }) => {
     if (!groupRef.current || reducedMotion) return;
+
     groupRef.current.rotation.x = 0.42 + Math.sin(clock.elapsedTime * 0.45) * 0.12;
     groupRef.current.rotation.y = clock.elapsedTime * 0.42;
     groupRef.current.rotation.z = Math.sin(clock.elapsedTime * 0.28) * 0.08;
@@ -46,13 +47,7 @@ function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; red
     <group ref={groupRef} rotation={[0.42, 0.62, 0.04]}>
       <mesh>
         <boxGeometry args={[1.85, 1.85, 1.85]} />
-        <meshStandardMaterial
-          color={color}
-          emissive={color}
-          emissiveIntensity={0.24}
-          roughness={0.34}
-          metalness={0.08}
-        />
+        <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.24} roughness={0.34} metalness={0.08} />
       </mesh>
       <mesh scale={1.012}>
         <boxGeometry args={[1.85, 1.85, 1.85]} />
@@ -74,7 +69,6 @@ export default function TechStackCube({ slides, activeIndex, onSelectSlide }: Te
           A compact Three.js view of the stack layers behind the portfolio. Select a layer to jump to the matching skill slide.
         </p>
       </div>
-
       <div className="tech-cube-stage">
         <Canvas
           aria-hidden="true"
@@ -88,7 +82,6 @@ export default function TechStackCube({ slides, activeIndex, onSelectSlide }: Te
           <pointLight position={[-3, -2, 3]} intensity={0.8} color="#c4b5fd" />
           <RotatingCube activeIndex={activeIndex} reducedMotion={reducedMotion} />
         </Canvas>
-
         <div className="tech-cube-css" aria-hidden="true">
           <span className="cube-face cube-front">React</span>
           <span className="cube-face cube-back">Node</span>
@@ -98,7 +91,6 @@ export default function TechStackCube({ slides, activeIndex, onSelectSlide }: Te
           <span className="cube-face cube-bottom">CI/CD</span>
         </div>
       </div>
-
       <div className="tech-cube-controls" aria-label="Tech stack layer navigation">
         {slides.map((slide, index) => (
           <button
