@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { animate, stagger, createTimeline } from 'animejs';
 import { Link } from '@tanstack/react-router';
 import { usePageTitle } from '../hooks/usePageTitle';
-import ResumeSplitButton from './ResumeSplitButton';
+import { RESUME_DOCX_PATH, RESUME_PDF_PATH } from '../links';
 
 const fullName = 'Howard Sun';
 
@@ -157,8 +157,13 @@ export default function ProfilePage() {
         <Link className="social-link" to="/techstack">
           Tech Stack
         </Link>
-        <ResumeSplitButton />
-        {/* <a
+        <a className="social-link" href={RESUME_PDF_PATH}>
+          Resume PDF
+        </a>
+        <a className="social-link" href={RESUME_DOCX_PATH}>
+          Resume DOCX
+        </a>
+        <a
           className="social-link"
           href="https://github.com/howardsun-dev"
           target="_blank"
@@ -173,15 +178,15 @@ export default function ProfilePage() {
           rel="noreferrer"
         >
           LinkedIn<span className="sr-only"> (opens in a new tab)</span>
-        </a> */}
+        </a>
         <Link className="social-link" to="/contact">
           Contact
         </Link>
       </div>
       <aside className="portfolio-built-note" aria-label="Portfolio technology note">
-        This portfolio is a working project built with the same stack I use to ship software: React
-        19, TypeScript, Vite, TanStack Router, Three.js, anime.js, GitHub Actions, AWS S3, and
-        CloudFront.
+        This portfolio is a working project built with the same stack I use to ship software:
+        React 19, TypeScript, Vite, TanStack Router, Three.js, anime.js, GitHub Actions, AWS
+        S3, and CloudFront.
       </aside>
     </main>
   );

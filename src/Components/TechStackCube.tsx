@@ -42,10 +42,13 @@ function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; red
     groupRef.current.rotation.z = Math.sin(clock.elapsedTime * 0.28) * 0.08;
   });
 
+  const boxGeo = new THREE.BoxGeometry(1.85, 1.85, 1.85);
+  const edgesGeo = new THREE.EdgesGeometry(boxGeo);
+  const edgeMat = new THREE.LineBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.36 });
+
   return (
     <group ref={groupRef} rotation={[0.42, 0.62, 0.04]}>
-      <mesh>
-        <boxGeometry args={[1.85, 1.85, 1.85]} />
+      <mesh geometry={boxGeo}>
         <meshStandardMaterial
           color={color}
           emissive={color}
@@ -54,10 +57,7 @@ function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; red
           metalness={0.08}
         />
       </mesh>
-      <mesh scale={1.012}>
-        <boxGeometry args={[1.85, 1.85, 1.85]} />
-        <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0.36} />
-      </mesh>
+      <lineSegments geometry={edgesGeo} material={edgeMat} />
     </group>
   );
 }
