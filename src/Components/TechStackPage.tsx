@@ -210,7 +210,7 @@ export default function TechStackPage() {
       </header>
 
       <div className="tech-shell">
-        <Suspense fallback={null}>
+        <Suspense fallback={<div className="tech-cube-loading">Loading cube…</div>}>
           <TechStackCube slides={slides} activeIndex={activeIndex} onSelectSlide={goToSlide} />
         </Suspense>
 

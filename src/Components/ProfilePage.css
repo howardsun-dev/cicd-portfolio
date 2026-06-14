@@ -292,12 +292,17 @@ body {
 .tech-cube-stage {
     position: relative;
     min-height: 14rem;
+    height: 100%;
     overflow: hidden;
     border-radius: 16px;
     background:
         radial-gradient(circle at 50% 42%, rgba(147, 197, 253, 0.2), transparent 36%),
         radial-gradient(circle at 70% 70%, rgba(196, 181, 253, 0.16), transparent 28%),
         rgba(15, 23, 42, 0.22);
+}
+
+.tech-cube-stage > div:first-child {
+    height: 100%;
 }
 
 .tech-cube-stage canvas {

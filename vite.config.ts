@@ -9,10 +9,12 @@ export default defineConfig({
       target: 'react',
       autoCodeSplitting: true,
     }),
-    react({
-      babel: {
-        plugins: [['babel-plugin-react-compiler']],
-      },
-    }),
+    react(),
   ],
+  optimizeDeps: {
+    include: ['three', '@react-three/fiber'],
+  },
+  build: {
+    target: 'es2022',
+  },
 });
