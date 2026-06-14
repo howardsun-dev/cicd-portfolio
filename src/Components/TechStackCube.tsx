@@ -1,4 +1,5 @@
 import { Canvas, useFrame } from '@react-three/fiber';
+import { Html } from '@react-three/drei';
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 
@@ -31,6 +32,16 @@ function useMediaQuery(query: string) {
   return matches;
 }
 
+// Face label data: position (face center) and text
+const faceLabels = [
+  { position: [0, 0, 0.925], text: 'React' },     // front
+  { position: [0, 0, -0.925], text: 'Node' },     // back
+  { position: [0.925, 0, 0], text: 'AWS' },       // right
+  { position: [-0.925, 0, 0], text: 'Tests' },    // left
+  { position: [0, 0.925, 0], text: 'TS' },        // top
+  { position: [0, -0.925, 0], text: 'CI/CD' },    // bottom
+] as const;
+
 function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; reducedMotion: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
   const color = cubeColors[activeIndex % cubeColors.length];
@@ -58,6 +69,33 @@ function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; red
         />
       </mesh>
       <lineSegments geometry={edgesGeo} material={edgeMat} />
+      {faceLabels.map(({ position, text }, i) => (
+        <Html
+          key={i}
+          position={position}
+          rotation={[0, 0, 0]}
+          transform
+          sprite
+          fullscreen
+          distanceFactor={10}
+          zIndexRange={[100, 100]}
+        >
+          <span
+            style={{
+              color: '#ffffff',
+              fontSize: '0.75rem',
+              fontWeight: 700,
+              letterSpacing: '0.02em',
+              textShadow: '0 2px 8px rgba(0, 0, 0, 0.6)',
+              pointerEvents: 'none',
+              userSelect: 'none',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {text}
+          </span>
+        </Html>
+      ))}
     </group>
   );
 }
@@ -88,15 +126,6 @@ export default function TechStackCube({ slides, activeIndex, onSelectSlide }: Te
           <pointLight position={[-3, -2, 3]} intensity={0.8} color="#c4b5fd" />
           <RotatingCube activeIndex={activeIndex} reducedMotion={reducedMotion} />
         </Canvas>
-
-        <div className="tech-cube-css" aria-hidden="true">
-          <span className="cube-face cube-front">React</span>
-          <span className="cube-face cube-back">Node</span>
-          <span className="cube-face cube-right">AWS</span>
-          <span className="cube-face cube-left">Tests</span>
-          <span className="cube-face cube-top">TS</span>
-          <span className="cube-face cube-bottom">CI/CD</span>
-        </div>
       </div>
 
       <div className="tech-cube-controls" aria-label="Tech stack layer navigation">
