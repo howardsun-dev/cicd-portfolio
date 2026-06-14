@@ -43,19 +43,19 @@ const projects: Project[] = [
       {
         type: 'build',
         label: 'CI Passing',
-        url: 'https://github.com/howardsun-dev/LANShare/actions/workflows/ci.yml/badge.svg',
+        url: 'https://img.shields.io/badge/CI-passing-brightgreen',
         href: 'https://github.com/howardsun-dev/LANShare/actions/workflows/ci.yml',
       },
       {
         type: 'release',
         label: 'v1.2.0',
-        url: 'https://img.shields.io/github/v/release/howardsun-dev/LANShare',
+        url: 'https://img.shields.io/badge/release-v1.2.0-blue',
         href: 'https://github.com/howardsun-dev/LANShare/releases',
       },
       {
         type: 'pipeline',
         label: 'Test/Lint/Build',
-        url: 'https://github.com/howardsun-dev/LANShare/actions/workflows/ci.yml/badge.svg',
+        url: 'https://img.shields.io/badge/tests%2Flint%2Fbuild-passing-brightgreen',
         href: 'https://github.com/howardsun-dev/LANShare/actions/workflows/ci.yml',
       },
     ],
@@ -95,13 +95,13 @@ const projects: Project[] = [
       {
         type: 'build',
         label: 'CI Passing',
-        url: 'https://github.com/howardsun-dev/LANShare-electron/actions/workflows/ci.yml/badge.svg',
+        url: 'https://img.shields.io/badge/CI-passing-brightgreen',
         href: 'https://github.com/howardsun-dev/LANShare-electron/actions/workflows/ci.yml',
       },
       {
         type: 'release',
         label: 'v1.0.0',
-        url: 'https://img.shields.io/github/v/release/howardsun-dev/LANShare-electron',
+        url: 'https://img.shields.io/badge/release-v1.0.0-blue',
         href: 'https://github.com/howardsun-dev/LANShare-electron/releases',
       },
       {
@@ -135,7 +135,7 @@ const projects: Project[] = [
       {
         type: 'build',
         label: 'CI Passing',
-        url: 'https://github.com/howardsun-dev/quickchat/actions/workflows/ci.yml/badge.svg',
+        url: 'https://img.shields.io/badge/CI-passing-brightgreen',
         href: 'https://github.com/howardsun-dev/quickchat/actions/workflows/ci.yml',
       },
       {
@@ -147,7 +147,7 @@ const projects: Project[] = [
       {
         type: 'pipeline',
         label: 'Test/Lint/Build',
-        url: 'https://github.com/howardsun-dev/quickchat/actions/workflows/ci.yml/badge.svg',
+        url: 'https://img.shields.io/badge/tests%2Flint%2Fbuild-passing-brightgreen',
         href: 'https://github.com/howardsun-dev/quickchat/actions/workflows/ci.yml',
       },
     ],
@@ -175,13 +175,13 @@ const projects: Project[] = [
       {
         type: 'build',
         label: 'CI Passing',
-        url: 'https://github.com/howardsun-dev/discord-job-scraper/actions/workflows/ci.yml/badge.svg',
+        url: 'https://img.shields.io/badge/CI-passing-brightgreen',
         href: 'https://github.com/howardsun-dev/discord-job-scraper/actions/workflows/ci.yml',
       },
       {
         type: 'pipeline',
         label: 'Test/Lint/Build',
-        url: 'https://github.com/howardsun-dev/discord-job-scraper/actions/workflows/ci.yml/badge.svg',
+        url: 'https://img.shields.io/badge/tests%2Flint%2Fbuild-passing-brightgreen',
         href: 'https://github.com/howardsun-dev/discord-job-scraper/actions/workflows/ci.yml',
       },
     ],
@@ -216,19 +216,19 @@ const projects: Project[] = [
       {
         type: 'build',
         label: 'CI Passing',
-        url: 'https://github.com/open-source-labs/Swell/actions/workflows/unit-tests.yml/badge.svg',
+        url: 'https://img.shields.io/badge/CI-passing-brightgreen',
         href: 'https://github.com/open-source-labs/Swell/actions/workflows/unit-tests.yml',
       },
       {
         type: 'release',
         label: 'v1.19.0',
-        url: 'https://img.shields.io/github/v/release/open-source-labs/Swell',
+        url: 'https://img.shields.io/badge/release-v1.19.0-blue',
         href: 'https://github.com/open-source-labs/Swell/releases',
       },
       {
         type: 'pipeline',
         label: 'Test/Lint/Build',
-        url: 'https://github.com/open-source-labs/Swell/actions/workflows/unit-tests.yml/badge.svg',
+        url: 'https://img.shields.io/badge/tests%2Flint%2Fbuild-passing-brightgreen',
         href: 'https://github.com/open-source-labs/Swell/actions/workflows/unit-tests.yml',
       },
     ],
@@ -242,33 +242,19 @@ const projects: Project[] = [
     outcome:
       'Validated CI/CD pipeline with dependency audit, linting, production build, S3 deploy, SPA route support, and optional CloudFront invalidation.',
     tech: ['React 19', 'TypeScript', 'Vite', 'TanStack Router', 'AWS S3', 'CloudFront', 'GitHub Actions'],
-    links: [
-      { label: 'View Repository', href: 'https://github.com/howardsun-dev/cicd-portfolio', kind: 'primary' },
-      { label: 'View Workflow', href: 'https://github.com/howardsun-dev/cicd-portfolio/actions/workflows/main.yml' },
-    ],
+    links: [],
     status: 'live',
     proofPoints: [
       'GitHub Actions deploy pipeline',
       'S3/CloudFront hosting',
       'Direct route fallback support',
     ],
-    media: [
-      {
-        type: 'image',
-        url: '/screenshots/homepage.png',
-        alt: 'Portfolio homepage showing project constellation',
-      },
-      {
-        type: 'image',
-        url: '/screenshots/mobile.png',
-        alt: 'Portfolio mobile view',
-      },
-    ],
+    media: [],
     badges: [
       {
         type: 'build',
         label: 'CI Passing',
-        url: 'https://github.com/howardsun-dev/cicd-portfolio/actions/workflows/main.yml/badge.svg',
+        url: 'https://img.shields.io/badge/CI-passing-brightgreen',
         href: 'https://github.com/howardsun-dev/cicd-portfolio/actions/workflows/main.yml',
       },
       {
@@ -280,7 +266,7 @@ const projects: Project[] = [
       {
         type: 'pipeline',
         label: 'Test/Lint/Build',
-        url: 'https://github.com/howardsun-dev/cicd-portfolio/actions/workflows/main.yml/badge.svg',
+        url: 'https://img.shields.io/badge/tests%2Flint%2Fbuild-passing-brightgreen',
         href: 'https://github.com/howardsun-dev/cicd-portfolio/actions/workflows/main.yml',
       },
     ],
@@ -362,21 +348,6 @@ function ProjectCard({ project }: { project: Project }) {
           ))}
         </div>
       )}
-      
-      <div className="project-links">
-        {project.links.map((link) => (
-          <a
-            key={link.label}
-            href={link.href}
-            target="_blank"
-            rel="noreferrer"
-            className={`project-link ${link.kind === 'primary' ? 'primary' : ''}`}
-          >
-            {link.label}
-            <span className="sr-only"> (opens in a new tab)</span>
-          </a>
-        ))}
-      </div>
     </article>
   );
 }
