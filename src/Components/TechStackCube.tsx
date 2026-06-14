@@ -32,14 +32,14 @@ function useMediaQuery(query: string) {
   return matches;
 }
 
-// Face label data: position (face center) and text
+// Face label data: position (face center), rotation to match face normal, and text
 const faceLabels = [
-  { position: [0, 0, 0.925], text: 'React' },     // front
-  { position: [0, 0, -0.925], text: 'Node' },     // back
-  { position: [0.925, 0, 0], text: 'AWS' },       // right
-  { position: [-0.925, 0, 0], text: 'Tests' },    // left
-  { position: [0, 0.925, 0], text: 'TS' },        // top
-  { position: [0, -0.925, 0], text: 'CI/CD' },    // bottom
+  { position: [0, 0, 0.925], rotation: [0, 0, 0], text: 'React' },           // front
+  { position: [0, 0, -0.925], rotation: [0, Math.PI, 0], text: 'Node' },      // back
+  { position: [0.925, 0, 0], rotation: [0, Math.PI / 2, 0], text: 'AWS' },    // right
+  { position: [-0.925, 0, 0], rotation: [0, -Math.PI / 2, 0], text: 'Tests' }, // left
+  { position: [0, 0.925, 0], rotation: [-Math.PI / 2, 0, 0], text: 'TS' },     // top
+  { position: [0, -0.925, 0], rotation: [Math.PI / 2, 0, 0], text: 'CI/CD' },  // bottom
 ] as const;
 
 function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; reducedMotion: boolean }) {
@@ -69,14 +69,12 @@ function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; red
         />
       </mesh>
       <lineSegments geometry={edgesGeo} material={edgeMat} />
-      {faceLabels.map(({ position, text }, i) => (
+      {faceLabels.map(({ position, rotation, text }, i) => (
         <Html
           key={i}
           position={position}
-          rotation={[0, 0, 0]}
+          rotation={rotation}
           transform
-          sprite
-          fullscreen
           distanceFactor={10}
           zIndexRange={[100, 100]}
         >
