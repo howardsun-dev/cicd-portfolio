@@ -526,9 +526,67 @@ body {
     margin-top: 2rem;
 }
 
-.projects-list {
+/* ===== Contact Page ===== */
+
+.contact-page {
+    text-align: left;
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.contact-list {
     display: flex;
     flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    text-decoration: none;
+    color: #fff;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.contact-item:hover {
+    background: rgba(255, 255, 255, 0.14);
+    transform: translateY(-2px);
+}
+
+.contact-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.12);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+.contact-label {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.contact-value {
+    font-size: 0.95rem;
+    margin-top: 0.15rem;
+}
+
+/* ===== Project Cards ===== */
+
+.projects-list {
     gap: 1.5rem;
     max-width: 900px;
     margin: 0 auto;

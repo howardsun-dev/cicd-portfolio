@@ -43,12 +43,19 @@ function useFaceMaterials() {
     if (typeof window === 'undefined') return [];
     return faceLabels.map((label) => {
       const texture = createTextTexture(label);
-      return new THREE.MeshStandardMaterial({
+      return new THREE.MeshPhysicalMaterial({
         map: texture,
         color: '#ffffff',
         transparent: true,
-        roughness: 0.7,
-        metalness: 0.1,
+        opacity: 0.25,
+        roughness: 0.15,
+        metalness: 0.05,
+        transmission: 0.85,
+        thickness: 0.5,
+        ior: 1.1,
+        clearcoat: 0.3,
+        clearcoatRoughness: 0.1,
+        side: THREE.DoubleSide,
       });
     });
   }, []);
@@ -87,12 +94,8 @@ function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; red
     <group ref={groupRef} rotation={[0.42, 0.62, 0.04]}>
       <mesh
         geometry={new THREE.BoxGeometry(1.85, 1.85, 1.85)}
-        material={faceMaterials.length === 6 ? faceMaterials : new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: 0.24, roughness: 0.34, metalness: 0.08 })}
+        material={faceMaterials.length === 6 ? faceMaterials : new THREE.MeshPhysicalMaterial({ color, emissive: color, emissiveIntensity: 0.24, roughness: 0.34, metalness: 0.08, transparent: true, opacity: 0.25, transmission: 0.85, thickness: 0.5 })}
       />
-      <mesh scale={1.012}>
-        <boxGeometry args={[1.85, 1.85, 1.85]} />
-        <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0.36} />
-      </mesh>
     </group>
   );
 }
