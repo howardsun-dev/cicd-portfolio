@@ -27,7 +27,6 @@
     "@types/react-dom": "^19.1.9",
     "@types/three": "0.184.1",
     "@vitejs/plugin-react": "^6.0.2",
-    "babel-plugin-react-compiler": "^19.1.0-rc.3",
     "baseline-browser-mapping": "2.10.32",
     "eslint": "^9.36.0",
     "eslint-plugin-react": "7.37.5",
