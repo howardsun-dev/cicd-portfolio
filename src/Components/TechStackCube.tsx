@@ -96,6 +96,10 @@ function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; red
         geometry={new THREE.BoxGeometry(1.85, 1.85, 1.85)}
         material={faceMaterials.length === 6 ? faceMaterials : new THREE.MeshPhysicalMaterial({ color, emissive: color, emissiveIntensity: 0.24, roughness: 0.34, metalness: 0.08, transparent: true, opacity: 0.25, transmission: 0.85, thickness: 0.5 })}
       />
+      <mesh
+        geometry={new THREE.EdgesGeometry(new THREE.BoxGeometry(1.85, 1.85, 1.85))}
+        material={new THREE.LineBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.25 })}
+      />
     </group>
   );
 }
