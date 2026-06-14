@@ -82,14 +82,6 @@ export default function TechStackCube({ slides, activeIndex, onSelectSlide }: Te
           <pointLight position={[-3, -2, 3]} intensity={0.8} color="#c4b5fd" />
           <RotatingCube activeIndex={activeIndex} reducedMotion={reducedMotion} />
         </Canvas>
-        <div className="tech-cube-css" aria-hidden="true">
-          <span className="cube-face cube-front">React</span>
-          <span className="cube-face cube-back">Node</span>
-          <span className="cube-face cube-right">AWS</span>
-          <span className="cube-face cube-left">Tests</span>
-          <span className="cube-face cube-top">TS</span>
-          <span className="cube-face cube-bottom">CI/CD</span>
-        </div>
       </div>
       <div className="tech-cube-controls" aria-label="Tech stack layer navigation">
         {slides.map((slide, index) => (
