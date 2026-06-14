@@ -1,5 +1,21 @@
 # 🌐 Howard Sun — Full-Stack Engineer & Builder
 
+[![Deploy Portfolio to AWS S3](https://github.com/howardsun-dev/cicd-portfolio/actions/workflows/main.yml/badge.svg)](https://github.com/howardsun-dev/cicd-portfolio/actions/workflows/main.yml)
+[![Site](https://img.shields.io/badge/site-howardsun.me-667eea?logo=google-chrome&logoColor=white)](https://howardsun.me)
+
+![React](https://img.shields.io/badge/React-19-20232A?logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white)
+![TanStack Router](https://img.shields.io/badge/TanStack_Router-Latest-FF4154?logo=reactrouter&logoColor=white)
+![Three.js](https://img.shields.io/badge/Three.js-WebGL-000000?logo=threedotjs&logoColor=white)
+![anime.js](https://img.shields.io/badge/anime.js-Animation-7B42BC)
+![Node.js](https://img.shields.io/badge/Node.js-22-339933?logo=nodedotjs&logoColor=white)
+![npm](https://img.shields.io/badge/npm-CLI-CB3837?logo=npm&logoColor=white)
+![ESLint](https://img.shields.io/badge/ESLint-Code_Quality-4B32C3?logo=eslint&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI%2FCD-2088FF?logo=githubactions&logoColor=white)
+![AWS S3](https://img.shields.io/badge/AWS_S3-Static_Hosting-569A31?logo=amazons3&logoColor=white)
+![CloudFront](https://img.shields.io/badge/Amazon_CloudFront-CDN-FF9900?logo=amazonaws&logoColor=white)
+
 Welcome to my portfolio. I'm a full-stack engineer with backend and infrastructure roots, currently building full-stack, desktop, CI/CD, and developer tooling projects end to end.
 
 Live site: [howardsun.me](https://howardsun.me)
@@ -41,7 +57,7 @@ A cross-platform Electron wrapper around LANShare that launches the local contro
 - **Tech:** Electron, TypeScript, Node.js, Express, electron-builder, GitHub Actions
 - **Proof:** Windows/macOS/Linux release artifacts, Electron-hosted local control UI, tagged release pipeline
 - **GitHub:** [howardsun-dev/LANShare-electron](https://github.com/howardsun-dev/LANShare-electron)
-- **Release:** [v1.0.0](https://github.com/howardsun-dev/LANShare-electron/releases/tag/v1.0.0)
+- **Release:** [v1.0.1](https://github.com/howardsun-dev/LANShare-electron/releases)
 - **Workflow:** [Release workflow](https://github.com/howardsun-dev/LANShare-electron/actions/workflows/release.yml)
 
 ### QuickChat — Real-Time Chat App

@@ -1,10 +1,10 @@
 import { Link } from '@tanstack/react-router';
-import { RESUME_DOCX_PATH, RESUME_PDF_PATH } from '../links';
+import ResumeSplitButton from './ResumeSplitButton';
 
-const externalLinks = [
-  { href: 'https://github.com/howardsun-dev', label: 'GitHub' },
-  { href: 'https://www.linkedin.com/in/howardsun-swe', label: 'LinkedIn' },
-];
+// const externalLinks = [
+//   { href: 'https://github.com/howardsun-dev', label: 'GitHub' },
+//   { href: 'https://www.linkedin.com/in/howardsun-swe', label: 'LinkedIn' },
+// ];
 
 export default function SiteNav() {
   return (
@@ -22,18 +22,16 @@ export default function SiteNav() {
         <Link className="nav-link" to="/techstack" activeProps={{ 'aria-current': 'page' }}>
           Tech Stack
         </Link>
-        <a className="nav-link" href={RESUME_PDF_PATH}>
-          Resume PDF
-        </a>
-        <a className="nav-link" href={RESUME_DOCX_PATH}>
-          Resume DOCX
-        </a>
-        {externalLinks.map((link) => (
+        <ResumeSplitButton size="nav" />
+        {/* {externalLinks.map((link) => (
           <a key={link.href} className="nav-link" href={link.href} target="_blank" rel="noreferrer">
             {link.label}
             <span className="sr-only"> (opens in a new tab)</span>
           </a>
-        ))}
+        ))} */}
+        <Link className="nav-link" to="/contact" activeProps={{ 'aria-current': 'page' }}>
+          Contact
+        </Link>
       </div>
     </nav>
   );

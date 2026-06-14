@@ -1,0 +1,183 @@
+/* ===== Resume Split Button ===== */
+
+.resume-split {
+  position: relative;
+  display: inline-flex;
+}
+
+/* ---- Main button ---- */
+
+.resume-split__main {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+
+.resume-split--hero .resume-split__main {
+  padding: 0.65rem 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 25px;
+  backdrop-filter: blur(5px);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.3s ease;
+}
+
+.resume-split--hero .resume-split__main:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.resume-split--nav .resume-split__main {
+  padding: 0.45rem 0.75rem;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.88);
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.resume-split--nav .resume-split__main:hover,
+.resume-split--nav.resume-split.is-open .resume-split__main {
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+}
+
+/* Chevron */
+.resume-split__chevron {
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.resume-split.is-open .resume-split__chevron {
+  transform: rotate(180deg);
+}
+
+/* ---- Dropdown panel (portaled to body) ---- */
+
+.resume-split__options {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 9999;
+  transition:
+    opacity 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0s linear 200ms;
+}
+
+.resume-split__options.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition:
+    opacity 200ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0s linear 0s;
+}
+
+/* Hero variant dropdown */
+.resume-split--hero.resume-split__options,
+.resume-split__options.resume-split--hero {
+  padding: 0.4rem;
+  background: rgba(30, 35, 70, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  min-width: 120px;
+}
+
+/* Nav variant dropdown */
+.resume-split--nav.resume-split__options,
+.resume-split__options.resume-split--nav {
+  padding: 0.35rem;
+  background: rgba(21, 25, 54, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 12px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+  min-width: 100px;
+}
+
+/* ---- Sub-option buttons ---- */
+
+.resume-split__option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.9);
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+  cursor: pointer;
+}
+
+.resume-split--hero .resume-split__option {
+  padding: 0.5rem 0.85rem;
+  font-size: 0.82rem;
+  width: 100%;
+}
+
+.resume-split--nav .resume-split__option {
+  padding: 0.38rem 0.7rem;
+  font-size: 0.75rem;
+  width: 100%;
+}
+
+.resume-split__option:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.resume-split__option--pdf:hover {
+  border-color: rgba(255, 107, 107, 0.5);
+  background: rgba(255, 107, 107, 0.14);
+}
+
+.resume-split__option--docx:hover {
+  border-color: rgba(78, 168, 255, 0.5);
+  background: rgba(78, 168, 255, 0.14);
+}
+
+/* ---- Focus-visible ring ---- */
+
+.resume-split__main:focus-visible,
+.resume-split__option:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
+/* ---- Reduced motion ---- */
+
+@media (prefers-reduced-motion: reduce) {
+  .resume-split__options {
+    transition: none;
+  }
+
+  .resume-split__chevron {
+    transition: none;
+  }
+
+  .resume-split--hero .resume-split__main:hover {
+    transform: none;
+  }
+}

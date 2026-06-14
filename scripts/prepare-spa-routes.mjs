@@ -3,7 +3,7 @@ import { join } from 'node:path';
 
 const distDir = 'dist';
 const indexPath = join(distDir, 'index.html');
-const routes = ['project', 'techstack'];
+const routes = ['project', 'techstack', 'contact'];
 
 if (!existsSync(indexPath)) {
   throw new Error('dist/index.html does not exist. Run vite build before preparing SPA routes.');
