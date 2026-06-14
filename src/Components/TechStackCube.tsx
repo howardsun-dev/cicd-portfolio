@@ -49,10 +49,7 @@ function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; red
         <boxGeometry args={[1.85, 1.85, 1.85]} />
         <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.24} roughness={0.34} metalness={0.08} />
       </mesh>
-      <mesh scale={1.012}>
-        <boxGeometry args={[1.85, 1.85, 1.85]} />
-        <meshBasicMaterial color="#ffffff" wireframe transparent opacity={0.36} />
-      </mesh>
+      <lineSegments geometry={new THREE.EdgesGeometry(new THREE.BoxGeometry(1.85, 1.85, 1.85))} material={new THREE.LineBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.36 })} />
     </group>
   );
 }
