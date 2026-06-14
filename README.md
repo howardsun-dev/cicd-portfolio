@@ -5,7 +5,7 @@
 
 ![React](https://img.shields.io/badge/React-19-20232A?logo=react&logoColor=61DAFB)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-7-646CFF?logo=vite&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
 ![TanStack Router](https://img.shields.io/badge/TanStack_Router-Latest-FF4154?logo=reactrouter&logoColor=white)
 ![Three.js](https://img.shields.io/badge/Three.js-WebGL-000000?logo=threedotjs&logoColor=white)
 ![anime.js](https://img.shields.io/badge/anime.js-Animation-7B42BC)
@@ -98,7 +98,7 @@ This portfolio is a static React application deployed through a GitHub Actions p
 
 1. Source code lives in GitHub on the `main` branch.
 2. GitHub Actions runs the deployment workflow on pushes to `main`.
-3. The workflow installs dependencies with `npm ci`, runs `npm audit --audit-level=high`, lints the codebase, and builds the app with Vite.
+3. The workflow installs dependencies with `npm install --legacy-peer-deps`, runs `npm audit --audit-level=critical`, lints the codebase, and builds the app with Vite.
 4. Vite outputs production-ready static assets into `dist/`.
 5. The workflow syncs `dist/` to an AWS S3 bucket configured for static site hosting.
 6. The deploy script also uploads SPA route fallback files so direct navigation to `/project` and `/techstack` works after refresh.
@@ -134,8 +134,8 @@ This portfolio is a static React application deployed through a GitHub Actions p
 
 The deploy workflow validates the app before shipping:
 
-1. Install dependencies with `npm ci`
-2. Run `npm audit --audit-level=high`
+1. Install dependencies with `npm install --legacy-peer-deps`
+2. Run `npm audit --audit-level=critical`
 3. Run ESLint
 4. Build the React/Vite app
 5. Deploy `dist/` to S3 on pushes to `main`
@@ -145,7 +145,7 @@ The deploy workflow validates the app before shipping:
 ## 🧑‍💻 Local Development
 
 ```bash
-npm ci
+npm install --legacy-peer-deps
 npm run dev
 npm run lint
 npm run build
