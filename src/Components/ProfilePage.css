@@ -313,6 +313,39 @@ body {
     height: 100% !important;
 }
 
+.tech-cube-css {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    width: 5.7rem;
+    height: 5.7rem;
+    transform-style: preserve-3d;
+    transform: translate(-50%, -50%) rotateX(-20deg) rotateY(32deg);
+    pointer-events: none;
+}
+
+.cube-face {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    backface-visibility: visible;
+}
+
+.cube-front { transform: translateZ(2.85rem); }
+.cube-back { transform: rotateY(180deg) translateZ(2.85rem); }
+.cube-right { transform: rotateY(90deg) translateZ(2.85rem); }
+.cube-left { transform: rotateY(-90deg) translateZ(2.85rem); }
+.cube-top { transform: rotateX(90deg) translateZ(2.85rem); }
+.cube-bottom { transform: rotateX(-90deg) translateZ(2.85rem); }
+
 .tech-cube-controls {
     grid-column: 1 / -1;
     display: flex;
