@@ -125,8 +125,29 @@ function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; red
   const color = cubeColors[activeIndex % cubeColors.length];
   const boxGeo = useMemo(() => new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize), []);
   const edgesGeo = useMemo(() => new THREE.EdgesGeometry(boxGeo), [boxGeo]);
+
+  // Transparent glass-like face material
+  const faceMat = useMemo(
+    () =>
+      new THREE.MeshPhysicalMaterial({
+        color,
+        transparent: true,
+        opacity: 0.18,
+        transmission: 0.92,
+        thickness: 0.4,
+        roughness: 0.08,
+        metalness: 0.0,
+        clearcoat: 0.6,
+        clearcoatRoughness: 0.1,
+        ior: 1.33,
+        side: THREE.DoubleSide,
+      }),
+    [color],
+  );
+
+  // Prominent wireframe edges
   const edgeMat = useMemo(
-    () => new THREE.LineBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.36 }),
+    () => new THREE.LineBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.75, linewidth: 2 }),
     [],
   );
 
@@ -134,9 +155,10 @@ function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; red
     return () => {
       boxGeo.dispose();
       edgesGeo.dispose();
+      faceMat.dispose();
       edgeMat.dispose();
     };
-  }, [boxGeo, edgesGeo, edgeMat]);
+  }, [boxGeo, edgesGeo, faceMat, edgeMat]);
 
   useFrame(({ clock }) => {
     if (!groupRef.current || reducedMotion) return;
@@ -148,15 +170,7 @@ function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; red
 
   return (
     <group ref={groupRef} rotation={[0.42, 0.62, 0.04]}>
-      <mesh geometry={boxGeo}>
-        <meshStandardMaterial
-          color={color}
-          emissive={color}
-          emissiveIntensity={0.24}
-          roughness={0.34}
-          metalness={0.08}
-        />
-      </mesh>
+      <mesh geometry={boxGeo} material={faceMat} />
       <lineSegments geometry={edgesGeo} material={edgeMat} />
       {faceLabels.map(({ position, rotation, text }) => (
         <CubeFaceLabel key={text} position={position} rotation={rotation} text={text} />
