@@ -46,12 +46,14 @@ function RotatingCube({ activeIndex, reducedMotion, cssCubeRef }: { activeIndex:
     groupRef.current.rotation.z = rotZ;
 
     // Sync CSS cube transform (convert radians to degrees)
+    // Three.js uses Euler 'XYZ' order; CSS transforms apply right-to-left.
+    // To match XYZ order in CSS, write transforms as rotateZ * rotateY * rotateX
     if (cssCubeRef.current) {
       const degX = THREE.MathUtils.radToDeg(rotX);
       const degY = THREE.MathUtils.radToDeg(rotY);
       const degZ = THREE.MathUtils.radToDeg(rotZ);
       cssCubeRef.current.style.transform = 
-        `translate(-50%, -50%) rotateX(${degX}deg) rotateY(${degY}deg) rotateZ(${degZ}deg)`;
+        `translate(-50%, -50%) rotateZ(${degZ}deg) rotateY(${degY}deg) rotateX(${degX}deg)`;
     }
   });
 

@@ -321,7 +321,8 @@ body {
     width: 5.7rem;
     height: 5.7rem;
     transform-style: preserve-3d;
-    transform: translate(-50%, -50%) rotateX(24deg) rotateY(35.5deg) rotateZ(2.3deg);
+    /* Match Three.js Euler 'XYZ' order: rotateZ * rotateY * rotateX in CSS */
+    transform: translate(-50%, -50%) rotateZ(2.3deg) rotateY(35.5deg) rotateX(24deg);
     pointer-events: none;
 }
 
