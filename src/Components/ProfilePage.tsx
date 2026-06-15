@@ -151,7 +151,7 @@ export default function ProfilePage() {
         </p>
       </section>
       <div className="social-links" aria-label="Primary actions">
-        <Link className="social-link primary" to="/project">
+        <Link className="social-link" to="/project">
           View Projects
         </Link>
         <Link className="social-link" to="/techstack">
