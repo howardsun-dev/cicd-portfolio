@@ -1,6 +1,5 @@
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Html } from '@react-three/drei';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 type CubeSlide = {
@@ -14,16 +13,21 @@ type TechStackCubeProps = {
   onSelectSlide: (index: number) => void;
 };
 
+const cubeSize = 1.85;
+const halfCubeSize = cubeSize / 2;
+const labelOffset = halfCubeSize + 0.006;
+
 const cubeColors = ['#f8fafc', '#93c5fd', '#7dd3fc', '#c4b5fd', '#86efac', '#facc15'] as const;
 
-// Face data: position (face center), rotation to align with face normal, and label
+// Each label is rendered as a Three.js texture on a transparent plane. That keeps
+// text attached to the cube faces without CSS 3D overlays or drei's DOM-based Html helper.
 const faceLabels = [
-  { position: [0, 0, 0.925], rotation: [0, 0, 0], text: 'React' },           // front (+Z)
-  { position: [0, 0, -0.925], rotation: [0, Math.PI, 0], text: 'Node' },      // back (-Z)
-  { position: [0.925, 0, 0], rotation: [0, Math.PI / 2, 0], text: 'AWS' },    // right (+X)
-  { position: [-0.925, 0, 0], rotation: [0, -Math.PI / 2, 0], text: 'Tests' }, // left (-X)
-  { position: [0, 0.925, 0], rotation: [-Math.PI / 2, 0, 0], text: 'TS' },     // top (+Y)
-  { position: [0, -0.925, 0], rotation: [Math.PI / 2, 0, 0], text: 'CI/CD' },  // bottom (-Y)
+  { position: [0, 0, labelOffset], rotation: [0, 0, 0], text: 'React' },
+  { position: [0, 0, -labelOffset], rotation: [0, Math.PI, 0], text: 'Node' },
+  { position: [labelOffset, 0, 0], rotation: [0, Math.PI / 2, 0], text: 'AWS' },
+  { position: [-labelOffset, 0, 0], rotation: [0, -Math.PI / 2, 0], text: 'Tests' },
+  { position: [0, labelOffset, 0], rotation: [-Math.PI / 2, 0, 0], text: 'TS' },
+  { position: [0, -labelOffset, 0], rotation: [Math.PI / 2, 0, 0], text: 'CI/CD' },
 ] as const;
 
 function useMediaQuery(query: string) {
@@ -42,9 +46,97 @@ function useMediaQuery(query: string) {
   return matches;
 }
 
+function createTextTexture(text: string) {
+  const canvas = document.createElement('canvas');
+  canvas.width = 512;
+  canvas.height = 192;
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) {
+    throw new Error('Unable to create canvas context for cube face label.');
+  }
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Draw a subtle in-texture badge so labels stay readable on every cube color.
+  // This is still a Three.js texture, not a DOM/CSS overlay.
+  const badgeX = 56;
+  const badgeY = 44;
+  const badgeWidth = canvas.width - badgeX * 2;
+  const badgeHeight = canvas.height - badgeY * 2;
+  ctx.fillStyle = 'rgba(15, 23, 42, 0.58)';
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.62)';
+  ctx.lineWidth = 4;
+  ctx.beginPath();
+  ctx.roundRect(badgeX, badgeY, badgeWidth, badgeHeight, 32);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.font = '800 88px Arial, Helvetica, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.lineWidth = 10;
+  ctx.strokeStyle = 'rgba(0, 0, 0, 0.72)';
+  ctx.fillStyle = '#ffffff';
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.55)';
+  ctx.shadowBlur = 12;
+  ctx.shadowOffsetY = 6;
+  ctx.strokeText(text, canvas.width / 2, canvas.height / 2 + 2);
+  ctx.fillText(text, canvas.width / 2, canvas.height / 2 + 2);
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.anisotropy = 8;
+  texture.needsUpdate = true;
+  return texture;
+}
+
+function CubeFaceLabel({
+  text,
+  position,
+  rotation,
+}: {
+  text: string;
+  position: readonly [number, number, number];
+  rotation: readonly [number, number, number];
+}) {
+  const texture = useMemo(() => createTextTexture(text), [text]);
+
+  useEffect(() => {
+    return () => texture.dispose();
+  }, [texture]);
+
+  return (
+    <mesh position={position} rotation={rotation}>
+      <planeGeometry args={[1.28, 0.48]} />
+      <meshBasicMaterial
+        map={texture}
+        transparent
+        depthWrite={false}
+        side={THREE.DoubleSide}
+        toneMapped={false}
+      />
+    </mesh>
+  );
+}
+
 function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; reducedMotion: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
   const color = cubeColors[activeIndex % cubeColors.length];
+  const boxGeo = useMemo(() => new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize), []);
+  const edgesGeo = useMemo(() => new THREE.EdgesGeometry(boxGeo), [boxGeo]);
+  const edgeMat = useMemo(
+    () => new THREE.LineBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.36 }),
+    [],
+  );
+
+  useEffect(() => {
+    return () => {
+      boxGeo.dispose();
+      edgesGeo.dispose();
+      edgeMat.dispose();
+    };
+  }, [boxGeo, edgesGeo, edgeMat]);
 
   useFrame(({ clock }) => {
     if (!groupRef.current || reducedMotion) return;
@@ -53,10 +145,6 @@ function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; red
     groupRef.current.rotation.y = elapsed * 0.42;
     groupRef.current.rotation.z = Math.sin(elapsed * 0.28) * 0.08;
   });
-
-  const boxGeo = new THREE.BoxGeometry(1.85, 1.85, 1.85);
-  const edgesGeo = new THREE.EdgesGeometry(boxGeo);
-  const edgeMat = new THREE.LineBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.36 });
 
   return (
     <group ref={groupRef} rotation={[0.42, 0.62, 0.04]}>
@@ -70,30 +158,8 @@ function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; red
         />
       </mesh>
       <lineSegments geometry={edgesGeo} material={edgeMat} />
-      {faceLabels.map(({ position, rotation, text }, i) => (
-        <Html
-          key={i}
-          position={position}
-          rotation={rotation}
-          transform
-          distanceFactor={10}
-          zIndexRange={[100, 100]}
-        >
-          <span
-            style={{
-              color: '#ffffff',
-              fontSize: '0.75rem',
-              fontWeight: 700,
-              letterSpacing: '0.02em',
-              textShadow: '0 2px 8px rgba(0, 0, 0, 0.6)',
-              pointerEvents: 'none',
-              userSelect: 'none',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {text}
-          </span>
-        </Html>
+      {faceLabels.map(({ position, rotation, text }) => (
+        <CubeFaceLabel key={text} position={position} rotation={rotation} text={text} />
       ))}
     </group>
   );
