@@ -1,4 +1,5 @@
 import { Canvas, useFrame } from '@react-three/fiber';
+import { Html } from '@react-three/drei';
 import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 
@@ -12,6 +13,18 @@ type TechStackCubeProps = {
   activeIndex: number;
   onSelectSlide: (index: number) => void;
 };
+
+const cubeColors = ['#f8fafc', '#93c5fd', '#7dd3fc', '#c4b5fd', '#86efac', '#facc15'] as const;
+
+// Face data: position (face center), rotation to align with face normal, and label
+const faceLabels = [
+  { position: [0, 0, 0.925], rotation: [0, 0, 0], text: 'React' },           // front (+Z)
+  { position: [0, 0, -0.925], rotation: [0, Math.PI, 0], text: 'Node' },      // back (-Z)
+  { position: [0.925, 0, 0], rotation: [0, Math.PI / 2, 0], text: 'AWS' },    // right (+X)
+  { position: [-0.925, 0, 0], rotation: [0, -Math.PI / 2, 0], text: 'Tests' }, // left (-X)
+  { position: [0, 0.925, 0], rotation: [-Math.PI / 2, 0, 0], text: 'TS' },     // top (+Y)
+  { position: [0, -0.925, 0], rotation: [Math.PI / 2, 0, 0], text: 'CI/CD' },  // bottom (-Y)
+] as const;
 
 function useMediaQuery(query: string) {
   const [matches, setMatches] = useState(() =>
@@ -29,32 +42,16 @@ function useMediaQuery(query: string) {
   return matches;
 }
 
-const cubeColors = ['#f8fafc', '#93c5fd', '#7dd3fc', '#c4b5fd', '#86efac', '#facc15'] as const;
-function RotatingCube({ activeIndex, reducedMotion, cssCubeRef }: { activeIndex: number; reducedMotion: boolean; cssCubeRef: React.RefObject<HTMLDivElement | null> }) {
+function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; reducedMotion: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
   const color = cubeColors[activeIndex % cubeColors.length];
 
   useFrame(({ clock }) => {
     if (!groupRef.current || reducedMotion) return;
     const elapsed = clock.elapsedTime;
-    const rotX = 0.42 + Math.sin(elapsed * 0.45) * 0.12;
-    const rotY = elapsed * 0.42;
-    const rotZ = Math.sin(elapsed * 0.28) * 0.08;
-    
-    groupRef.current.rotation.x = rotX;
-    groupRef.current.rotation.y = rotY;
-    groupRef.current.rotation.z = rotZ;
-
-    // Sync CSS cube transform (convert radians to degrees)
-    // Three.js uses Euler 'XYZ' order; CSS transforms apply right-to-left.
-    // To match XYZ order in CSS, write transforms as rotateZ * rotateY * rotateX
-    if (cssCubeRef.current) {
-      const degX = THREE.MathUtils.radToDeg(rotX);
-      const degY = THREE.MathUtils.radToDeg(rotY);
-      const degZ = THREE.MathUtils.radToDeg(rotZ);
-      cssCubeRef.current.style.transform = 
-        `translate(-50%, -50%) rotateZ(${degZ}deg) rotateY(${degY}deg) rotateX(${degX}deg)`;
-    }
+    groupRef.current.rotation.x = 0.42 + Math.sin(elapsed * 0.45) * 0.12;
+    groupRef.current.rotation.y = elapsed * 0.42;
+    groupRef.current.rotation.z = Math.sin(elapsed * 0.28) * 0.08;
   });
 
   const boxGeo = new THREE.BoxGeometry(1.85, 1.85, 1.85);
@@ -73,13 +70,37 @@ function RotatingCube({ activeIndex, reducedMotion, cssCubeRef }: { activeIndex:
         />
       </mesh>
       <lineSegments geometry={edgesGeo} material={edgeMat} />
+      {faceLabels.map(({ position, rotation, text }, i) => (
+        <Html
+          key={i}
+          position={position}
+          rotation={rotation}
+          transform
+          distanceFactor={10}
+          zIndexRange={[100, 100]}
+        >
+          <span
+            style={{
+              color: '#ffffff',
+              fontSize: '0.75rem',
+              fontWeight: 700,
+              letterSpacing: '0.02em',
+              textShadow: '0 2px 8px rgba(0, 0, 0, 0.6)',
+              pointerEvents: 'none',
+              userSelect: 'none',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {text}
+          </span>
+        </Html>
+      ))}
     </group>
   );
 }
 
 export default function TechStackCube({ slides, activeIndex, onSelectSlide }: TechStackCubeProps) {
   const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
-  const cssCubeRef = useRef<HTMLDivElement>(null);
 
   return (
     <section className="tech-cube-section" aria-labelledby="tech-cube-title">
@@ -102,17 +123,8 @@ export default function TechStackCube({ slides, activeIndex, onSelectSlide }: Te
           <ambientLight intensity={1.15} />
           <directionalLight position={[3, 3, 4]} intensity={1.6} />
           <pointLight position={[-3, -2, 3]} intensity={0.8} color="#c4b5fd" />
-          <RotatingCube activeIndex={activeIndex} reducedMotion={reducedMotion} cssCubeRef={cssCubeRef} />
+          <RotatingCube activeIndex={activeIndex} reducedMotion={reducedMotion} />
         </Canvas>
-
-        <div className="tech-cube-css" aria-hidden="true" ref={cssCubeRef}>
-          <span className="cube-face cube-front">React</span>
-          <span className="cube-face cube-back">Node</span>
-          <span className="cube-face cube-right">AWS</span>
-          <span className="cube-face cube-left">Tests</span>
-          <span className="cube-face cube-top">TS</span>
-          <span className="cube-face cube-bottom">CI/CD</span>
-        </div>
       </div>
 
       <div className="tech-cube-controls" aria-label="Tech stack layer navigation">
