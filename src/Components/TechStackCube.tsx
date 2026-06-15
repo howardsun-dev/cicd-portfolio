@@ -17,7 +17,7 @@ const cubeSize = 1.85;
 const halfCubeSize = cubeSize / 2;
 const labelOffset = halfCubeSize + 0.006;
 
-const cubeColors = ['#f8fafc', '#93c5fd', '#7dd3fc', '#c4b5fd', '#86efac', '#facc15'] as const;
+const transparentCubeBlue = '#38bdf8';
 
 // Each label is rendered as a Three.js texture on a transparent plane. That keeps
 // text attached to the cube faces without CSS 3D overlays or drei's DOM-based Html helper.
@@ -58,20 +58,8 @@ function createTextTexture(text: string) {
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Draw a subtle in-texture badge so labels stay readable on every cube color.
-  // This is still a Three.js texture, not a DOM/CSS overlay.
-  const badgeX = 56;
-  const badgeY = 44;
-  const badgeWidth = canvas.width - badgeX * 2;
-  const badgeHeight = canvas.height - badgeY * 2;
-  ctx.fillStyle = 'rgba(15, 23, 42, 0.58)';
-  ctx.strokeStyle = 'rgba(255, 255, 255, 0.62)';
-  ctx.lineWidth = 4;
-  ctx.beginPath();
-  ctx.roundRect(badgeX, badgeY, badgeWidth, badgeHeight, 32);
-  ctx.fill();
-  ctx.stroke();
-
+  // Keep the texture background fully transparent; readability comes from the
+  // text stroke and shadow rather than an opaque badge behind the label.
   ctx.font = '800 88px Arial, Helvetica, sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
@@ -120,9 +108,8 @@ function CubeFaceLabel({
   );
 }
 
-function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; reducedMotion: boolean }) {
+function RotatingCube({ reducedMotion }: { reducedMotion: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
-  const color = cubeColors[activeIndex % cubeColors.length];
   const boxGeo = useMemo(() => new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize), []);
   const edgesGeo = useMemo(() => new THREE.EdgesGeometry(boxGeo), [boxGeo]);
 
@@ -130,7 +117,7 @@ function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; red
   const faceMat = useMemo(
     () =>
       new THREE.MeshPhysicalMaterial({
-        color,
+        color: transparentCubeBlue,
         transparent: true,
         opacity: 0.08,
         transmission: 0.96,
@@ -143,7 +130,7 @@ function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; red
         side: THREE.DoubleSide,
         depthWrite: false,
       }),
-    [color],
+    [],
   );
 
   // Prominent wireframe edges
@@ -211,7 +198,7 @@ export default function TechStackCube({ slides, activeIndex, onSelectSlide }: Te
           <ambientLight intensity={1.15} />
           <directionalLight position={[3, 3, 4]} intensity={1.6} />
           <pointLight position={[-3, -2, 3]} intensity={0.8} color="#c4b5fd" />
-          <RotatingCube activeIndex={activeIndex} reducedMotion={reducedMotion} />
+          <RotatingCube reducedMotion={reducedMotion} />
         </Canvas>
       </div>
 
