@@ -1,5 +1,5 @@
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
 
 type CubeSlide = {
@@ -12,6 +12,23 @@ type TechStackCubeProps = {
   activeIndex: number;
   onSelectSlide: (index: number) => void;
 };
+
+const cubeSize = 1.85;
+const halfCubeSize = cubeSize / 2;
+const labelOffset = halfCubeSize + 0.006;
+
+const cubeColors = ['#f8fafc', '#93c5fd', '#7dd3fc', '#c4b5fd', '#86efac', '#facc15'] as const;
+
+// Each label is rendered as a Three.js texture on a transparent plane. That keeps
+// text attached to the cube faces without CSS 3D overlays or drei's DOM-based Html helper.
+const faceLabels = [
+  { position: [0, 0, labelOffset], rotation: [0, 0, 0], text: 'React' },
+  { position: [0, 0, -labelOffset], rotation: [0, Math.PI, 0], text: 'Node' },
+  { position: [labelOffset, 0, 0], rotation: [0, Math.PI / 2, 0], text: 'AWS' },
+  { position: [-labelOffset, 0, 0], rotation: [0, -Math.PI / 2, 0], text: 'Tests' },
+  { position: [0, labelOffset, 0], rotation: [-Math.PI / 2, 0, 0], text: 'TS' },
+  { position: [0, -labelOffset, 0], rotation: [Math.PI / 2, 0, 0], text: 'CI/CD' },
+] as const;
 
 function useMediaQuery(query: string) {
   const [matches, setMatches] = useState(() =>
@@ -29,37 +46,105 @@ function useMediaQuery(query: string) {
   return matches;
 }
 
-const cubeColors = ['#f8fafc', '#93c5fd', '#7dd3fc', '#c4b5fd', '#86efac', '#facc15'] as const;
-function RotatingCube({ activeIndex, reducedMotion, cssCubeRef }: { activeIndex: number; reducedMotion: boolean; cssCubeRef: React.RefObject<HTMLDivElement | null> }) {
+function createTextTexture(text: string) {
+  const canvas = document.createElement('canvas');
+  canvas.width = 512;
+  canvas.height = 192;
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) {
+    throw new Error('Unable to create canvas context for cube face label.');
+  }
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Draw a subtle in-texture badge so labels stay readable on every cube color.
+  // This is still a Three.js texture, not a DOM/CSS overlay.
+  const badgeX = 56;
+  const badgeY = 44;
+  const badgeWidth = canvas.width - badgeX * 2;
+  const badgeHeight = canvas.height - badgeY * 2;
+  ctx.fillStyle = 'rgba(15, 23, 42, 0.58)';
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.62)';
+  ctx.lineWidth = 4;
+  ctx.beginPath();
+  ctx.roundRect(badgeX, badgeY, badgeWidth, badgeHeight, 32);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.font = '800 88px Arial, Helvetica, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.lineWidth = 10;
+  ctx.strokeStyle = 'rgba(0, 0, 0, 0.72)';
+  ctx.fillStyle = '#ffffff';
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.55)';
+  ctx.shadowBlur = 12;
+  ctx.shadowOffsetY = 6;
+  ctx.strokeText(text, canvas.width / 2, canvas.height / 2 + 2);
+  ctx.fillText(text, canvas.width / 2, canvas.height / 2 + 2);
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.anisotropy = 8;
+  texture.needsUpdate = true;
+  return texture;
+}
+
+function CubeFaceLabel({
+  text,
+  position,
+  rotation,
+}: {
+  text: string;
+  position: readonly [number, number, number];
+  rotation: readonly [number, number, number];
+}) {
+  const texture = useMemo(() => createTextTexture(text), [text]);
+
+  useEffect(() => {
+    return () => texture.dispose();
+  }, [texture]);
+
+  return (
+    <mesh position={position} rotation={rotation}>
+      <planeGeometry args={[1.28, 0.48]} />
+      <meshBasicMaterial
+        map={texture}
+        transparent
+        depthWrite={false}
+        side={THREE.DoubleSide}
+        toneMapped={false}
+      />
+    </mesh>
+  );
+}
+
+function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; reducedMotion: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
   const color = cubeColors[activeIndex % cubeColors.length];
+  const boxGeo = useMemo(() => new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize), []);
+  const edgesGeo = useMemo(() => new THREE.EdgesGeometry(boxGeo), [boxGeo]);
+  const edgeMat = useMemo(
+    () => new THREE.LineBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.36 }),
+    [],
+  );
+
+  useEffect(() => {
+    return () => {
+      boxGeo.dispose();
+      edgesGeo.dispose();
+      edgeMat.dispose();
+    };
+  }, [boxGeo, edgesGeo, edgeMat]);
 
   useFrame(({ clock }) => {
     if (!groupRef.current || reducedMotion) return;
     const elapsed = clock.elapsedTime;
-    const rotX = 0.42 + Math.sin(elapsed * 0.45) * 0.12;
-    const rotY = elapsed * 0.42;
-    const rotZ = Math.sin(elapsed * 0.28) * 0.08;
-    
-    groupRef.current.rotation.x = rotX;
-    groupRef.current.rotation.y = rotY;
-    groupRef.current.rotation.z = rotZ;
-
-    // Sync CSS cube transform (convert radians to degrees)
-    // Three.js uses Euler 'XYZ' order; CSS transforms apply right-to-left.
-    // To match XYZ order in CSS, write transforms as rotateZ * rotateY * rotateX
-    if (cssCubeRef.current) {
-      const degX = THREE.MathUtils.radToDeg(rotX);
-      const degY = THREE.MathUtils.radToDeg(rotY);
-      const degZ = THREE.MathUtils.radToDeg(rotZ);
-      cssCubeRef.current.style.transform = 
-        `translate(-50%, -50%) rotateZ(${degZ}deg) rotateY(${degY}deg) rotateX(${degX}deg)`;
-    }
+    groupRef.current.rotation.x = 0.42 + Math.sin(elapsed * 0.45) * 0.12;
+    groupRef.current.rotation.y = elapsed * 0.42;
+    groupRef.current.rotation.z = Math.sin(elapsed * 0.28) * 0.08;
   });
-
-  const boxGeo = new THREE.BoxGeometry(1.85, 1.85, 1.85);
-  const edgesGeo = new THREE.EdgesGeometry(boxGeo);
-  const edgeMat = new THREE.LineBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.36 });
 
   return (
     <group ref={groupRef} rotation={[0.42, 0.62, 0.04]}>
@@ -73,13 +158,15 @@ function RotatingCube({ activeIndex, reducedMotion, cssCubeRef }: { activeIndex:
         />
       </mesh>
       <lineSegments geometry={edgesGeo} material={edgeMat} />
+      {faceLabels.map(({ position, rotation, text }) => (
+        <CubeFaceLabel key={text} position={position} rotation={rotation} text={text} />
+      ))}
     </group>
   );
 }
 
 export default function TechStackCube({ slides, activeIndex, onSelectSlide }: TechStackCubeProps) {
   const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
-  const cssCubeRef = useRef<HTMLDivElement>(null);
 
   return (
     <section className="tech-cube-section" aria-labelledby="tech-cube-title">
@@ -102,17 +189,8 @@ export default function TechStackCube({ slides, activeIndex, onSelectSlide }: Te
           <ambientLight intensity={1.15} />
           <directionalLight position={[3, 3, 4]} intensity={1.6} />
           <pointLight position={[-3, -2, 3]} intensity={0.8} color="#c4b5fd" />
-          <RotatingCube activeIndex={activeIndex} reducedMotion={reducedMotion} cssCubeRef={cssCubeRef} />
+          <RotatingCube activeIndex={activeIndex} reducedMotion={reducedMotion} />
         </Canvas>
-
-        <div className="tech-cube-css" aria-hidden="true" ref={cssCubeRef}>
-          <span className="cube-face cube-front">React</span>
-          <span className="cube-face cube-back">Node</span>
-          <span className="cube-face cube-right">AWS</span>
-          <span className="cube-face cube-left">Tests</span>
-          <span className="cube-face cube-top">TS</span>
-          <span className="cube-face cube-bottom">CI/CD</span>
-        </div>
       </div>
 
       <div className="tech-cube-controls" aria-label="Tech stack layer navigation">
