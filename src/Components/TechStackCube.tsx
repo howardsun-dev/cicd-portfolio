@@ -132,22 +132,30 @@ function RotatingCube({ activeIndex, reducedMotion }: { activeIndex: number; red
       new THREE.MeshPhysicalMaterial({
         color,
         transparent: true,
-        opacity: 0.18,
-        transmission: 0.92,
-        thickness: 0.4,
-        roughness: 0.08,
+        opacity: 0.08,
+        transmission: 0.96,
+        thickness: 0.22,
+        roughness: 0.04,
         metalness: 0.0,
-        clearcoat: 0.6,
-        clearcoatRoughness: 0.1,
+        clearcoat: 0.75,
+        clearcoatRoughness: 0.08,
         ior: 1.33,
         side: THREE.DoubleSide,
+        depthWrite: false,
       }),
     [color],
   );
 
   // Prominent wireframe edges
   const edgeMat = useMemo(
-    () => new THREE.LineBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.75, linewidth: 2 }),
+    () =>
+      new THREE.LineBasicMaterial({
+        color: '#ffffff',
+        transparent: true,
+        opacity: 0.75,
+        linewidth: 2,
+        depthWrite: false,
+      }),
     [],
   );
 
