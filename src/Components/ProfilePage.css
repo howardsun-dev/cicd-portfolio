@@ -321,7 +321,7 @@ body {
     width: 5.7rem;
     height: 5.7rem;
     transform-style: preserve-3d;
-    transform: translate(-50%, -50%) rotateX(-20deg) rotateY(32deg);
+    transform: translate(-50%, -50%) rotateX(24deg) rotateY(35.5deg) rotateZ(2.3deg);
     pointer-events: none;
 }
 
