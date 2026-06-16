@@ -98,7 +98,7 @@ This portfolio is a static React application deployed through a GitHub Actions p
 
 1. Source code lives in GitHub on the `main` branch.
 2. GitHub Actions runs the deployment workflow on pushes to `main`.
-3. The workflow installs dependencies with `npm install --legacy-peer-deps`, runs `npm audit --audit-level=critical`, lints the codebase, and builds the app with Vite.
+3. The workflow installs dependencies with `npm install --legacy-peer-deps`, runs `npm audit --audit-level=critical`, lints the codebase, runs the Vitest test suite with coverage, and builds the app with Vite.
 4. Vite outputs production-ready static assets into `dist/`.
 5. The workflow syncs `dist/` to an AWS S3 bucket configured for static site hosting.
 6. The deploy script also uploads SPA route fallback files so direct navigation to `/project` and `/techstack` works after refresh.
@@ -114,7 +114,7 @@ This portfolio is a static React application deployed through a GitHub Actions p
 - Cache-aware deployment strategy for HTML assets
 - Type-safe React 19 + TypeScript architecture
 - Modular routing using TanStack Router
-- Dependency auditing and linting in CI workflows
+- Dependency auditing, linting, unit tests, coverage reporting, and production builds in CI workflows
 
 ## 🖼️ Screenshots
 
@@ -137,10 +137,11 @@ The deploy workflow validates the app before shipping:
 1. Install dependencies with `npm install --legacy-peer-deps`
 2. Run `npm audit --audit-level=critical`
 3. Run ESLint
-4. Build the React/Vite app
-5. Deploy `dist/` to S3 on pushes to `main`
-6. Upload SPA route fallbacks for direct `/project` and `/techstack` navigation
-7. Optionally invalidate CloudFront if `CLOUDFRONT_DISTRIBUTION_ID` is configured as a repository variable
+4. Run Vitest component tests with V8 coverage
+5. Build the React/Vite app
+6. Deploy `dist/` to S3 on pushes to `main`
+7. Upload SPA route fallbacks for direct `/project`, `/techstack`, and `/contact` navigation
+8. Optionally invalidate CloudFront if `CLOUDFRONT_DISTRIBUTION_ID` is configured as a repository variable
 
 ## 🧑‍💻 Local Development
 
@@ -148,11 +149,15 @@ The deploy workflow validates the app before shipping:
 npm install --legacy-peer-deps
 npm run dev
 npm run lint
+npm run test
+npm run test:coverage
 npm run build
 npm run preview
 ```
 
 - `npm run dev` starts the Vite dev server for local iteration.
+- `npm run test` runs the Vitest suite in CI mode.
+- `npm run test:coverage` runs the test suite and prints V8 coverage.
 - `npm run build` runs the same TypeScript + Vite production build used by CI.
 - `npm run preview` serves the built `dist/` output locally for a production-like smoke test.
 
