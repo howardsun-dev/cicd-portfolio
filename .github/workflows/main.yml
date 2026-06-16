@@ -6,6 +6,7 @@ on:
       - main
   pull_request:
     branches:
+      - dev
       - main
 
 env:
@@ -34,6 +35,9 @@ jobs:
 
       - name: Lint
         run: npm run lint
+
+      - name: Test
+        run: npm run test -- --coverage
 
       - name: Build React + Vite app
         run: npm run build
