@@ -1,5 +1,5 @@
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type MutableRefObject } from 'react';
 import * as THREE from 'three';
 
 type CubeSlide = {
@@ -11,6 +11,11 @@ type TechStackCubeProps = {
   slides: CubeSlide[];
   activeIndex: number;
   onSelectSlide: (index: number) => void;
+};
+
+type MouseSpin = {
+  x: number;
+  y: number;
 };
 
 const cubeSize = 1.85;
@@ -108,7 +113,13 @@ function CubeFaceLabel({
   );
 }
 
-function RotatingCube({ reducedMotion }: { reducedMotion: boolean }) {
+function RotatingCube({
+  reducedMotion,
+  mouseSpinRef,
+}: {
+  reducedMotion: boolean;
+  mouseSpinRef: MutableRefObject<MouseSpin>;
+}) {
   const groupRef = useRef<THREE.Group>(null);
   const boxGeo = useMemo(() => new THREE.BoxGeometry(cubeSize, cubeSize, cubeSize), []);
   const edgesGeo = useMemo(() => new THREE.EdgesGeometry(boxGeo), [boxGeo]);
@@ -155,12 +166,24 @@ function RotatingCube({ reducedMotion }: { reducedMotion: boolean }) {
     };
   }, [boxGeo, edgesGeo, faceMat, edgeMat]);
 
-  useFrame(({ clock }) => {
+  useFrame(({ clock }, delta) => {
     if (!groupRef.current || reducedMotion) return;
-    const elapsed = clock.elapsedTime;
-    groupRef.current.rotation.x = 0.42 + Math.sin(elapsed * 0.45) * 0.12;
-    groupRef.current.rotation.y = elapsed * 0.42;
-    groupRef.current.rotation.z = Math.sin(elapsed * 0.28) * 0.08;
+
+    const spin = mouseSpinRef.current;
+
+    // The cube keeps a slow idle spin, then accelerates in the same direction as
+    // the latest pointer movement anywhere on the page. Horizontal movement maps
+    // to Y rotation; vertical movement maps to X rotation.
+    groupRef.current.rotation.x += spin.y;
+    groupRef.current.rotation.y += delta * 0.32 + spin.x;
+    groupRef.current.rotation.z = THREE.MathUtils.lerp(
+      groupRef.current.rotation.z,
+      Math.sin(clock.elapsedTime * 0.28) * 0.08,
+      0.04,
+    );
+
+    spin.x *= 0.92;
+    spin.y *= 0.92;
   });
 
   return (
@@ -176,6 +199,46 @@ function RotatingCube({ reducedMotion }: { reducedMotion: boolean }) {
 
 export default function TechStackCube({ slides, activeIndex, onSelectSlide }: TechStackCubeProps) {
   const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
+  const mouseSpinRef = useRef<MouseSpin>({ x: 0, y: 0 });
+  const lastPointerRef = useRef<{ x: number; y: number } | null>(null);
+
+  useEffect(() => {
+    if (reducedMotion) return;
+
+    const handlePointerMove = (event: PointerEvent) => {
+      const previous = lastPointerRef.current;
+      lastPointerRef.current = { x: event.clientX, y: event.clientY };
+      if (!previous) return;
+
+      const deltaX = THREE.MathUtils.clamp(event.clientX - previous.x, -48, 48);
+      const deltaY = THREE.MathUtils.clamp(event.clientY - previous.y, -48, 48);
+
+      mouseSpinRef.current.x = THREE.MathUtils.clamp(
+        mouseSpinRef.current.x + deltaX * 0.0016,
+        -0.12,
+        0.12,
+      );
+      mouseSpinRef.current.y = THREE.MathUtils.clamp(
+        mouseSpinRef.current.y + deltaY * 0.0016,
+        -0.12,
+        0.12,
+      );
+    };
+
+    const resetPointer = () => {
+      lastPointerRef.current = null;
+    };
+
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
+    window.addEventListener('pointerleave', resetPointer);
+    window.addEventListener('blur', resetPointer);
+
+    return () => {
+      window.removeEventListener('pointermove', handlePointerMove);
+      window.removeEventListener('pointerleave', resetPointer);
+      window.removeEventListener('blur', resetPointer);
+    };
+  }, [reducedMotion]);
 
   return (
     <section className="tech-cube-section" aria-labelledby="tech-cube-title">
@@ -198,7 +261,7 @@ export default function TechStackCube({ slides, activeIndex, onSelectSlide }: Te
           <ambientLight intensity={1.15} />
           <directionalLight position={[3, 3, 4]} intensity={1.6} />
           <pointLight position={[-3, -2, 3]} intensity={0.8} color="#c4b5fd" />
-          <RotatingCube reducedMotion={reducedMotion} />
+          <RotatingCube reducedMotion={reducedMotion} mouseSpinRef={mouseSpinRef} />
         </Canvas>
       </div>
 
