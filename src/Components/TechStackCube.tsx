@@ -172,8 +172,8 @@ function RotatingCube({
     const spin = mouseSpinRef.current;
 
     // The cube keeps a slow idle spin, then accelerates in the same direction as
-    // the latest pointer movement anywhere on the page. Horizontal movement maps
-    // to Y rotation; vertical movement maps to X rotation.
+    // pointer movement inside the cube frame. Horizontal movement maps to Y
+    // rotation; vertical movement maps to X rotation.
     groupRef.current.rotation.x += spin.y;
     groupRef.current.rotation.y += delta * 0.32 + spin.x;
     groupRef.current.rotation.z = THREE.MathUtils.lerp(
@@ -199,11 +199,13 @@ function RotatingCube({
 
 export default function TechStackCube({ slides, activeIndex, onSelectSlide }: TechStackCubeProps) {
   const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
+  const stageRef = useRef<HTMLDivElement>(null);
   const mouseSpinRef = useRef<MouseSpin>({ x: 0, y: 0 });
   const lastPointerRef = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
-    if (reducedMotion) return;
+    const stage = stageRef.current;
+    if (!stage || reducedMotion) return;
 
     const handlePointerMove = (event: PointerEvent) => {
       const previous = lastPointerRef.current;
@@ -229,13 +231,13 @@ export default function TechStackCube({ slides, activeIndex, onSelectSlide }: Te
       lastPointerRef.current = null;
     };
 
-    window.addEventListener('pointermove', handlePointerMove, { passive: true });
-    window.addEventListener('pointerleave', resetPointer);
+    stage.addEventListener('pointermove', handlePointerMove, { passive: true });
+    stage.addEventListener('pointerleave', resetPointer);
     window.addEventListener('blur', resetPointer);
 
     return () => {
-      window.removeEventListener('pointermove', handlePointerMove);
-      window.removeEventListener('pointerleave', resetPointer);
+      stage.removeEventListener('pointermove', handlePointerMove);
+      stage.removeEventListener('pointerleave', resetPointer);
       window.removeEventListener('blur', resetPointer);
     };
   }, [reducedMotion]);
@@ -250,7 +252,7 @@ export default function TechStackCube({ slides, activeIndex, onSelectSlide }: Te
         </p>
       </div>
 
-      <div className="tech-cube-stage">
+      <div ref={stageRef} className="tech-cube-stage">
         <Canvas
           aria-hidden="true"
           camera={{ position: [0, 0, 5.4], fov: 42 }}
