@@ -1,11 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import ResumeSplitButton from './ResumeSplitButton';
 
-// const externalLinks = [
-//   { href: 'https://github.com/howardsun-dev', label: 'GitHub' },
-//   { href: 'https://www.linkedin.com/in/howardsun-swe', label: 'LinkedIn' },
-// ];
-
 export default function SiteNav() {
   return (
     <nav className="site-nav" aria-label="Primary navigation">
@@ -23,12 +18,6 @@ export default function SiteNav() {
           Tech Stack
         </Link>
         <ResumeSplitButton size="nav" />
-        {/* {externalLinks.map((link) => (
-          <a key={link.href} className="nav-link" href={link.href} target="_blank" rel="noreferrer">
-            {link.label}
-            <span className="sr-only"> (opens in a new tab)</span>
-          </a>
-        ))} */}
         <Link className="nav-link" to="/contact" activeProps={{ 'aria-current': 'page' }}>
           Contact
         </Link>

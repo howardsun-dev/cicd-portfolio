@@ -1,6 +1,7 @@
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 type ConstellationNode = {
   id: string;
@@ -66,22 +67,6 @@ const connections: [number, number][] = [
   [3, 5],
   [4, 5],
 ];
-
-function useMediaQuery(query: string) {
-  const [matches, setMatches] = useState(() => (typeof window === 'undefined' ? false : window.matchMedia(query).matches));
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia(query);
-    const updateMatches = () => setMatches(mediaQuery.matches);
-
-    updateMatches();
-    mediaQuery.addEventListener('change', updateMatches);
-
-    return () => mediaQuery.removeEventListener('change', updateMatches);
-  }, [query]);
-
-  return matches;
-}
 
 function NetworkLines() {
   const lineSegments = useMemo(() => {
