@@ -26,6 +26,15 @@ describe('website navigation', () => {
       '#main-content',
     );
 
+    const primaryActions = screen.getByLabelText('Primary actions');
+    expect(within(primaryActions).getAllByRole('link')).toHaveLength(3);
+    expect(within(primaryActions).getByRole('link', { name: 'View Projects' })).toBeInTheDocument();
+    expect(within(primaryActions).getByRole('link', { name: 'Tech Stack' })).toBeInTheDocument();
+    expect(within(primaryActions).getByRole('link', { name: 'Contact' })).toBeInTheDocument();
+    expect(within(primaryActions).getByRole('button', { name: /resume/i })).toBeInTheDocument();
+    expect(within(primaryActions).queryByRole('link', { name: /github/i })).not.toBeInTheDocument();
+    expect(within(primaryActions).queryByRole('link', { name: /linkedin/i })).not.toBeInTheDocument();
+
     const navigation = screen.getByRole('navigation', { name: 'Primary navigation' });
 
     await user.click(within(navigation).getByRole('link', { name: 'Contact' }));
