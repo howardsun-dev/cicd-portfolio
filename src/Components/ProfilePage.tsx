@@ -158,30 +158,14 @@ export default function ProfilePage() {
           Tech Stack
         </Link>
         <ResumeSplitButton />
-        <a
-          className="social-link"
-          href="https://github.com/howardsun-dev"
-          target="_blank"
-          rel="noreferrer"
-        >
-          GitHub<span className="sr-only"> (opens in a new tab)</span>
-        </a>
-        <a
-          className="social-link"
-          href="https://www.linkedin.com/in/howardsun-swe"
-          target="_blank"
-          rel="noreferrer"
-        >
-          LinkedIn<span className="sr-only"> (opens in a new tab)</span>
-        </a>
         <Link className="social-link" to="/contact">
           Contact
         </Link>
       </div>
       <aside className="portfolio-built-note" aria-label="Portfolio technology note">
-        This portfolio is a working project built with the same stack I use to ship software:
-        React 19, TypeScript, Vite, TanStack Router, Three.js, anime.js, GitHub Actions, AWS
-        S3, and CloudFront.
+        This portfolio is a working project built with the same stack I use to ship software: React
+        19, TypeScript, Vite, TanStack Router, Three.js, anime.js, GitHub Actions, AWS S3, and
+        CloudFront.
       </aside>
     </main>
   );
