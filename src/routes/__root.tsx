@@ -1,6 +1,5 @@
 import { Outlet, createRootRoute } from '@tanstack/react-router';
 import SiteNav from '../Components/SiteNav';
-// import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 
 export const Route = createRootRoute({
   component: () => {
@@ -11,7 +10,6 @@ export const Route = createRootRoute({
         </a>
         <SiteNav />
         <Outlet />
-        {/* <TanStackRouterDevtools /> */}
       </>
     );
   },

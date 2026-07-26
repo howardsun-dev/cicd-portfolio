@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import ResumeSplitButton from './ResumeSplitButton';
-import { RESUME_DOCX_PATH, RESUME_PDF_PATH } from '../links';
+import ResumeSplitButton from '../../../Components/ResumeSplitButton';
+import { RESUME_DOCX_PATH, RESUME_PDF_PATH } from '../../../links';
 
 describe('ResumeSplitButton', () => {
   it('opens the resume format menu with PDF and DOCX links', async () => {
@@ -40,6 +40,23 @@ describe('ResumeSplitButton', () => {
     const trigger = screen.getByRole('button', { name: /resume/i });
     await user.click(trigger);
     await user.click(screen.getByRole('menuitem', { name: 'PDF' }));
+
+    expect(trigger).toHaveAttribute('aria-expanded', 'false');
+    expect(screen.queryByRole('menu')).not.toBeInTheDocument();
+  });
+
+  it('closes the menu when the user clicks outside it', async () => {
+    const user = userEvent.setup();
+    render(
+      <div>
+        <ResumeSplitButton />
+        <button type="button">Outside</button>
+      </div>,
+    );
+
+    const trigger = screen.getByRole('button', { name: /resume/i });
+    await user.click(trigger);
+    await user.click(screen.getByRole('button', { name: 'Outside' }));
 
     expect(trigger).toHaveAttribute('aria-expanded', 'false');
     expect(screen.queryByRole('menu')).not.toBeInTheDocument();
