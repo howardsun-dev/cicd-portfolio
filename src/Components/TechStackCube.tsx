@@ -1,6 +1,7 @@
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useEffect, useMemo, useRef, useState, type MutableRefObject } from 'react';
+import { useEffect, useMemo, useRef, type MutableRefObject } from 'react';
 import * as THREE from 'three';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 type CubeSlide = {
   id: string;
@@ -34,22 +35,6 @@ const faceLabels = [
   { position: [0, labelOffset, 0], rotation: [-Math.PI / 2, 0, 0], text: 'TS' },
   { position: [0, -labelOffset, 0], rotation: [Math.PI / 2, 0, 0], text: 'CI/CD' },
 ] as const;
-
-function useMediaQuery(query: string) {
-  const [matches, setMatches] = useState(() =>
-    typeof window === 'undefined' ? false : window.matchMedia(query).matches,
-  );
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia(query);
-    const updateMatches = () => setMatches(mediaQuery.matches);
-    updateMatches();
-    mediaQuery.addEventListener('change', updateMatches);
-    return () => mediaQuery.removeEventListener('change', updateMatches);
-  }, [query]);
-
-  return matches;
-}
 
 function createTextTexture(text: string) {
   const canvas = document.createElement('canvas');

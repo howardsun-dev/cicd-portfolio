@@ -1,10 +1,34 @@
+:root {
+    --page-top-offset: 5.5rem;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-ul, ol, li {
+html,
+body {
+    overflow-x: hidden;
+}
+
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--page-top-offset) 1rem max(2rem, env(safe-area-inset-bottom));
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+ul,
+ol,
+li {
     list-style: none !important;
     list-style-type: none !important;
     -webkit-appearance: none;
@@ -14,37 +38,18 @@ ul, ol, li {
     padding: 0;
 }
 
-.profile-info, .social-links, .portfolio-built-note {
+.profile-info,
+.social-links,
+.portfolio-built-note {
     opacity: 0;
     transform: translateY(20px);
 }
 
-.profile-info.is-visible, .social-links.is-visible, .portfolio-built-note.is-visible {
+.profile-info.is-visible,
+.social-links.is-visible,
+.portfolio-built-note.is-visible {
     opacity: 1;
     transform: none;
-}
-
-:root {
-    --page-top-offset: 5.5rem;
-}
-
-html, body {
-    overflow-x: hidden;
-}
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    overflow-x: hidden;
-    box-sizing: border-box;
-    padding: var(--page-top-offset) 1rem max(2rem, env(safe-area-inset-bottom));
 }
 
 .skip-link {
@@ -141,11 +146,10 @@ body {
     border-radius: 20px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    width: calc(100vw - 4rem);  /* absolute, ignores all parent context */
+    width: calc(100vw - 4rem);
     max-width: 1200px;
     box-sizing: border-box;
     overflow: hidden;
-    /* no margin — body padding handles spacing */
 }
 
 .name-container {
@@ -172,7 +176,7 @@ body {
 }
 
 .letter:hover {
-    color: #FFD700;
+    color: #ffd700;
 }
 
 .space {
@@ -457,7 +461,7 @@ body {
     }
 }
 
-/* ===== Project Cards ===== */
+/* ===== Shared page layout ===== */
 
 .page-header {
     max-width: 760px;
@@ -540,7 +544,7 @@ body {
     margin-top: 0.15rem;
 }
 
-/* ===== Project Cards ===== */
+/* ===== Project cards ===== */
 
 .projects-list {
     display: grid;
