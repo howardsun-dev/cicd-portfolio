@@ -21,7 +21,9 @@ body {
     align-items: center;
     justify-content: center;
     padding: var(--page-top-offset) 1rem max(2rem, env(safe-area-inset-bottom));
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background:
+        radial-gradient(ellipse at top, #1e293b 0%, transparent 60%),
+        #0f172a;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -80,8 +82,8 @@ li {
     justify-content: space-between;
     gap: 1rem;
     padding: 0.75rem 1rem;
-    background: rgba(21, 25, 54, 0.72);
-    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(15, 23, 42, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 999px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
     backdrop-filter: blur(14px);
@@ -202,6 +204,11 @@ li {
     opacity: 0.9;
     max-width: 900px;
     margin: 0 auto;
+    text-align: left;
+}
+
+.bio + .bio {
+    margin-top: 1rem; 
 }
 
 .social-links {
@@ -224,7 +231,7 @@ li {
 }
 
 .social-link.primary {
-    background: #ffffff;
+    background: #1e3a5f;
     color: #3f3c91;
     font-weight: 700;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
@@ -301,8 +308,8 @@ li {
     border-radius: 16px;
     perspective: 1000px;
     background:
-        radial-gradient(circle at 50% 42%, rgba(147, 197, 253, 0.2), transparent 36%),
-        radial-gradient(circle at 70% 70%, rgba(196, 181, 253, 0.16), transparent 28%),
+          radial-gradient(circle at 50% 42%, rgba(147, 197, 253, 0.2), transparent 36%),
+        radial-gradient(circle at 70% 70%, rgba(96, 165, 250, 0.12), transparent 28%),
         rgba(15, 23, 42, 0.22);
 }
 
@@ -745,7 +752,7 @@ li {
     border-radius: 16px;
     background:
         radial-gradient(circle at 50% 45%, rgba(125, 211, 252, 0.18), transparent 38%),
-        radial-gradient(circle at 78% 22%, rgba(196, 181, 253, 0.14), transparent 28%),
+        radial-gradient(circle at 78% 22%, rgba(96, 165, 250, 0.12), transparent 28%),
         rgba(15, 23, 42, 0.28);
     border: 1px solid rgba(255, 255, 255, 0.1);
 }

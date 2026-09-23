@@ -15,7 +15,12 @@ type Project = {
   status: 'live' | 'in-progress' | 'contribution';
   proofPoints: string[];
   media?: Array<{ type: 'gif' | 'image'; url: string; alt: string }>;
-  badges?: Array<{ type: 'build' | 'release' | 'deployed' | 'pipeline'; label: string; url: string; href: string }>;
+  badges?: Array<{
+    type: 'build' | 'release' | 'deployed' | 'pipeline';
+    label: string;
+    url: string;
+    href: string;
+  }>;
 };
 
 const projects: Project[] = [
@@ -29,8 +34,15 @@ const projects: Project[] = [
       'Demonstrates CLI/product design, Express file streaming, secure path handling, browser-based controls, and CI-backed test coverage across unit, integration, and functional layers.',
     tech: ['TypeScript', 'Node.js', 'Express', 'Playwright', 'Vitest', 'GitHub Actions'],
     links: [
-      { label: 'View Repository', href: 'https://github.com/howardsun-dev/LANShare', kind: 'primary' },
-      { label: 'View Workflow', href: 'https://github.com/howardsun-dev/LANShare/actions/workflows/ci.yml' },
+      {
+        label: 'View Repository',
+        href: 'https://github.com/howardsun-dev/LANShare',
+        kind: 'primary',
+      },
+      {
+        label: 'View Workflow',
+        href: 'https://github.com/howardsun-dev/LANShare/actions/workflows/ci.yml',
+      },
     ],
     status: 'live',
     proofPoints: [
@@ -118,10 +130,15 @@ const projects: Project[] = [
     description:
       'A deployed real-time chat app with authentication, Socket.io messaging, Zustand state management, and a polished Tailwind UI.',
     role: 'Full-stack builder',
-    outcome: 'Demonstrates realtime client/server behavior, auth flow, persistent chat data, and production deployment.',
+    outcome:
+      'Demonstrates realtime client/server behavior, auth flow, persistent chat data, and production deployment.',
     tech: ['React', 'Node.js', 'Express', 'Socket.io', 'MongoDB', 'Zustand', 'Tailwind CSS'],
     links: [
-      { label: 'Open Live Demo', href: 'https://quickchat-v72jh.sevalla.app/login', kind: 'primary' },
+      {
+        label: 'Open Live Demo',
+        href: 'https://quickchat-v72jh.sevalla.app/login',
+        kind: 'primary',
+      },
       { label: 'View Repository', href: 'https://github.com/howardsun-dev/quickchat' },
     ],
     status: 'live',
@@ -162,7 +179,11 @@ const projects: Project[] = [
       'Current milestone: Discord bot skeleton with /ping and /jobs commands; next milestone adds scraping and PostgreSQL.',
     tech: ['Node.js', 'TypeScript', 'discord.js', 'Puppeteer', 'PostgreSQL', 'Docker', 'AWS'],
     links: [
-      { label: 'View Repository', href: 'https://github.com/howardsun-dev/discord-job-scraper', kind: 'primary' },
+      {
+        label: 'View Repository',
+        href: 'https://github.com/howardsun-dev/discord-job-scraper',
+        kind: 'primary',
+      },
     ],
     status: 'in-progress',
     proofPoints: [
@@ -192,7 +213,8 @@ const projects: Project[] = [
     description:
       'Open-source contribution experience in Swell, an Electron/React API testing tool from Open Source Labs.',
     role: 'Contributor in existing codebase',
-    outcome: 'Shows ability to navigate a mature codebase, understand product workflows, and contribute in a team-owned repository.',
+    outcome:
+      'Shows ability to navigate a mature codebase, understand product workflows, and contribute in a team-owned repository.',
     tech: ['Electron.js', 'React', 'Node.js'],
     links: [
       {
@@ -241,7 +263,15 @@ const projects: Project[] = [
     role: 'Frontend + DevOps owner',
     outcome:
       'Validated CI/CD pipeline with dependency audit, linting, production build, S3 deploy, SPA route support, and optional CloudFront invalidation.',
-    tech: ['React 19', 'TypeScript', 'Vite', 'TanStack Router', 'AWS S3', 'CloudFront', 'GitHub Actions'],
+    tech: [
+      'React 19',
+      'TypeScript',
+      'Vite',
+      'TanStack Router',
+      'AWS S3',
+      'CloudFront',
+      'GitHub Actions',
+    ],
     links: [],
     status: 'live',
     proofPoints: [
@@ -301,7 +331,7 @@ function ProjectCard({ project }: { project: Project }) {
       </div>
       <p className="project-description">{project.description}</p>
       <p className="project-outcome">{project.outcome}</p>
-      
+
       {/* Media section */}
       {project.media && project.media.length > 0 && (
         <div className="project-media">
@@ -317,7 +347,7 @@ function ProjectCard({ project }: { project: Project }) {
           ))}
         </div>
       )}
-      
+
       <ul className="project-proof" aria-label={`${project.name} proof points`}>
         {project.proofPoints.map((point) => (
           <li key={point}>{point}</li>
@@ -330,7 +360,7 @@ function ProjectCard({ project }: { project: Project }) {
           </span>
         ))}
       </div>
-      
+
       {/* Badges section */}
       {project.badges && project.badges.length > 0 && (
         <div className="project-badges" aria-label={`${project.name} badges`}>
@@ -358,10 +388,11 @@ export default function ProjectPage() {
   return (
     <main id="main-content" className="profile-container" tabIndex={-1}>
       <header className="page-header">
-        <p className="eyebrow">Selected work</p>
+        {/* <p className="eyebrow">Selected work</p> */}
         <h1 className="title">Projects</h1>
         <p className="page-intro">
-          A focused set of projects showing full-stack product work, open-source contribution, and deployment ownership.
+          A focused set of projects showing full-stack product work, open-source contribution, and
+          deployment ownership.
         </p>
       </header>
       <Suspense fallback={null}>

@@ -233,7 +233,8 @@ export default function TechStackCube({ slides, activeIndex, onSelectSlide }: Te
         <p className="eyebrow">Stack map</p>
         <h2 id="tech-cube-title">Rotating capability cube</h2>
         <p>
-          A compact Three.js view of the stack layers behind the portfolio. Select a layer to jump to the matching skill slide.
+          Instructions: Three.js diagram of skills. Select a layer below to jump to the matching
+          skill slide.
         </p>
       </div>
 
