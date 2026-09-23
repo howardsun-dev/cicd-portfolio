@@ -132,7 +132,9 @@ function ConstellationScene({ activeId }: { activeId: string | null }) {
 }
 
 function scrollToProject(projectId: string) {
-  const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+  const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ? 'auto'
+    : 'smooth';
   document.getElementById(projectId)?.scrollIntoView({ behavior, block: 'start' });
 }
 
@@ -149,9 +151,7 @@ export default function ProjectConstellation() {
       <div className="constellation-copy">
         <p className="eyebrow">Interactive map</p>
         <h2 id="project-constellation-title">Project Constellation</h2>
-        <p>
-          A lightweight Three.js map connecting each project to the engineering signal it demonstrates. Select a node to jump to the matching case study.
-        </p>
+        <p>Instructions: Click on each node for more info.</p>
       </div>
       <div className="constellation-stage">
         <Canvas

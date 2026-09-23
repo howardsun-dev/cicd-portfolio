@@ -138,13 +138,13 @@ export default function ProfilePage() {
         <p className="bio">
           I work across the stack in TypeScript, React, and Node.js, with a focus on code quality,
           test coverage, and systems that are easy for other engineers to maintain. I've been on
-          both the contributor side and the founding side — I co-led the engineering team at Mission
+          both the contributor side and the founding side. I co-led the engineering team at Mission
           Coders, shipping a kids' coding platform 5 weeks ahead of schedule.
         </p>
         <p className="bio">
-          Now I'm building toward AI engineering — learning RAG systems, LLM integrations, and
-          vector search by shipping real projects. I document the journey through build-along
-          content and open-source code.
+          Now I'm building toward AI engineering. learning RAG systems, LLM integrations, and vector
+          search by shipping real projects. I document the journey through build-along content and
+          open-source code.
         </p>
         <p className="bio open-to">
           Open to full-stack, frontend, and backend TypeScript/Node roles.

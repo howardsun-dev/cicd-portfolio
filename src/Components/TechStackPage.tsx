@@ -133,7 +133,8 @@ function TechSlide({ slide }: { slide: SlideData }) {
               <ul className="tech-proof-list">
                 {slide.proof.map((connection) => (
                   <li key={connection.skill} className="tech-proof-item">
-                    <strong>{connection.skill}</strong> → {connection.projects.map((p, i) => (
+                    <strong>{connection.skill}</strong> →{' '}
+                    {connection.projects.map((p, i) => (
                       <>
                         {i > 0 && ', '}
                         <span className="tech-project">{p}</span>
@@ -175,7 +176,7 @@ export default function TechStackPage() {
         {
           root: slider,
           threshold: 0.65,
-        }
+        },
       );
 
       slideElements.forEach((slide, index) => {
@@ -205,7 +206,7 @@ export default function TechStackPage() {
   return (
     <main id="main-content" className="profile-container tech-stack-page" tabIndex={-1}>
       <header className="page-header">
-        <p className="eyebrow">Capabilities</p>
+        {/* <p className="eyebrow">Capabilities</p> */}
         <h1 className="title">Tech Stack</h1>
       </header>
 
