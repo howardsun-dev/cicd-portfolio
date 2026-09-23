@@ -89,8 +89,8 @@
 .resume-split--hero.resume-split__options,
 .resume-split__options.resume-split--hero {
   padding: 0.4rem;
-  background: rgba(30, 35, 70, 0.96);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(30, 41, 59, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 14px;
   backdrop-filter: blur(12px);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
@@ -101,8 +101,8 @@
 .resume-split--nav.resume-split__options,
 .resume-split__options.resume-split--nav {
   padding: 0.35rem;
-  background: rgba(21, 25, 54, 0.97);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(15, 23, 42, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 12px;
   backdrop-filter: blur(14px);
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
