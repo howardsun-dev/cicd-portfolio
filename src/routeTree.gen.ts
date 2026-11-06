@@ -12,31 +12,31 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRouteImport } from './routes/__root'
 
-const TechstackLazyRouteImport = createFileRoute('/techstack')()
-const ProjectLazyRouteImport = createFileRoute('/project')()
-const ContactLazyRouteImport = createFileRoute('/contact')()
 const IndexLazyRouteImport = createFileRoute('/')()
+const ContactLazyRouteImport = createFileRoute('/contact')()
+const ProjectLazyRouteImport = createFileRoute('/project')()
+const TechstackLazyRouteImport = createFileRoute('/techstack')()
 
-const TechstackLazyRoute = TechstackLazyRouteImport.update({
-  id: '/techstack',
-  path: '/techstack',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./routes/techstack.lazy').then((d) => d.Route))
-const ProjectLazyRoute = ProjectLazyRouteImport.update({
-  id: '/project',
-  path: '/project',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./routes/project.lazy').then((d) => d.Route))
-const ContactLazyRoute = ContactLazyRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any).lazy(() => import('./routes/contact.lazy').then((d) => d.Route))
 const IndexLazyRoute = IndexLazyRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+const ContactLazyRoute = ContactLazyRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() => import('./routes/contact.lazy').then((d) => d.Route))
+const ProjectLazyRoute = ProjectLazyRouteImport.update({
+  id: '/project',
+  path: '/project',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() => import('./routes/project.lazy').then((d) => d.Route))
+const TechstackLazyRoute = TechstackLazyRouteImport.update({
+  id: '/techstack',
+  path: '/techstack',
+  getParentRoute: () => rootRouteImport,
+} as any).lazy(() => import('./routes/techstack.lazy').then((d) => d.Route))
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
@@ -74,18 +74,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/techstack': {
-      id: '/techstack'
-      path: '/techstack'
-      fullPath: '/techstack'
-      preLoaderRoute: typeof TechstackLazyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/project': {
-      id: '/project'
-      path: '/project'
-      fullPath: '/project'
-      preLoaderRoute: typeof ProjectLazyRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexLazyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -95,11 +88,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactLazyRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexLazyRouteImport
+    '/project': {
+      id: '/project'
+      path: '/project'
+      fullPath: '/project'
+      preLoaderRoute: typeof ProjectLazyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/techstack': {
+      id: '/techstack'
+      path: '/techstack'
+      fullPath: '/techstack'
+      preLoaderRoute: typeof TechstackLazyRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
