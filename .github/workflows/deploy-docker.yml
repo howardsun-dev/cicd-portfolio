@@ -1,0 +1,2 @@
+      - name: Build Docker image
+        run: docker build -t "$ECR_REGISTRY/cicd-portfolio:${{ github.sha }}" .

@@ -4,6 +4,7 @@ import { tanstackRouter } from '@tanstack/router-plugin/vite';
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/',
   plugins: [
     tanstackRouter({
       target: 'react',
@@ -26,12 +27,7 @@ export default defineConfig({
       reporter: ['text', 'lcov'],
       reportsDirectory: './coverage',
       include: ['src/**/*.{ts,tsx}'],
-      exclude: [
-        'src/**/*.test.{ts,tsx}',
-        'src/test/**',
-        'src/main.tsx',
-        'src/routeTree.gen.ts',
-      ],
+      exclude: ['src/**/*.test.{ts,tsx}', 'src/test/**', 'src/main.tsx', 'src/routeTree.gen.ts'],
       thresholds: {
         statements: 80,
         branches: 65,
